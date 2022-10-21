@@ -1,10 +1,13 @@
-local status, lspkind = pcall(require, "lspkind")
-if (not status) then return end
+local status_lspkind_ok, lspkind = pcall(require, "lspkind")
+if not status_lspkind_ok then
+  return
+end
+local status_colorbuddy_ok, colorbuddy = pcall(require, "colorbuddy")
 
 lspkind.init({
-  -- enables text annotations
-  --
-  -- default: true
+  -- defines how annotations are shown
+  -- default: symbol
+  -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
   mode = 'symbol',
 
   -- default symbol map
@@ -42,6 +45,14 @@ lspkind.init({
     Struct = "פּ",
     Event = "",
     Operator = "",
-    TypeParameter = ""
+    TypeParameter = "",
+    Copilot = "",
   },
 })
+
+if status_colorbuddy_ok then
+  local Group = colorbuddy.Group
+  local colors = colorbuddy.colors
+
+  Group.new("CmpItemKindCopilot", colors.blue:dark())
+end

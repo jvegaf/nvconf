@@ -7,26 +7,48 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
-  use 'wbthomason/packer.nvim'
-  use {
-    'svrana/neosolarized.nvim',
-    requires = { 'tjdevries/colorbuddy.nvim' }
+  use  {'navarasu/onedark.nvim',
+    config = function()
+      require('onedark').load()
+    end,
   }
-  use 'nvim-lualine/lualine.nvim' -- Statusline
-  use 'nvim-lua/plenary.nvim' -- Common utilities
-  use 'onsails/lspkind-nvim' -- vscode-like pictograms
-  use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
-  use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
-  use 'hrsh7th/nvim-cmp' -- Completion
-  use 'neovim/nvim-lspconfig' -- LSP
-  use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  -- core
+  use "wbthomason/packer.nvim" -- Have packer manage itself
+  use 'nvim-lua/plenary.nvim'
+  use 'kyazdani42/nvim-web-devicons'
+
+  -- basic
+  use 'tpope/vim-surround'
+  use 'hoob3rt/lualine.nvim'
+  use 'akinsho/bufferline.nvim'
+  use 'mbbill/undotree'
+  use 'windwp/nvim-autopairs'
+  use 'windwp/nvim-spectre' -- global character search
+  use 'kyazdani42/nvim-tree.lua' -- file explorer
+
+  -- lsp
+  use 'neovim/nvim-lspconfig'
   use 'williamboman/mason.nvim'
-  use 'williamboman/mason-lspconfig.nvim'
-
-  -- Code folding
-  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-
-  use 'glepnir/lspsaga.nvim' -- LSP UIs
+  use {
+    'williamboman/mason-lspconfig.nvim', -- formerly lsp installer
+    requires = {
+      'williamboman/mason.nvim',
+      'neovim/nvim-lspconfig'
+    }
+  }
+  use 'hrsh7th/nvim-cmp'
+  use {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-path',
+    requires = {
+      "hrsh7th/nvim-cmp",
+    }
+  }
+  use 'onsails/lspkind-nvim'
+  use 'glepnir/lspsaga.nvim'
+  use 'folke/lsp-colors.nvim'
   use 'L3MON4D3/LuaSnip'
   use {
     'saadparwaiz1/cmp_luasnip',
@@ -37,61 +59,68 @@ packer.startup(function(use)
     requires = {'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'}
   }
   use 'folke/trouble.nvim'
+  use 'simrat39/rust-tools.nvim'
   use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    "zbirenbaum/copilot-cmp",
+    module = "copilot_cmp",
     requires = {
-			"nvim-treesitter/playground",
-			"nvim-treesitter/nvim-treesitter-refactor",
-			"nvim-treesitter/nvim-treesitter-textobjects",
-		},
+      "github/copilot.vim",
+      "zbirenbaum/copilot.lua",
+    },
+    disable = true,
   }
 
-  use 'kyazdani42/nvim-web-devicons' -- File icons
+  -- telescope
   use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-file-browser.nvim'
-  use 'windwp/nvim-autopairs'
-  use 'windwp/nvim-ts-autotag'
-  use 'norcalli/nvim-colorizer.lua'
-  use 'folke/zen-mode.nvim'
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
-  use 'akinsho/nvim-bufferline.lua'
-  -- use 'github/copilot.vim'
-
-  use({
-      "kylechui/nvim-surround",
-      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-      config = function()
-          require("nvim-surround").setup({
-              -- Configuration here, or leave empty to use defaults
-          })
-      end
-  })
-
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}
   use {
-  "nvim-neo-tree/neo-tree.nvim",
-    branch = "v2.x",
-    requires = { 
-      "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
-      "MunifTanjim/nui.nvim",
+    'tom-anders/telescope-vim-bookmarks.nvim',
+    requires = {
+      'MattesGroeger/vim-bookmarks'
     }
   }
 
-  -- Comments
+  -- treesitter
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use 'windwp/nvim-ts-autotag'
   use {
-    'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
-    end
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    requires = {
+      'tpope/vim-commentary'
+    }
+  }
+  use 'folke/todo-comments.nvim'
+
+  -- git
+  use 'lewis6991/gitsigns.nvim'
+  use 'sindrets/diffview.nvim'
+
+  -- theme
+  use 'folke/tokyonight.nvim'
+  use {
+    'svrana/neosolarized.nvim',
+    requires = {
+      'tjdevries/colorbuddy.nvim'
+    }
   }
 
-  use {"akinsho/toggleterm.nvim", tag = '*', config = function()
-  require("toggleterm").setup()
-  end}
+  -- highlight
+  use 'norcalli/nvim-colorizer.lua' -- highlight HEX color
+
+  -- others
+  use {
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  }
+  use 'sbdchd/neoformat' -- format file on save
+  use {'akinsho/toggleterm.nvim', tag = 'v2.1.0'}
+  use 'phaazon/hop.nvim' -- goto a word or line
+  use 'rmagatti/auto-session' -- restore session
+  use {
+    'rhysd/accelerated-jk',
+    commit = '156c5158b72059404f6b8aaf15b59f87dd0aaa88'
+  }
+  use 'wakatime/vim-wakatime'
 
   use({
 		"ThePrimeagen/refactoring.nvim",
@@ -100,10 +129,4 @@ packer.startup(function(use)
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	})
-
-  use 'editorconfig/editorconfig-vim'
-
-  -- git
-  use 'lewis6991/gitsigns.nvim'
-  use 'sindrets/diffview.nvim'
 end)
