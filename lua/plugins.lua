@@ -29,6 +29,15 @@ packer.startup(function(use)
   use 'glepnir/lspsaga.nvim' -- LSP UIs
   use 'L3MON4D3/LuaSnip'
   use {
+    'saadparwaiz1/cmp_luasnip',
+    requires = {'L3MON4D3/LuaSnip'}
+  }
+  use {
+    'rafamadriz/friendly-snippets',
+    requires = {'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip'}
+  }
+  use 'folke/trouble.nvim'
+  use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     requires = {
@@ -93,6 +102,8 @@ packer.startup(function(use)
 	})
 
   use 'editorconfig/editorconfig-vim'
+
+  -- git
   use 'lewis6991/gitsigns.nvim'
-  use 'dinhhuy258/git.nvim' -- For git blame & browse
+  use 'sindrets/diffview.nvim'
 end)
