@@ -1,7 +1,7 @@
 -- apply theme
 
 -- from neosolarized.lua
-THEME_NEOSOLARIZED()
+-- THEME_NEOSOLARIZED()
 
 -- from tokyonight.lua
--- THEME_TOKYONIGHT()
+THEME_TOKYONIGHT()

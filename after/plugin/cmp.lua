@@ -29,8 +29,6 @@ local cmp_config = {
     end,
   },
   sources = cmp.config.sources({
-    -- Copilot Source
-    { name = "copilot" },
     -- Other Sources
     { name = "nvim_lsp" },
     { name = "path",  },

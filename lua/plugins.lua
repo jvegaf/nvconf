@@ -60,15 +60,6 @@ packer.startup(function(use)
   }
   use 'folke/trouble.nvim'
   use 'simrat39/rust-tools.nvim'
-  use {
-    "zbirenbaum/copilot-cmp",
-    module = "copilot_cmp",
-    requires = {
-      "github/copilot.vim",
-      "zbirenbaum/copilot.lua",
-    },
-    disable = true,
-  }
 
   -- telescope
   use 'nvim-telescope/telescope.nvim'
@@ -97,12 +88,6 @@ packer.startup(function(use)
 
   -- theme
   use 'folke/tokyonight.nvim'
-  use {
-    'svrana/neosolarized.nvim',
-    requires = {
-      'tjdevries/colorbuddy.nvim'
-    }
-  }
 
   -- highlight
   use 'norcalli/nvim-colorizer.lua' -- highlight HEX color
@@ -120,7 +105,6 @@ packer.startup(function(use)
     'rhysd/accelerated-jk',
     commit = '156c5158b72059404f6b8aaf15b59f87dd0aaa88'
   }
-  use 'wakatime/vim-wakatime'
 
   use({
 		"ThePrimeagen/refactoring.nvim",
