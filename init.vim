@@ -176,8 +176,9 @@ nnoremap \t :tabe<CR>:-tabmove<CR>:term sh -c 'st'<CR><C-\><C-N>:q<CR>
 noremap <LEADER>kt :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
 " Press space twice to jump to the next '<++>' and edit it
 noremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>"_c4l
-" Spelling Check with <space>sc
-noremap <LEADER>sc :set spell!<CR>
+" Search on Google
+nmap <silent> <Leader>s <Plug>SearchNormal
+vmap <silent> <Leader>s <Plug>SearchVisual
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
 " set wrap
@@ -205,12 +206,14 @@ Plug 'theniceboy/nvim-deus'
 Plug 'theniceboy/eleline.vim', { 'branch': 'no-scrollbar' }
 
 " General Highlighter
-Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'RRethy/vim-illuminate'
+
+" search on Google
+Plug 'voldikss/vim-browser-search'
 
 " File navigation
 Plug 'ibhagwan/fzf-lua'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kevinhwang91/rnvimr'
 Plug 'airblade/vim-rooter'
@@ -274,10 +277,10 @@ Plug 'pantharshit00/vim-prisma'
 "Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 
 " Python
-Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
-Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
-"Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
+" Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
+" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
+" Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
+" "Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
 "Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
 "Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
 
@@ -582,6 +585,8 @@ let g:VM_maps["Redo"]               = '<C-r>'
 nnoremap <LEADER>f <cmd>lua require('spectre').open()<CR>
 vnoremap <LEADER>f <cmd>lua require('spectre').open_visual()<CR>
 
+" ==================== vim-browser-search ====================
+vnoremap s :'<,'>BrowserSearch<CR>
 
 " ==================== Bullets.vim ====================
 " let g:bullets_set_mappings = 0
@@ -773,7 +778,7 @@ if g:nvim_plugins_installation_completed == 1
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
 	-- one of "all", "language", or a list of languages
-	ensure_installed = {"typescript", "java", "c", "cpp", "prisma", "javascript", "html", "yaml" "css", "dockerfile"},
+	ensure_installed = {"typescript", "java", "c", "cpp", "prisma", "javascript", "html", "yaml", "css", "dockerfile"},
 	highlight = {
 		enable = true,              -- false will disable the whole extension
 		disable = { "rust" },  -- list of language that will be disabled
