@@ -581,6 +581,7 @@ vnoremap <LEADER>f <cmd>lua require('spectre').open_visual()<CR>
 
 " ==================== vim-browser-search ====================
 vnoremap s :'<,'>BrowserSearch<CR>
+vnoremap <Leader>s :'<,'>CocSearch<CR>
 
 " ==================== Bullets.vim ====================
 " let g:bullets_set_mappings = 0
