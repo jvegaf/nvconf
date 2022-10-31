@@ -25,16 +25,8 @@ if empty(glob($HOME.'/.config/nvim/plugged/wildfire.vim/autoload/wildfire.vim'))
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location 
-let has_machine_specific_file = 1
-if empty(glob('~/.config/nvim/_machine_specific.vim'))
-	let has_machine_specific_file = 0
-	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
-endif
-source $HOME/.config/nvim/_machine_specific.vim
-
 " ==================== Editor behavior ====================
-"set clipboard=unnamedplus
+set clipboard=unnamedplus
 let &t_ut=''
 set autochdir
 set exrc
@@ -93,16 +85,24 @@ tnoremap <C-N> <C-\><C-N>
 tnoremap <C-O> <C-\><C-N><C-O>
 
 
+" ==================== Move Lines ====================
+nnoremap <A-Down> :m .+1<CR>==
+nnoremap <A-Up> :m .-2<CR>==
+inoremap <A-Down> <Esc>:m .+1<CR>==gi
+inoremap <A-Up> <Esc>:m .-2<CR>==gi
+vnoremap <A-Down> :m '>+1<CR>gv=gv
+vnoremap <A-Up> :m '<-2<CR>gv=gv
+
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " ==================== Basic Mappings ====================
 let mapleader=" "
 noremap ; :
-" Open the vimrc file anytime
-nnoremap <LEADER>rc :e $HOME/.config/nvim/init.vim<CR>
-nnoremap <LEADER>rv :e .nvimrc<CR>
-augroup NVIMRC
-    autocmd!
-    autocmd BufWritePost *.nvimrc exec ":so %"
-augroup END
 " Folding
 noremap <silent> <LEADER>o za
 
@@ -140,7 +140,7 @@ cnoremap <M-w> <S-Right>
 " Use <space> + new arrow keys for moving the cursor around windows
 noremap <LEADER>w <C-w>w
 noremap <LEADER>u <C-w>k
-noremap <LEADER>e <C-w>j
+" noremap <LEADER>e <C-w>j   changed to open file browser
 noremap <LEADER>n <C-w>h
 noremap <LEADER>i <C-w>l
 noremap qf <C-w>o
@@ -234,6 +234,11 @@ Plug 'theniceboy/vim-snippets'
 " Undo Tree
 Plug 'mbbill/undotree'
 
+Plug 'normen/vim-pio'
+
+Plug 'kevinhwang91/nvim-ufo'
+Plug 'kevinhwang91/promise-async'
+
 " Git
 Plug 'theniceboy/vim-gitignore', { 'for': ['gitignore', 'vim-plug'] }
 Plug 'theniceboy/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
@@ -273,17 +278,6 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'pantharshit00/vim-prisma'
 
-" Go
-"Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
-
-" Python
-" Plug 'Vimjas/vim-python-pep8-indent', { 'for' :['python', 'vim-plug'] }
-" Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins', 'for' :['python', 'vim-plug'] }
-" Plug 'tweekmonster/braceless.vim', { 'for' :['python', 'vim-plug'] }
-" "Plug 'vim-scripts/indentpython.vim', { 'for' :['python', 'vim-plug'] }
-"Plug 'plytophogy/vim-virtualenv', { 'for' :['python', 'vim-plug'] }
-"Plug 'tmhedberg/SimpylFold', { 'for' :['python', 'vim-plug'] }
-
 " Flutter
 "Plug 'dart-lang/dart-vim-plugin'
 
@@ -293,9 +287,6 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'm
 Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] }
 Plug 'dkarter/bullets.vim'
 
-" Other filetypes
-Plug 'wlangstroth/vim-racket'
-" Plug 'jceb/vim-orgmode', {'for': ['vim-plug', 'org']}
 
 " Editor Enhancement
 Plug 'petertriho/nvim-scrollbar'
@@ -318,12 +309,10 @@ Plug 'theniceboy/argtextobj.vim'
 Plug 'rhysd/clever-f.vim'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'theniceboy/pair-maker.vim'
-Plug 'theniceboy/vim-move'
 " Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'Yggdroot/indentLine'
 
 " For general writing
-Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-wordy'
 "Plug 'ron89/thesaurus_query.vim'
 
@@ -343,8 +332,6 @@ Plug 'nvim-pack/nvim-spectre'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 
-" Vim Applications
-Plug 'itchyny/calendar.vim'
 
 " Other visual enhancement
 Plug 'luochen1990/rainbow'
@@ -352,6 +339,8 @@ Plug 'mg979/vim-xtabline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/terminus'
 Plug 'kyazdani42/nvim-web-devicons'
+
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
 " Other useful utilities
 Plug 'lambdalisue/suda.vim' " do stuff like :sudowrite
@@ -409,6 +398,7 @@ let g:coc_global_extensions = [
 	\ 'coc-lists',
 	\ 'coc-omnisharp',
 	\ 'coc-prettier',
+	\ 'coc-sumneko-lua',
 	\ 'coc-prisma',
 	\ 'coc-pyright',
 	\ 'coc-snippets',
@@ -506,6 +496,9 @@ let g:instant_markdown_autostart = 0
 " let g:instant_markdown_allow_external_content = 0
 " let g:instant_markdown_mathjax = 1
 let g:instant_markdown_autoscroll = 1
+
+" ==================== nvim-ufo ==========================
+
 
 
 " ==================== vim-table-mode ====================
@@ -617,38 +610,11 @@ noremap <LEADER>gi :FzfGitignore<CR>
 " augroup END
 
 
-" ==================== vim-calendar ====================
-"noremap \c :Calendar -position=here<CR>
-noremap \\ :Calendar -view=clock -position=here<CR>
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
-augroup calendar-mappings
-	autocmd!
-	" diamond cursor
-	autocmd FileType calendar nmap <buffer> u <Plug>(calendar_up)
-	autocmd FileType calendar nmap <buffer> n <Plug>(calendar_left)
-	autocmd FileType calendar nmap <buffer> e <Plug>(calendar_down)
-	autocmd FileType calendar nmap <buffer> i <Plug>(calendar_right)
-	autocmd FileType calendar nmap <buffer> <c-u> <Plug>(calendar_move_up)
-	autocmd FileType calendar nmap <buffer> <c-n> <Plug>(calendar_move_left)
-	autocmd FileType calendar nmap <buffer> <c-e> <Plug>(calendar_move_down)
-	autocmd FileType calendar nmap <buffer> <c-i> <Plug>(calendar_move_right)
-	autocmd FileType calendar nmap <buffer> k <Plug>(calendar_start_insert)
-	autocmd FileType calendar nmap <buffer> K <Plug>(calendar_start_insert_head)
-	" unmap <C-n>, <C-p> for other plugins
-	autocmd FileType calendar nunmap <buffer> <C-n>
-	autocmd FileType calendar nunmap <buffer> <C-p>
-augroup END
-
-" ==================== goyo ====================
-map <LEADER>gy :Goyo<CR>
-
-
 " ==================== jsx ====================
 let g:vim_jsx_pretty_colorful_config = 1
 
 
-" ==================== tabular ====================
+" ==================== ular ====================
 vmap ga :Tabularize /
 
 
@@ -754,12 +720,8 @@ nmap <LEADER>cu g<c
 vmap <LEADER>cu g<
 
 
-" ==================== vim-move ====================
-let g:move_key_modifier = 'C'
-
-
 " ==================== any-jump ====================
-nnoremap j :AnyJump<CR>
+nnoremap aj :AnyJump<CR>
 let g:any_jump_window_width_ratio  = 0.8
 let g:any_jump_window_height_ratio = 0.9
 
@@ -778,7 +740,7 @@ if g:nvim_plugins_installation_completed == 1
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
 	-- one of "all", "language", or a list of languages
-	ensure_installed = {"typescript", "java", "c", "cpp", "prisma", "javascript", "html", "yaml", "css", "dockerfile"},
+	ensure_installed = {"typescript", "java", "c", "cpp", "prisma", "javascript", "html", "yaml", "css",  "lua", "dockerfile", "vim"},
 	highlight = {
 		enable = true,              -- false will disable the whole extension
 		disable = { "rust" },  -- list of language that will be disabled
@@ -942,6 +904,10 @@ require'fzf-lua'.setup {
 EOF
 endif
 
+" ==================== chadtree ====================
+
+nnoremap <leader>e <cmd>CHADopen<cr>
+
 
 " ==================== lazygit.nvim ====================
 noremap <c-g> :LazyGit<CR>
@@ -997,15 +963,3 @@ let g:terminal_color_10 = '#5AF78E'
 let g:terminal_color_11 = '#F4F99D'
 let g:terminal_color_12 = '#CAA9FA'
 let g:terminal_color_13 = '#FF92D0'
-let g:terminal_color_14 = '#9AEDFE'
-
-
-" ==================== Necessary Commands to Execute ====================
-exec "nohlsearch"
-
-
-" Open the _machine_specific.vim file if it has just been created
-if has_machine_specific_file == 0
-	exec "e ~/.config/nvim/_machine_specific.vim"
-endif
-

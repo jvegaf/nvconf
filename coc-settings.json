@@ -201,25 +201,10 @@
 	},
 	"languageserver": {
 		"lua": {
-			"command": "lua-lsp",
+			"command": "~/.vscode/extensions/sumneko.lua-3.5.6-linux-x64",
+			"args": ["-E", "~/.vscode/extensions/sumneko.lua-3.5.6-linux-x64/server/main.lua"],
+			"rootPatterns": [".git"],
 			"filetypes": ["lua"]
-		},
-		"swift": {
-			"command": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp",
-			"args": [],
-			"filetypes": ["swift"],
-			"initializationOptions": {},
-			"settings": {}
-		},
-		"golang": {
-			"command": "gopls",
-			"rootPatterns": ["go.mod"],
-			"filetypes": ["go"],
-			"initializationOptions": {
-				"gocodeCompletionEnabled": true,
-				"diagnosticsEnabled": true,
-				"lintTool": "golint"
-			}
 		},
 		"bash": {
 			"command": "bash-language-server",
@@ -242,5 +227,6 @@
 				}
 			}
 		}
-	}
+	},
+	"Lua.telemetry.enable": true
 }
