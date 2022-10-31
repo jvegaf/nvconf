@@ -311,6 +311,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'theniceboy/pair-maker.vim'
 " Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'Yggdroot/indentLine'
+Plug 'rainbowhxch/accelerated-jk.nvim'
 
 " For general writing
 Plug 'reedes/vim-wordy'
@@ -904,7 +905,15 @@ require'fzf-lua'.setup {
 EOF
 endif
 
-" ==================== chadtree ====================
+" ==================== accelerated-jk ====================
+
+nnoremap j <Plug>(accelerated_jk_gj)
+nnoremap k <Plug>(accelerated_jk_gk)
+
+nnoremap <Down> <Plug>(accelerated_jk_gj)
+nnoremap <Up> <Plug>(accelerated_jk_gk)
+
+"==================== chadtree ====================
 
 nnoremap <leader>e <cmd>CHADopen<cr>
 

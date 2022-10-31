@@ -201,7 +201,7 @@
 	},
 	"languageserver": {
 		"lua": {
-			"command": "~/.vscode/extensions/sumneko.lua-3.5.6-linux-x64",
+			"command": "~/.vscode/extensions/sumneko.lua-3.5.6-linux-x64/server/bin/lua-language-server",
 			"args": ["-E", "~/.vscode/extensions/sumneko.lua-3.5.6-linux-x64/server/main.lua"],
 			"rootPatterns": [".git"],
 			"filetypes": ["lua"]
