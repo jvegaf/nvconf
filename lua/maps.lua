@@ -13,20 +13,8 @@ keymap('n', 'x', '"_x', opts)
 -- Select all
 keymap('n', '<C-a>', 'gg<S-v>G', opts)
 
--- Delete a word backwards
-keymap('n', 'dw', 'vb"_d', opts)
-
--- Save with root permission (not working for now)
--- vim.api.nvim_create_user_command('W', 'w !sudo tee > /dev/null %', {})
-
 -- remap macro record key
 keymap("n", "Q", "q", opts)
-
--- cancel q
-keymap("n", "q", "<Nop>", opts)
-
--- no highlight
-keymap("n", "<space>l", ":nohl<cr>", opts)
 
 -- e, but insert mode
 keymap("i", "<C-e>", "<Esc>ea", opts)
@@ -42,6 +30,7 @@ keymap("n", "<space>w", ":w<cr>", opts)
 
 -- :tabedit - new tab
 keymap("n", "<C-n>", ":tabedit<cr>", opts)
+keymap("n", "<Tab>", ":tabnext<cr>", opts)
 
 -- :bdelete
 keymap("n", "<space>bd", ":bdelete<cr>", opts)
@@ -67,10 +56,10 @@ keymap('n', 'ss', ':split<cr><C-w>w', opts)
 keymap('n', 'sv', ':vsplit<cr><C-w>w', opts)
 
 -- Move window
-keymap('n', 'sh', '<C-w>h', opts)
-keymap('n', 'sk', '<C-w>k', opts)
-keymap('n', 'sj', '<C-w>j', opts)
-keymap('n', 'sl', '<C-w>l', opts)
+keymap('n', '<M-Left>', '<C-w>h', opts)
+keymap('n', '<M-Up>', '<C-w>k', opts)
+keymap('n', '<M-Down>', '<C-w>j', opts)
+keymap('n', '<M-Right>', '<C-w>l', opts)
 
 -- Resize window
 keymap('n', '<C-left>', '<C-w><', opts)
@@ -78,22 +67,9 @@ keymap('n', '<C-right>', '<C-w>>', opts)
 keymap('n', '<C-up>', '<C-w>-', opts)
 keymap('n', '<C-down>', '<C-w>+', opts)
 
-
+--keymap("v", "s", ":\'<,\'BrowserSearch<cr>" opts)
 --[[ Plugin ]]
 
--- lspsaga
-local status_lspsaga_ok = pcall(require, "lspsaga")
-if status_lspsaga_ok then
-  keymap('n', '<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>', opts)
-  keymap('n', '<S-C-j>', '<Cmd>Lspsaga diagnostic_jump_prev<CR>', opts)
-  keymap('n', '<C-k>', '<Cmd>Lspsaga hover_doc<CR>', opts)
-  keymap('i', '<C-k>', '<Cmd>Lspsaga signature_help<CR>', opts)
-  keymap('n', '<space>d', '<Cmd>Lspsaga lsp_finder<CR>', opts)
-  keymap('n', '<space>p', '<Cmd>Lspsaga peek_definition<CR>', opts)
-  keymap('n', '<space>r', '<Cmd>Lspsaga rename<CR>', opts)
-  keymap('n', '<space>ca', '<cmd>Lspsaga code_action<CR>', opts)
-  keymap('v', '<space>ca', '<cmd><C-U>Lspsaga range_code_action<CR>', opts)
-end
 
 -- telescope
 local status_telescope_ok, telescope = pcall(require, 'telescope')
@@ -145,30 +121,6 @@ end
 -- see after/plugin/diffivew.lua key_bindinds
 
 -- gitsigns
-local status_gitsigns_ok = pcall(require, "gitsigns")
-if status_gitsigns_ok then
-  -- Navigation
-  keymap('n', 'gj', ':Gitsigns next_hunk<CR>', opts)
-  keymap('n', 'gk', ':Gitsigns prev_hunk<CR>', opts)
-
-  -- Actions 
-  keymap('n', 'ghs', ':Gitsigns stage_hunk<CR>', opts)
-  keymap('n', 'ghr', ':Gitsigns reset_hunk<CR>', opts)
-  keymap('n', 'ghu', '<cmd>Gitsigns undo_stage_hunk<CR>', opts)
-  keymap('n', 'ghS', '<cmd>Gitsigns stage_buffer<CR>', opts)
-  keymap('n', 'ghR', '<cmd>Gitsigns reset_buffer<CR>', opts)
-  keymap('n', 'ghp', '<cmd>Gitsigns preview_hunk<CR>', opts)
-  keymap('n', 'ghb', '<cmd>lua require"gitsigns".blame_line{full=true}<CR>', opts)
-  keymap('n', 'gtb', '<cmd>Gitsigns toggle_current_line_blame<CR>', opts)
-  keymap('n', 'ghd', '<cmd>Gitsigns diffthis<CR>', opts)
-  keymap('n', 'ghD', '<cmd>lua require"gitsigns".diffthis("~")<CR>', opts)
-  keymap('n', 'gtd', '<cmd>Gitsigns toggle_deleted<CR>', opts)
-
-  -- Text object
-  keymap('o', 'ih', ':<C-U>Gitsigns select_hunk<CR>', opts)
-  keymap('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>', opts)
-end
-
 -- whichkey
 -- see after/plugin/whichkey.lua mappings
 local status_which_key_ok = pcall(require, "which-key")
@@ -205,6 +157,11 @@ end
 local status_toggleterm_ok = pcall(require, "toggleterm")
 if status_toggleterm_ok then
   keymap('n', 'git', ':lua _LAZYGIT_TOGGLE()<cr>', opts)
+end
+
+local status_commentary_ok = pcall(require, "commentary")
+if status_commentary_ok then
+  keymap('n', '<leader-c>', ':Commentary<cr>', opts)
 end
 
 local status_trouble_ok = pcall(require, "trouble")

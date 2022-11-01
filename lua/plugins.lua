@@ -1,12 +1,17 @@
-local status, packer = pcall(require, "packer")
-if (not status) then
-  print("Packer is not installed")
-  return
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
 end
 
-vim.cmd [[packadd packer.nvim]]
+local packer_bootstrap = ensure_packer()
 
-packer.startup(function(use)
+return require('packer').startup(function(use)
   use  {'navarasu/onedark.nvim',
     config = function()
       require('onedark').load()
@@ -101,10 +106,8 @@ packer.startup(function(use)
   use {'akinsho/toggleterm.nvim', tag = 'v2.1.0'}
   use 'phaazon/hop.nvim' -- goto a word or line
   use 'rmagatti/auto-session' -- restore session
-  use {
-    'rhysd/accelerated-jk',
-    commit = '156c5158b72059404f6b8aaf15b59f87dd0aaa88'
-  }
+  
+  use  "rhysd/accelerated-jk"
 
   use({
 		"ThePrimeagen/refactoring.nvim",
@@ -113,4 +116,11 @@ packer.startup(function(use)
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	})
+
+  use "voldikss/vim-browser-search"
+
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+
 end)
