@@ -110,6 +110,7 @@ return require('packer').startup({
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async', config = "require('plugins.nvim-ufo')" }
     use { 'echasnovski/mini.nvim', config = function() require("mini.align").setup() end }
     use { 'voldikss/vim-browser-search' }
+    use { 'normen/vim-pio' }
 
     -- Snippets & Language & Syntax
     use { 'windwp/nvim-autopairs', after = { 'nvim-treesitter', 'nvim-cmp' }, config = "require('plugins.autopairs')" }

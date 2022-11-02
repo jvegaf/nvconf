@@ -25,7 +25,7 @@ EcoVim = {
       patterns = {'.git', 'package.json', '_darcs', '.bzr', '.svn', 'Makefile'} -- Default
     },
     zen = {
-      kitty_enabled = false,
+      kitty_enabled = true,
       enabled = true, -- sync after change
     },
   },
