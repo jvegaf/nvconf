@@ -18,13 +18,6 @@ git clone git@github.com:jvegaf/nvconf.git "$env:LOCALAPPDATA\nvim"
 
 ```shell
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-```
-
-```shell
-
-git clone git@github.com:jvegaf/nvconf.git ~/.config/nvim
+bash <(curl -s https://raw.githubusercontent.com/jvegaf/nvconf/main/installer)
 
 ```
