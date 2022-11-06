@@ -1,5 +1,4 @@
 vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
-vim.opt.shell = 'pwsh'
 
 -- Set a compatible clipboard manager
 vim.g.clipboard = {

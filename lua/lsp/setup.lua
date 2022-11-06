@@ -17,7 +17,7 @@ mason.setup {
 
 mason_lsp.setup {
   -- A list of servers to automatically install if they're not already installed
-  ensure_installed = { "bashls", "cssls", "eslint", "clangd", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver",
+  ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "sumneko_lua", "tailwindcss", "tsserver",
     "vuels", "volar", "prismals" },
 
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
@@ -43,7 +43,7 @@ local function on_attach(client, bufnr)
   -- set up buffer keymaps, etc.
 end
 
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
@@ -111,7 +111,7 @@ lspconfig.vuels.setup {
   on_attach = on_attach,
 }
 
-for _, server in ipairs { "bashls", "emmet_ls", "clangd", "html", "volar", "prismals" } do
+for _, server in ipairs { "bashls", "emmet_ls", "graphql", "html", "volar", "prismals" } do
   lspconfig[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,
