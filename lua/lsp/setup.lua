@@ -43,7 +43,7 @@ local function on_attach(client, bufnr)
   -- set up buffer keymaps, etc.
 end
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
