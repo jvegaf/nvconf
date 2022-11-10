@@ -111,7 +111,7 @@ lspconfig.vuels.setup {
   on_attach = on_attach,
 }
 
-for _, server in ipairs { "bashls", "emmet_ls", "graphql", "html", "volar", "prismals" } do
+for _, server in ipairs { "bashls", "emmet_ls", "graphql", "cpp", "html", "volar", "prismals" } do
   lspconfig[server].setup {
     on_attach = on_attach,
     capabilities = capabilities,
