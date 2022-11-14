@@ -49,6 +49,8 @@ keymap("n", "gp", ":bp<CR>", silent)
 keymap("n", "<S-q>", ":BufferClose<CR>", silent)
 
 keymap("n", "<M-1>", "<CMD>NvimTreeToggle<CR>", silent)
+keymap("n", "<Leader>e", "<CMD>NvimTreeFocus<CR>", silent)
+
 
 -- Move between barbar buffers
 -- keymap("n", "<Space>1", ":BufferGoto 1<CR>", silent)
