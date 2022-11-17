@@ -8,10 +8,10 @@ keymap("n", "<C-k>", "<C-w>k", silent)
 keymap("n", "<C-l>", "<C-w>l", silent)
 
 -- move line normal mode
-keymap("n", ":m .+1<CR>==", silent)
-keymap("n", ":m .-2<CR>==", silent)
-keymap("n", ":m .+1<CR>==", silent)
-keymap("n", ":m .-2<CR>==", silent)
+keymap("n", "<A-j>",    ":m .+1<CR>==", silent)
+keymap("n", "<A-k>",    ":m .-2<CR>==", silent)
+keymap("n", "<A-Down>", ":m .+1<CR>==", silent)
+keymap("n", "<A-Up>",   ":m .-2<CR>==", silent)
 
     -- H to move to the first non-blank character of the line
 keymap("n", "H", "^", silent)
