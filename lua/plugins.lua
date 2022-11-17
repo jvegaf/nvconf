@@ -80,6 +80,9 @@ return require('packer').startup({
     use { 'axelvc/template-string.nvim', config = function() require('template-string').setup() end }
     use { 'lvimuser/lsp-inlayhints.nvim', config = function() require('lsp-inlayhints').setup() end }
 
+    use { 'p00f/clangd_extensions.nvim', after = "mason-lspconfig.nvim",
+      config = "require('plugins.clangd_extensions')" }
+
     -- General
     use { 'AndrewRadev/switch.vim' }
     use { 'AndrewRadev/splitjoin.vim' }
@@ -115,6 +118,19 @@ return require('packer').startup({
     use { 'echasnovski/mini.nvim', config = function() require("mini.align").setup() end }
     use { 'voldikss/vim-browser-search' }
     use { 'normen/vim-pio' }
+    use { 'ziontee113/syntax-tree-surfer', cmd = {
+      'STSSwapUpNormal',
+      'STSSwapDownNormal',
+      'STSSelectCurrentNode',
+      'STSSelectMasterNode',
+      'STSSelectParentNode',
+      'STSSelectChildNode',
+      'STSSelectPrevSiblingNode',
+      'STSSelectNextSiblingNode',
+      'STSSwapNextVisual',
+      'STSSwapPrevVisual',
+    }, config = "require('plugins.syntax-tree-surfer)"
+    }
 
     -- Snippets & Language & Syntax
     use { 'windwp/nvim-autopairs', after = { 'nvim-treesitter', 'nvim-cmp' }, config = "require('plugins.autopairs')" }
