@@ -1,11 +1,3 @@
-------------------------------------------------
---                                            --
---    This is a main configuation file for    --
---                    EcoVim                  --
---      Change variables which you need to    --
---                                            --
-------------------------------------------------
-
 local icons = require('icons')
 
 EcoVim = {
@@ -17,7 +9,7 @@ EcoVim = {
   },
   plugins = {
     completion = {
-      select_first_on_enter = false
+      select_first_on_enter = true
     },
     rooter = {
       -- Removing package.json from list in Monorepo Frontend Project can be helpful

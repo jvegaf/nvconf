@@ -1,5 +1,4 @@
 local options = {
-  clipboard      = "unnamed,unnamedplus",   --- Copy-paste between vim and everything else
   cmdheight      = 2,                       --- Give more space for displaying messages
   completeopt    = "menu,menuone,noselect", --- Better autocompletion
   cursorline     = true,                    --- Highlight of current line
@@ -44,7 +43,7 @@ local options = {
   errorbells     = false,                   --- Disables sound effect for errors
   fileencoding   = "utf-8",                 --- The encoding written to file
   incsearch      = true,                    --- Start searching before pressing enter
-  showmode       = false,                   --- Don't show things like -- INSERT -- anymore
+  showmode       = true,                    --- Don't show things like -- INSERT -- anymore
 }
 
 local globals = {

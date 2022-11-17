@@ -49,18 +49,18 @@ local keymappings = {
   { key = "-",                            action = "dir_up" },
   { key = "s",                            action = "system_open" },
   { key = "q",                            action = "close" },
-  { key = "g?",                           action = "toggle_help" },
+  { key = "?",                           action = "toggle_help" },
   { key = "W",                            action = "collapse_all" },
   { key = "S",                            action = "search_node" }
 }
 
 require'nvim-tree'.setup {
   -- disables netrw completely
-  disable_netrw       = false,
+  disable_netrw       = true,
   -- hijack netrw window on startup
-  hijack_netrw        = true,
+  hijack_netrw        = false,
   -- open the tree when running this setup function
-  open_on_setup       = false,
+  open_on_setup       = true,
   -- will not open on setup if the filetype is in this list
   ignore_ft_on_setup  = {},
   -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
@@ -173,7 +173,6 @@ require'nvim-tree'.setup {
   }
 }
 
-vim.api.nvim_set_keymap("n", "<C-e>", "<cmd>lua require'nvim-tree'.toggle()<CR>", { noremap = true, silent = true })
 
 nvim_tree_events.on_tree_open(function ()
     bufferline_api.set_offset(TREE_WIDTH + 1, utils.add_whitespaces(13) .. 'File Explorer')

@@ -15,6 +15,7 @@ keymap("n", "<C-l>", "<C-w>l", silent)
 keymap("n", "H", "^", silent)
 
 -- Move selected line / block of text in visual mode
+
 keymap("x", "K", ":move '<-2<CR>gv-gv", silent)
 keymap("x", "J", ":move '>+1<CR>gv-gv", silent)
 
@@ -26,16 +27,17 @@ keymap("v", ">", ">gv", silent)
 keymap("v", "`", "u", silent)  --downcase
 keymap("v", "<A-`>", "U", silent) --uppercase
 
--- Save file by CTRL-S
-keymap("n", "<C-s>", ":w<CR>", silent)
-keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
-
 -- Telescope
 keymap("n", "<C-p>", "<CMD>lua require('plugins.telescope').project_files()<CR>")
 keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.multi-rg')()<CR>")
 
--- Remove highlights
-keymap("n", "<CR>", ":noh<CR><CR>", silent)
+-- Terminal
+keymap("n", "<M-e>", "<CMD>ToggleTerm direction=float<CR>")
+keymap("t", "<M-e>", "<CMD>ToggleTermToggleAll<CR>")
+
+-- insert lines with enter
+keymap("n", "<Enter>", ":call append(line('.')-1, '')<CR>", silent)
+keymap("n", "<S-Enter>", ":call append(line('.'), '')<CR>", silent)
 
 -- Find word/file across project
 keymap("n", "<Leader>pf", "<CMD>lua require('plugins.telescope').project_files({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>")
@@ -48,29 +50,9 @@ keymap("n", "<S-Tab>", ":BufferPrevious<CR>", silent)
 keymap("n", "gp", ":bp<CR>", silent)
 keymap("n", "<S-q>", ":BufferClose<CR>", silent)
 
+-- NvimTree
 keymap("n", "<M-1>", "<CMD>NvimTreeToggle<CR>", silent)
 keymap("n", "<Leader>e", "<CMD>NvimTreeFocus<CR>", silent)
-
-
--- Move between barbar buffers
--- keymap("n", "<Space>1", ":BufferGoto 1<CR>", silent)
--- keymap("n", "<Space>2", ":BufferGoto 2<CR>", silent)
--- keymap("n", "<Space>3", ":BufferGoto 3<CR>", silent)
--- keymap("n", "<Space>4", ":BufferGoto 4<CR>", silent)
--- keymap("n", "<Space>5", ":BufferGoto 5<CR>", silent)
--- keymap("n", "<Space>6", ":BufferGoto 6<CR>", silent)
--- keymap("n", "<Space>7", ":BufferGoto 7<CR>", silent)
--- keymap("n", "<Space>8", ":BufferGoto 8<CR>", silent)
--- keymap("n", "<Space>9", ":BufferGoto 9<CR>", silent)
--- keymap("n", "<A-1>", ":BufferGoto 1<CR>", silent)
--- keymap("n", "<A-2>", ":BufferGoto 2<CR>", silent)
--- keymap("n", "<A-3>", ":BufferGoto 3<CR>", silent)
--- keymap("n", "<A-4>", ":BufferGoto 4<CR>", silent)
--- keymap("n", "<A-5>", ":BufferGoto 5<CR>", silent)
--- keymap("n", "<A-6>", ":BufferGoto 6<CR>", silent)
--- keymap("n", "<A-7>", ":BufferGoto 7<CR>", silent)
--- keymap("n", "<A-8>", ":BufferGoto 8<CR>", silent)
--- keymap("n", "<A-9>", ":BufferGoto 9<CR>", silent)
 
 -- Don't yank on delete char
 keymap("n", "x", '"_x', silent)

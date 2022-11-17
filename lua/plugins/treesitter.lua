@@ -1,6 +1,19 @@
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = {}, -- one of "all", or a list of languages
-  sync_install = false,            -- install languages synchronously (only applied to `ensure_installed`)
+  ensure_installed = {
+    "typescript",
+    "lua",
+    "html",
+    "css",
+    "javascript",
+    "cpp",
+    "json",
+    "yaml",
+    "markdown",
+    "scss",
+    "tsx",
+    "dockerfile",
+  }, -- one of "all", or a list of languages
+  sync_install = true,            -- install languages synchronously (only applied to `ensure_installed`)
   ignore_install = { "haskell" },  -- list of parsers to ignore installing
   highlight = {
     enable = true,
@@ -9,7 +22,7 @@ require'nvim-treesitter.configs'.setup {
   },
 
   incremental_selection = {
-    enable = false,
+    enable = true,
     keymaps = {
       init_selection    = "<leader>gnn",
       node_incremental  = "<leader>gnr",

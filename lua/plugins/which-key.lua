@@ -98,6 +98,7 @@ local normal_mode_mappings = {
   ["v"] = { '<C-W>v',                                    'split right' },
   ["V"] = { '<C-W>s',                                    'split below' },
   ["q"] = { 'quicklist' },
+  ["w"] = { '<cmd>Telescope colorscheme<CR>',               'Themes' },
 
   ["/"] = {
     name = "Ecovim",
@@ -120,7 +121,6 @@ local normal_mode_mappings = {
     c = { 'comment box' },
     n = { '<cmd>set nonumber!<CR>',                      'line numbers' },
     r = { '<cmd>set norelativenumber!<CR>',              'relative number' },
-    t = { '<cmd>ToggleTerm direction=float<CR>',         'terminal float' },
   },
 
   b = {
