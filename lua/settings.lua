@@ -1,5 +1,5 @@
 local options = {
-  cmdheight      = 2,                       --- Give more space for displaying messages
+  cmdheight      = 4,                       --- Give more space for displaying messages
   completeopt    = "menu,menuone,noselect", --- Better autocompletion
   cursorline     = true,                    --- Highlight of current line
   emoji          = false,                   --- Fix emoji display

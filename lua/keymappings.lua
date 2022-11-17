@@ -6,12 +6,14 @@ keymap("n", "<C-h>", "<C-w>h", silent)
 keymap("n", "<C-j>", "<C-w>j", silent)
 keymap("n", "<C-k>", "<C-w>k", silent)
 keymap("n", "<C-l>", "<C-w>l", silent)
--- keymap("n", "<C-left>", "<C-w>h", silent)
--- keymap("n", "<C-down>", "<C-w>j", silent)
--- keymap("n", "<C-up>", "<C-w>k", silent)
--- keymap("n", "<C-right>", "<C-w>l", silent)
 
--- H to move to the first non-blank character of the line
+-- move line normal mode
+keymap("n", ":m .+1<CR>==", silent)
+keymap("n", ":m .-2<CR>==", silent)
+keymap("n", ":m .+1<CR>==", silent)
+keymap("n", ":m .-2<CR>==", silent)
+
+    -- H to move to the first non-blank character of the line
 keymap("n", "H", "^", silent)
 
 -- Move selected line / block of text in visual mode
