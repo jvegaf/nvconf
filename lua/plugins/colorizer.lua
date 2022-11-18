@@ -2,6 +2,7 @@ require 'colorizer'.setup({
   filetypes = {
     'html',
     'css',
+    'scss',
     'javascript',
     'typescript',
     'typescriptreact',
