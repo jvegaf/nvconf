@@ -1,4 +1,3 @@
-
 pcall(require, 'impatient')
 
 require('internal.packer_commands')
@@ -32,3 +31,6 @@ if is_lin then
   require('linux')
 end
 
+-- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]

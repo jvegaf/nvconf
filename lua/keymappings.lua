@@ -8,12 +8,12 @@ keymap("n", "<C-k>", "<C-w>k", silent)
 keymap("n", "<C-l>", "<C-w>l", silent)
 
 -- move line normal mode
-keymap("n", "<A-j>",    ":m .+1<CR>==", silent)
-keymap("n", "<A-k>",    ":m .-2<CR>==", silent)
+keymap("n", "<A-j>", ":m .+1<CR>==", silent)
+keymap("n", "<A-k>", ":m .-2<CR>==", silent)
 keymap("n", "<A-Down>", ":m .+1<CR>==", silent)
-keymap("n", "<A-Up>",   ":m .-2<CR>==", silent)
+keymap("n", "<A-Up>", ":m .-2<CR>==", silent)
 
-    -- H to move to the first non-blank character of the line
+-- H to move to the first non-blank character of the line
 keymap("n", "H", "^", silent)
 
 -- Move selected line / block of text in visual mode
@@ -26,7 +26,7 @@ keymap("v", "<", "<gv", silent)
 keymap("v", ">", ">gv", silent)
 
 -- Case change in visual mode
-keymap("v", "`", "u", silent)  --downcase
+keymap("v", "`", "u", silent) --downcase
 keymap("v", "<A-`>", "U", silent) --uppercase
 
 -- Telescope
@@ -42,7 +42,8 @@ keymap("n", "<Enter>", ":call append(line('.')-1, '')<CR>", silent)
 keymap("n", "<S-Enter>", ":call append(line('.'), '')<CR>", silent)
 
 -- Find word/file across project
-keymap("n", "<Leader>pf", "<CMD>lua require('plugins.telescope').project_files({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>")
+keymap("n", "<Leader>pf",
+  "<CMD>lua require('plugins.telescope').project_files({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>")
 keymap("n", "<Leader>pw", "<CMD>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' })<CR>")
 
 -- Buffers
@@ -75,8 +76,8 @@ vim.cmd [[
 keymap("n", "<Space>,", ":cp<CR>", silent)
 keymap("n", "<Space>.", ":cn<CR>", silent)
 
--- Toggle quicklist
-keymap("n", "<leader>q", "<cmd>lua require('utils').toggle_quicklist()<CR>", silent)
+-- Toggle Symbols
+keymap("n", "<leader>q", "<cmd>AerialToggle<CR>", silent)
 
 -- Easyalign
 keymap("n", "ga", "<Plug>(EasyAlign)", silent)
@@ -84,7 +85,8 @@ keymap("x", "ga", "<Plug>(EasyAlign)", silent)
 
 -- Manually invoke speeddating in case switch.vim didn't work
 keymap("n", "<C-a>", ":if !switch#Switch() <bar> call speeddating#increment(v:count1) <bar> endif<CR>", silent)
-keymap("n", "<C-x>", ":if !switch#Switch({'reverse': 1}) <bar> call speeddating#increment(-v:count1) <bar> endif<CR>", silent)
+keymap("n", "<C-x>", ":if !switch#Switch({'reverse': 1}) <bar> call speeddating#increment(-v:count1) <bar> endif<CR>",
+  silent)
 
 -- Open links under cursor in browser with gx
 if vim.fn.has('macunix') == 1 then
@@ -107,15 +109,16 @@ keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", silent)
 keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", silent)
 keymap("v", "<leader>cf", "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", silent)
 keymap("n", "<leader>cl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", silent)
+keymap("n", "<F3>", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", silent)
 keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", silent)
 keymap("n", "L", "<cmd>lua vim.lsp.buf.signature_help()<CR>", silent)
 keymap("n", "]g", "<cmd>lua vim.diagnostic.goto_next({ float = { border = 'rounded', max_width = 100 }})<CR>", silent)
 keymap("n", "[g", "<cmd>lua vim.diagnostic.goto_prev({ float = { border = 'rounded', max_width = 100 }})<CR>", silent)
 keymap("n", "K", function()
-    local winid = require('ufo').peekFoldedLinesUnderCursor()
-    if not winid then
-        vim.lsp.buf.hover()
-    end
+  local winid = require('ufo').peekFoldedLinesUnderCursor()
+  if not winid then
+    vim.lsp.buf.hover()
+  end
 end)
 
 -- Comment Box

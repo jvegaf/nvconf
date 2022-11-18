@@ -28,6 +28,11 @@ return require('packer').startup({
     use { 'RRethy/nvim-treesitter-textsubjects', after = { 'nvim-treesitter' } }
     use { 'm-demare/hlargs.nvim', config = function() require('hlargs').setup({ color = "#F7768E" }) end }
 
+    use {
+      'stevearc/aerial.nvim',
+      config = "require('plugins.aerial')"
+    }
+
     -- Navigating (Telescope/Tree/Refactor)
     use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use { 'nvim-telescope/telescope.nvim',
