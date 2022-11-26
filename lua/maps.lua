@@ -164,6 +164,12 @@ if status_commentary_ok then
   keymap('n', '<leader-c>', ':Commentary<cr>', opts)
 end
 
+-- BrowserSearch
+local status_browser = pcall(require, "vim-browser-search")
+if status_browser then
+  keymap("v", "<leader>s", ":'<,'>BrowserSearch<cr>", opts)
+end
+
 local status_trouble_ok = pcall(require, "trouble")
 if status_trouble_ok then
   keymap('n', '<space>tt', '<cmd>TroubleToggle<cr>', opts)
