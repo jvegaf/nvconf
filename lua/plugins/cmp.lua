@@ -5,7 +5,7 @@ if not cmp_status_ok then
   return
 end
 
-local Icons = require('icons')
+local icons = require('icons')
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
@@ -33,15 +33,15 @@ end
 -- │ Setup                                                    │
 -- ╰──────────────────────────────────────────────────────────╯
 local source_mapping = {
-  npm         = Icons.icons.terminal .. 'NPM',
-  nvim_lsp    = Icons.icons.paragraph .. 'LSP',
-  buffer      = Icons.icons.buffer .. 'BUF',
-  nvim_lua    = Icons.icons.bomb,
-  luasnip     = Icons.icons.snippet .. 'SNP',
-  calc        = Icons.icons.calculator,
-  path        = Icons.icons.folderOpen2,
-  treesitter  = Icons.icons.tree,
-  zsh         = Icons.icons.terminal .. 'ZSH',
+  npm         = icons.terminal .. 'NPM',
+  nvim_lsp    = icons.paragraph .. 'LSP',
+  buffer      = icons.buffer .. 'BUF',
+  nvim_lua    = icons.bomb,
+  luasnip     = icons.snippet .. 'SNP',
+  calc        = icons.calculator,
+  path        = icons.folderOpen2,
+  treesitter  = icons.tree,
+  zsh         = icons.terminal .. 'ZSH',
 }
 
 local buffer_option = {
