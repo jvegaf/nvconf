@@ -4,11 +4,10 @@ require('internal.packer_commands')
 require('utils.globals')
 require('config')
 require('settings')
-require('colorscheme')
 require('keymappings')
 require('autocmds')
 require('functions')
-require('internal.cursorword')
+-- require('internal.cursorword')
 
 require('lsp.config')
 require('lsp.setup')
@@ -33,4 +32,4 @@ end
 
 -- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
-vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+-- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]

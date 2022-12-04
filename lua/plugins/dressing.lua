@@ -17,7 +17,7 @@ require('dressing').setup({
 
     -- These are passed to nvim_open_win
     anchor = "SW",
-    border = EcoVim.ui.float.border or "rounded",
+    border = "rounded",
     -- 'editor' and 'win' will default to being centered
     relative = "cursor",
 
@@ -74,7 +74,7 @@ require('dressing').setup({
       size = nil,
       relative = "cursor",
       border = {
-        style = EcoVim.ui.float.border or "rounded",
+        style = "rounded",
         text = {
           top_align = "right",
         },
@@ -91,7 +91,7 @@ require('dressing').setup({
     builtin = {
       -- These are passed to nvim_open_win
       wnchor = "SW",
-      border = EcoVim.ui.float.border or "rounded",
+      border = "rounded",
       -- 'editor' and 'win' will default to being centered
       relative = "cursor",
 

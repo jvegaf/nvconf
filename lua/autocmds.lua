@@ -21,14 +21,6 @@ vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*.ts", "*.tsx" },
   callback = function() pwk.attach_typescript(0) end })
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "package.json" },
   callback = function() pwk.attach_npm(0) end })
-vim.api.nvim_create_autocmd("FileType",
-  { pattern = "*",
-    callback = function()
-      if EcoVim.plugins.zen.enabled and vim.bo.filetype ~= "alpha" then
-        pwk.attach_zen(0)
-      end
-    end
-  })
 vim.api.nvim_create_autocmd("BufEnter", { pattern = { "*test.js", "*test.ts", "*test.tsx" },
   callback = function() pwk.attach_jest(0) end })
 vim.api.nvim_create_autocmd("FileType", { pattern = "spectre_panel",
@@ -66,12 +58,6 @@ if vim.fn.has('nvim-0.8') == 1 then
 
       if vim.tbl_contains(winbar_filetype_exclude, vim.bo.filetype) then
         vim.opt_local.winbar = nil
-        return
-      end
-
-      if vim.bo.filetype == 'GitBlame' then
-        local hl_group = "EcovimSecondary"
-        vim.opt_local.winbar = " " .. "%#" .. hl_group .. "#" .. require('icons').git .. "Blame" .. "%*"
         return
       end
 

@@ -38,8 +38,8 @@ keymap("n", "<M-e>", "<CMD>ToggleTerm direction=float<CR>")
 keymap("t", "<M-e>", "<CMD>ToggleTermToggleAll<CR>")
 
 -- insert lines with enter
-keymap("n", "<Enter>", ":call append(line('.')-1, '')<CR>", silent)
-keymap("n", "<S-Enter>", ":call append(line('.'), '')<CR>", silent)
+--keymap("n", "<Enter>", ":call append(line('.')-1, '')<CR>", silent)
+--keymap("n", "<S-Enter>", ":call append(line('.'), '')<CR>", silent)
 
 -- Find word/file across project
 keymap("n", "<Leader>pf",

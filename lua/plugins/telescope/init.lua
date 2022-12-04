@@ -1,7 +1,7 @@
 local actions    = require('telescope.actions')
 local previewers = require('telescope.previewers')
 local builtin    = require('telescope.builtin')
-local icons      = EcoVim.icons;
+local icons      = require('icons')
 
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('repo')

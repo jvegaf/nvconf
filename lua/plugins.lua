@@ -20,7 +20,7 @@ return require('packer').startup({
     use { 'goolord/alpha-nvim', config = "require('plugins.alpha')" }
 
     -- Themes
-    use { 'folke/tokyonight.nvim' }
+    use { 'morhetz/gruvbox' }
 
     -- Treesitter
     use { 'nvim-treesitter/nvim-treesitter', config = "require('plugins.treesitter')" }
@@ -66,12 +66,7 @@ return require('packer').startup({
     use { 'hrsh7th/cmp-path', after = 'cmp-buffer' }
     use { 'hrsh7th/cmp-cmdline', after = 'cmp-path' }
     use { 'hrsh7th/cmp-calc', after = 'cmp-cmdline' }
-    if vim.fn.has("win32") then
-      use { 'tzachar/cmp-tabnine', run = 'powershell ./install.ps1', requires = 'hrsh7th/nvim-cmp', after = 'cmp-calc' }
-    else
-      use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp', after = 'cmp-calc' }
-    end
-    use { 'David-Kunz/cmp-npm', after = 'cmp-tabnine', requires = 'nvim-lua/plenary.nvim',
+    use { 'David-Kunz/cmp-npm', after = 'cmp-calc', requires = 'nvim-lua/plenary.nvim',
       config = "require('plugins.cmp-npm')" }
     use { 'saadparwaiz1/cmp_luasnip', after = 'cmp-npm' }
 
@@ -101,9 +96,6 @@ return require('packer').startup({
     use { 'JoosepAlviste/nvim-ts-context-commentstring', after = 'nvim-treesitter' }
     use { 'nacro90/numb.nvim', config = "require('plugins.numb')" }
     use { 'folke/todo-comments.nvim', config = "require('plugins.todo-comments')" }
-    use { 'folke/zen-mode.nvim', config = "require('plugins.zen')", disable = not EcoVim.plugins.zen.enabled }
-    use { 'folke/twilight.nvim', config = function() require("twilight").setup {} end,
-      disable = not EcoVim.plugins.zen.enabled }
     use { 'ggandor/lightspeed.nvim', config = "require('plugins.lightspeed')" }
     use { 'folke/which-key.nvim', config = "require('plugins.which-key')", event = "BufWinEnter" }
     use { 'ecosse3/galaxyline.nvim', after = 'nvim-gps', config = "require('plugins.galaxyline')", event = "BufWinEnter" }
@@ -115,7 +107,6 @@ return require('packer').startup({
     use { 'iamcco/markdown-preview.nvim', run = "cd app && npm install",
       setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" } }
     use { 'declancm/cinnamon.nvim', config = "require('plugins.cinnamon')" }
-    use { 'airblade/vim-rooter', setup = function() vim.g.rooter_patterns = EcoVim.plugins.rooter.patterns end }
     use { 'Shatur/neovim-session-manager', config = "require('plugins.session-manager')" }
     use { 'kylechui/nvim-surround', config = function() require("nvim-surround").setup({}) end }
     use { 'sunjon/shade.nvim', config = function() require("shade").setup(); require("shade").toggle(); end }
