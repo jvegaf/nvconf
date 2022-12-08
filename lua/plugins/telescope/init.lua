@@ -6,7 +6,6 @@ local icons      = require('icons')
 require('telescope').load_extension('fzf')
 require('telescope').load_extension('repo')
 require('telescope').load_extension('git_worktree')
-require('telescope').load_extension('project')
 
 local git_icons = {
   added = icons.gitAdd,
@@ -55,10 +54,10 @@ require('telescope').setup {
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<C-s>"] = actions.cycle_previewers_next,
         ["<C-a>"] = actions.cycle_previewers_prev,
-        ["<C-h>"] = "which_key",
         ["<ESC>"] = actions.close,
       },
       n = {
+        ["<leader>"] = "which_key",
         ["<C-s>"] = actions.cycle_previewers_next,
         ["<C-a>"] = actions.cycle_previewers_prev,
       }

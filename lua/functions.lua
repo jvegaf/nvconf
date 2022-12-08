@@ -31,7 +31,7 @@ end
 local _default_opts = win.default_opts
 win.default_opts = function(options)
   local opts = _default_opts(options)
-  opts.border = EcoVim.ui.float.border
+  opts.border = "rounded"
   return opts
 end
 

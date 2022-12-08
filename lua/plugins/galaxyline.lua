@@ -4,7 +4,6 @@
 local gl = require('galaxyline')
 local condition = require('galaxyline.condition')
 local utils = require('utils')
-local tokyonight_colors = require("tokyonight.colors").setup({})
 local package_info_present, package = pcall(require, 'package-info')
 
 -- Configuration {{{1
@@ -62,14 +61,6 @@ local rightbracket = "" -- Curve.
 
 gl.short_line_list = { 'NvimTree', 'vista', 'dbui', 'packer', 'tagbar' }
 local gls = gl.section
-
-local bgcolor = function()
-  if EcoVim.colorscheme == 'nightfly' then
-    return '#011627'
-  else
-    return nil;
-  end
-end
 
 -- Colours, maps and icons {{{2
 local colors = {

@@ -30,16 +30,11 @@ keymap("v", "`", "u", silent) --downcase
 keymap("v", "<A-`>", "U", silent) --uppercase
 
 -- Telescope
-keymap("n", "<C-p>", "<CMD>lua require('plugins.telescope').project_files()<CR>")
 keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.multi-rg')()<CR>")
 
 -- Terminal
 keymap("n", "<M-e>", "<CMD>ToggleTerm direction=float<CR>")
 keymap("t", "<M-e>", "<CMD>ToggleTermToggleAll<CR>")
-
--- insert lines with enter
---keymap("n", "<Enter>", ":call append(line('.')-1, '')<CR>", silent)
---keymap("n", "<S-Enter>", ":call append(line('.'), '')<CR>", silent)
 
 -- Find word/file across project
 keymap("n", "<Leader>pf",
