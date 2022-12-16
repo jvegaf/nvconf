@@ -23,7 +23,7 @@ wk.setup {
   },
   -- add operators that will trigger motion and text object completion
   -- to enable all native operators, set the preset / operators plugin above
-  operators = { gc = "Comments" },
+  -- operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
@@ -95,15 +95,20 @@ local normal_mode_mappings = {
   -- single
   ["="] = { '<cmd>vertical resize +5<CR>', 'resize +5' },
   ["-"] = { '<cmd>vertical resize -5<CR>', 'resize +5' },
+  ["e"] = { '<cmd>NvimTreeFocus<CR>', 'File browser focus'},
   ["v"] = { '<C-W>v', 'split right' },
   ["V"] = { '<C-W>s', 'split below' },
   ["q"] = { 'quicklist' },
   ["w"] = { '<cmd>Telescope colorscheme<CR>', 'Themes' },
+  ["/"] = { function()
+              require("Comment.api").toggle.linewise.current()
+            end,
+            "toggle comment" },
 
-  ["/"] = {
-    name = "Ecovim",
-    ["/"] = { '<cmd>Alpha<CR>', 'open dashboard' },
+  ["S"] = {
+    name = "System",
     c = { '<cmd>e $MYVIMRC<CR>', 'open config' },
+    d = { '<cmd>Alpha<CR>', 'open dashboard' },
     i = { '<cmd>PackerInstall<CR>', 'install plugins' },
     u = { '<cmd>PackerSync<CR>', 'update plugins' },
     s = {
@@ -144,19 +149,6 @@ local normal_mode_mappings = {
     l = { 'line diagnostics' },
     r = { 'rename' },
     t = { '<cmd>LspToggleAutoFormat<CR>', 'toggle format on save' },
-  },
-
-  d = {
-    name = "Debug",
-    a = { 'attach' },
-    b = { 'breakpoint' },
-    c = { 'continue' },
-    d = { 'continue' },
-    h = { 'visual hover' },
-    i = { 'step into' },
-    o = { 'step over' },
-    O = { 'step out' },
-    t = { 'terminate' },
   },
 
   g = {
@@ -265,16 +257,11 @@ local normal_mode_mappings = {
     w = { '<cmd>Telescope grep_string theme=dropdown<CR>', 'search word' },
   },
 
-  t = {
-    name = "Table Mode",
-    m = { 'toggle' },
-    t = { 'tableize' },
-  },
 }
 
 local visual_mode_mappings = {
   -- single
-  ["s"] = { "<cmd>'<,'>sort<CR>", 'sort' },
+  ["S"] = { "<cmd>'<,'>sort<CR>", 'sort' },
 
   a = {
     name = "Actions",
@@ -300,11 +287,6 @@ local visual_mode_mappings = {
     name = "Project",
     r = { 'refactor' },
   },
-
-  t = {
-    name = "Table Mode",
-    t = { 'tableize' },
-  },
 }
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -313,22 +295,6 @@ local visual_mode_mappings = {
 
 wk.register(normal_mode_mappings, opts)
 wk.register(visual_mode_mappings, visual_opts)
-
-local function attach_markdown(bufnr)
-  wk.register({
-    a = {
-      name = "Actions",
-      m = { '<cmd>MarkdownPreviewToggle<CR>', 'markdown preview' },
-    }
-  }, {
-    buffer = bufnr,
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false, -- use `nowait` when creating keymaps
-  })
-end
 
 local function attach_typescript(bufnr)
   wk.register({
@@ -361,19 +327,6 @@ local function attach_npm(bufnr)
       s = { '<cmd>lua require("package-info").show()<CR>', 'show' },
       u = { '<cmd>lua require("package-info").update()<CR>', 'update package' },
     }
-  }, {
-    buffer = bufnr,
-    mode = "n", -- NORMAL mode
-    prefix = "<leader>",
-    silent = true, -- use `silent` when creating keymaps
-    noremap = true, -- use `noremap` when creating keymaps
-    nowait = false, -- use `nowait` when creating keymaps
-  })
-end
-
-local function attach_zen(bufnr)
-  wk.register({
-    ["z"] = { '<cmd>ZenMode<CR>', 'zen' },
   }, {
     buffer = bufnr,
     mode = "n", -- NORMAL mode
@@ -422,10 +375,8 @@ local function attach_spectre(bufnr)
 end
 
 return {
-  attach_markdown = attach_markdown,
   attach_typescript = attach_typescript,
   attach_npm = attach_npm,
-  attach_zen = attach_zen,
   attach_jest = attach_jest,
   attach_spectre = attach_spectre,
 }

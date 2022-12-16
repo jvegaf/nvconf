@@ -1,6 +1,5 @@
 local utils = require('utils')
 local nvim_tree_events = require('nvim-tree.events')
-local bufferline_api = require('bufferline.api')
 
 local TREE_WIDTH = 40
 
@@ -58,9 +57,9 @@ require'nvim-tree'.setup {
   -- disables netrw completely
   disable_netrw       = true,
   -- hijack netrw window on startup
-  hijack_netrw        = false,
+  hijack_netrw        = true,
   -- open the tree when running this setup function
-  open_on_setup       = false,
+  open_on_setup       = true,
   -- will not open on setup if the filetype is in this list
   ignore_ft_on_setup  = {},
   -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
@@ -172,12 +171,3 @@ require'nvim-tree'.setup {
     require_confirm = true
   }
 }
-
-
-nvim_tree_events.on_tree_open(function ()
-    bufferline_api.set_offset(TREE_WIDTH + 1, utils.add_whitespaces(13) .. 'File Explorer')
-end)
-
-nvim_tree_events.on_tree_close(function ()
-    bufferline_api.set_offset(0)
-end)

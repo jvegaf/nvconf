@@ -6,7 +6,6 @@ require('config')
 require('keymappings')
 require('autocmds')
 require('functions')
--- require('internal.cursorword')
 require('colorscheme')
 
 require('lsp.config')

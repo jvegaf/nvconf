@@ -61,12 +61,6 @@ keymap("v", "X", '"_X', silent)
 -- Don't yank on visual paste
 keymap("v", "p", '"_dP', silent)
 
--- Avoid issues because of remapping <c-a> and <c-x> below
-vim.cmd [[
-  nnoremap <Plug>SpeedDatingFallbackUp <c-a>
-  nnoremap <Plug>SpeedDatingFallbackDown <c-x>
-]]
-
 -- Quickfix
 keymap("n", "<Space>,", ":cp<CR>", silent)
 keymap("n", "<Space>.", ":cn<CR>", silent)
@@ -82,13 +76,6 @@ keymap("x", "ga", "<Plug>(EasyAlign)", silent)
 keymap("n", "<C-a>", ":if !switch#Switch() <bar> call speeddating#increment(v:count1) <bar> endif<CR>", silent)
 keymap("n", "<C-x>", ":if !switch#Switch({'reverse': 1}) <bar> call speeddating#increment(-v:count1) <bar> endif<CR>",
   silent)
-
--- Open links under cursor in browser with gx
-if vim.fn.has('macunix') == 1 then
-  keymap("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>", silent)
-else
-  keymap("n", "gx", "<cmd>silent execute '!xdg-open ' . shellescape('<cWORD>')<CR>", silent)
-end
 
 -- Refactor with spectre
 keymap("n", "<Leader>pr", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", silent)

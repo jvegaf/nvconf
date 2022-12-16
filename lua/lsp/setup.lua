@@ -119,7 +119,14 @@ for _, server in ipairs { "bashls", "emmet_ls", "graphql", "html", "volar", "pri
   }
 end
 
-require('ufo').setup({
+
+local ufo_status_ok, ufo = pcall(require, 'ufo')
+
+if not ufo_status_ok then
+  return
+end
+
+ufo.setup({
   fold_virt_text_handler = ufo_config.handler,
   close_fold_kinds = { "imports" }
 })
