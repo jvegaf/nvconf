@@ -1,3 +1,6 @@
+local icons = require("icons")
+
+
 vim.cmd("autocmd!")
 
 vim.scriptencoding = 'utf-8'
@@ -59,3 +62,9 @@ vim.opt.formatoptions:append { 'r' }
 
 -- vim.g.mapleader = ' '
 
+
+local M = {}
+
+M.icons = icons
+
+return M

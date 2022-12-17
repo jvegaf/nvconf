@@ -1,4 +1,4 @@
-local utils = require('utils')
+local utils = require('core.utils')
 local nvim_tree_events = require('nvim-tree.events')
 
 local TREE_WIDTH = 40
@@ -12,6 +12,8 @@ local git_icons = {
   deleted = "",
   ignored = "◌"
 }
+
+local icons = require('icons')
 
 local keymappings = {
   { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
@@ -54,120 +56,130 @@ local keymappings = {
 }
 
 require'nvim-tree'.setup {
-  -- disables netrw completely
-  disable_netrw       = true,
-  -- hijack netrw window on startup
-  hijack_netrw        = true,
-  -- open the tree when running this setup function
-  open_on_setup       = true,
-  -- will not open on setup if the filetype is in this list
-  ignore_ft_on_setup  = {},
-  -- opens the tree when changing/opening a new tab if the tree wasn't previously opened
-  open_on_tab         = false,
-  -- hijack the cursor in the tree to put it at the start of the filename
-  hijack_cursor       = true,
-  -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-  update_cwd          = true,
-  -- opens in place of the unnamed buffer if it's empty
-  hijack_unnamed_buffer_when_opening = false,
-  --false by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree
-  respect_buf_cwd = true,
-  -- show lsp diagnostics in the signcolumn
-  diagnostics         = {
-    enable = false,
-    icons  = {
-      hint    = "",
-      info    = "",
-      warning = "",
-      error   = "",
-    }
-  },
-  renderer = {
-    add_trailing = false,
-    group_empty = true,
-    highlight_git = true,
-    highlight_opened_files = "none",
-    root_folder_modifier = ":~",
-    indent_markers = {
-      enable = false,
-      icons = {
-        corner = "└ ",
-        edge = "│ ",
-        none = "  ",
+    active = true,
+    on_config_done = nil,
+    setup = {
+      ignore_ft_on_setup = {
+        "startify",
+        "dashboard",
+        "alpha",
       },
-    },
-    icons = {
-      glyphs = {
-        git = git_icons
-      }
-    }
-  },
-  -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
-  update_focused_file = {
-    -- enables the feature
-    enable      = true,
-    -- update the root directory of the tree to the one of the folder containing the file if the file is not under the current root directory
-    -- only relevant when `update_focused_file.enable` is true
-    update_cwd  = true,
-    -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
-    -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
-    ignore_list = {}
-  },
-  -- configuration options for the system open command (`s` in the tree by default)
-  system_open = {
-    -- the command to run this, leaving nil should work in most cases
-    cmd  = "",
-    -- the command arguments as a list
-    args = {}
-  },
-  filters = {
-    dotfiles = false,
-    custom = {}
-  },
-  git = {
-    enable = true,
-    ignore = true,
-    timeout = 500,
-  },
-  actions = {
-    use_system_clipboard = true,
-    change_dir = {
-      enable = true,
-      global = true,
-      restrict_above_cwd = false,
-    },
-    open_file = {
-      quit_on_open = false,
-      -- if true the tree will resize itself after opening a file
-      resize_window = true,
-      window_picker = {
+      auto_reload_on_write = false,
+      hijack_directories = {
+        enable = false,
+      },
+      update_cwd = true,
+      diagnostics = {
         enable = true,
-        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-        exclude = {
-          filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-          buftype = { "nofile", "terminal", "help" },
+        show_on_dirs = false,
+       icons  = {
+          hint    = "",
+          info    = "",
+          warning = "",
+          error   = "",
+        },
+      },
+      update_focused_file = {
+        enable = true,
+        update_cwd = true,
+        ignore_list = {},
+      },
+      system_open = {
+        cmd = nil,
+        args = {},
+      },
+      git = {
+        enable = true,
+        ignore = false,
+        timeout = 200,
+      },
+      view = {
+        width = 30,
+        hide_root_folder = false,
+        side = "left",
+        mappings = {
+          custom_only = false,
+          list = {},
+        },
+        number = false,
+        relativenumber = false,
+        signcolumn = "yes",
+      },
+      renderer = {
+        indent_markers = {
+          enable = false,
+          icons = {
+            corner = "└",
+            edge = "│",
+            item = "│",
+            none = " ",
+          },
+        },
+        icons = {
+          webdev_colors = true,
+          show = {
+            git = true,
+            folder = true,
+            file = true,
+            folder_arrow = true,
+          },
+          glyphs = {
+            default = icons.ui.Text,
+            symlink = icons.ui.FileSymlink,
+            git = git_icons,
+            folder = {
+              default = icons.ui.Folder,
+              empty = icons.ui.EmptyFolder,
+              empty_open = icons.ui.EmptyFolderOpen,
+              open = icons.ui.FolderOpen,
+              symlink = icons.ui.FolderSymlink,
+            },
+          },
+        },
+        highlight_git = true,
+        group_empty = false,
+        root_folder_modifier = ":t",
+      },
+      filters = {
+        dotfiles = false,
+        custom = { "node_modules", "\\.cache" },
+        exclude = {},
+      },
+      trash = {
+        cmd = "trash",
+        require_confirm = true,
+      },
+      log = {
+        enable = false,
+        truncate = false,
+        types = {
+          all = false,
+          config = false,
+          copy_paste = false,
+          diagnostics = false,
+          git = false,
+          profile = false,
+        },
+      },
+      actions = {
+        use_system_clipboard = true,
+        change_dir = {
+          enable = true,
+          global = false,
+          restrict_above_cwd = false,
+        },
+        open_file = {
+          quit_on_open = false,
+          resize_window = false,
+          window_picker = {
+            enable = true,
+            chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+            exclude = {
+              filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+              buftype = { "nofile", "terminal", "help" },
+            },
+          },
         },
       },
     },
-  },
-  view = {
-    -- width of the window, can be either a number (columns) or a string in `%`
-    width = TREE_WIDTH,
-    hide_root_folder = false,
-    -- side of the tree, can be one of 'left' | 'right' | 'top' | 'bottom'
-    side = 'left',
-    mappings = {
-      -- custom only false will merge the list with the default mappings
-      -- if true, it will only use your list to set the mappings
-      custom_only = true,
-      -- list of mappings to set on the tree manually
-      list = keymappings
-    },
-    number = false,
-    relativenumber = false
-  },
-  trash = {
-    cmd = "trash",
-    require_confirm = true
-  }
 }

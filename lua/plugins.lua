@@ -70,6 +70,7 @@ return require("packer").startup({
         "nvim-telescope/telescope-file-browser.nvim",
         "cljoly/telescope-repo.nvim",
         "nvim-lua/plenary.nvim",
+        {"nvim-telescope/telescope-fzf-native.nvim", run = 'make'}
       },
       config = function()
         require "plugins.telescope"
@@ -195,7 +196,13 @@ return require("packer").startup({
     use {
       "akinsho/bufferline.nvim",
       tag = "v3.*",
-      requires = "nvim-tree/nvim-web-devicons"
+      requires = {
+        "nvim-tree/nvim-web-devicons",
+        "famiu/bufdelete.nvim"
+      },
+      config = function ()
+        require "plugins.bufferline"
+      end
     }
     use { "antoinemadec/FixCursorHold.nvim" } -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
     use { "rcarriga/nvim-notify" }

@@ -1,7 +1,7 @@
 pcall(require, 'impatient')
 
-require('internal.packer_commands')
-require('utils.globals')
+require('core.packer_commands')
+require('core.utils.globals')
 require('config')
 require('keymappings')
 require('autocmds')
@@ -29,6 +29,3 @@ if is_lin then
   require('linux')
 end
 
--- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
-
--- vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
