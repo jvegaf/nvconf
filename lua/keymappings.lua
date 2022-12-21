@@ -49,8 +49,8 @@ keymap("n", "gp", ":bp<CR>", opts)
 keymap("n", "<S-q>", ":BufferClose<CR>", opts)
 
 -- NvimTree
-keymap("n", "<M-1>", "<CMD>NvimTreeToggle<CR>", opts)
-keymap("n", "<Leader>e", ":NvimTreeFocus<CR>", opts)
+keymap("n", "<A-1>", "<CMD>NvimTreeToggle<CR>", opts)
+keymap("n", "<Space>e", ":NvimTreeFocus<CR>", opts)
 
 -- Don't yank on delete char
 keymap("n", "x", '"_x', opts)
