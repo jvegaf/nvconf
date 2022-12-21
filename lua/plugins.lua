@@ -185,13 +185,20 @@ return require("packer").startup({
         require "plugins.which-key"
       end
     }
+    -- use {
+    --   "glepnir/galaxyline.nvim",
+    --   branch = "main",
+    --   requires = "Iron-E/nvim-highlite",
+    --   config = function()
+    --     require "plugins.galaxyline"
+    --   end,
+    -- }
     use {
-      "glepnir/galaxyline.nvim",
-      branch = "main",
-      requires = "Iron-E/nvim-highlite",
-      config = function()
-        require "plugins.galaxyline"
-      end,
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config = function ()
+        require "plugins.lualine"
+      end
     }
     use {
       "akinsho/bufferline.nvim",
