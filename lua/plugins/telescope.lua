@@ -3,7 +3,6 @@ local previewers = require('telescope.previewers')
 local builtin    = require('telescope.builtin')
 local icons      = require('icons')
 
-require('telescope').load_extension('repo')
 require('telescope').load_extension('git_worktree')
 require('telescope').load_extension('project')
 

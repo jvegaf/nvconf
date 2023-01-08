@@ -33,24 +33,24 @@ keymap("v", "<A-`>", "U", opts) --uppercase
 keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.multi-rg')()<CR>")
 
 -- Terminal
-keymap("n", "<M-e>", "<CMD>ToggleTerm direction=float<CR>")
-keymap("t", "<M-e>", "<CMD>ToggleTermToggleAll<CR>")
+keymap("n", "<M-3>", "<CMD>ToggleTerm direction=float<CR>")
+keymap("t", "<M-3>", "<CMD>ToggleTermToggleAll<CR>")
 
 -- Find word/file across project
-keymap("n", "<Leader>pf",
-  "<CMD>lua require('plugins.telescope').project_files({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>")
-keymap("n", "<Leader>pw", "<CMD>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' })<CR>")
+-- keymap("n", "<Leader>pf",
+--   "<CMD>lua require('plugins.telescope').project_files({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>")
+-- keymap("n", "<Leader>pw", "<CMD>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' })<CR>")
 
--- Buffers
-keymap("n", "<Tab>", ":BufferNext<CR>", opts)
+-- -- Buffers
+keymap("n", "<Tab>", ":bNext<CR>", opts)
 keymap("n", "gn", ":bn<CR>", opts)
-keymap("n", "<S-Tab>", ":BufferPrevious<CR>", opts)
+keymap("n", "<S-Tab>", ":bPrevious<CR>", opts)
 keymap("n", "gp", ":bp<CR>", opts)
-keymap("n", "<S-q>", ":BufferClose<CR>", opts)
+keymap("n", "<S-q>", ":bwipeout<CR>", opts)
 
 -- NvimTree
 keymap("n", "<A-1>", "<CMD>NvimTreeToggle<CR>", opts)
-keymap("n", "<Space>e", ":NvimTreeFocus<CR>", opts)
+-- keymap("n", "<Space>e", ":NvimTreeFocus<CR>", opts)
 
 -- Don't yank on delete char
 keymap("n", "x", '"_x', opts)
@@ -62,11 +62,11 @@ keymap("v", "X", '"_X', opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Quickfix
-keymap("n", "<Space>,", ":cp<CR>", opts)
-keymap("n", "<Space>.", ":cn<CR>", opts)
+-- keymap("n", "<Space>,", ":cp<CR>", opts)
+-- keymap("n", "<Space>.", ":cn<CR>", opts)
 
 -- Toggle Symbols
-keymap("n", "<leader>q", "<cmd>AerialToggle<CR>", opts)
+-- keymap("n", "<leader>q", "<cmd>AerialToggle<CR>", opts)
 
 -- Easyalign
 keymap("n", "ga", "<Plug>(EasyAlign)", opts)
@@ -78,19 +78,19 @@ keymap("n", "<C-x>", ":if !switch#Switch({'reverse': 1}) <bar> call speeddating#
   opts)
 
 -- Refactor with spectre
-keymap("n", "<Leader>pr", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", opts)
-keymap("v", "<Leader>pr", "<cmd>lua require('spectre').open_visual()<CR>")
+-- keymap("n", "<Leader>pr", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", opts)
+-- keymap("v", "<Leader>pr", "<cmd>lua require('spectre').open_visual()<CR>")
 
 -- LSP
 keymap("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 keymap("n", "gr", "<cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<CR>", opts)
 keymap("n", "<C-Space>", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
-keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
-keymap("v", "<leader>cf", "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", opts)
-keymap("n", "<leader>cl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", opts)
+-- keymap("n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+-- keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>", opts)
+-- keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+-- keymap("n", "<leader>cf", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", opts)
+-- keymap("v", "<leader>cf", "<cmd>'<.'>lua vim.lsp.buf.range_formatting()<CR>", opts)
+-- keymap("n", "<leader>cl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", opts)
 keymap("n", "<F3>", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", opts)
 keymap("n", "gl", "<cmd>lua vim.diagnostic.open_float({ border = 'rounded', max_width = 100 })<CR>", opts)
 keymap("n", "L", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
@@ -103,9 +103,16 @@ keymap("n", "K", function()
   end
 end)
 
+-- Lazygit
+-- keymap("n", "<leader>gg", "<cmd>Lazygit<CR>", opts)
+
 -- Comment Box
-keymap("n", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", opts)
-keymap("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", opts)
+-- keymap("n", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", opts)
+-- keymap("v", "<leader>ac", "<cmd>lua require('comment-box').lbox()<CR>", opts)
+
+-- -- Comment
+-- keymap("n", "<leader>/", "<Plug>(comment_toggle_linewise_current)", opts)
+-- keymap("v", "<leader>/", "<Plug>(comment_toggle_linewise_visual)", opts)
 
 -- Browser Search
 keymap("v", "s", ":'<,'>BrowserSearch<CR>", opts)

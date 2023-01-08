@@ -1,305 +1,319 @@
-local M = {}
-M.config = function()
-  vim.builtin.which_key = {
-    ---@usage disable which-key completely [not recommended]
-    active = true,
-    on_config_done = nil,
-    setup = {
-      plugins = {
-        marks = false, -- shows a list of your marks on ' and `
-        registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-        -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-        -- No actual key bindings are created
-        presets = {
-          operators = false, -- adds help for operators like d, y, ...
-          motions = false, -- adds help for motions
-          text_objects = false, -- help for text objects triggered after entering an operator
-          windows = false, -- default bindings on <c-w>
-          nav = false, -- misc bindings to work with windows
-          z = false, -- bindings for folds, spelling and others prefixed with z
-          g = false, -- bindings for prefixed with g
-        },
-        spelling = { enabled = true, suggestions = 20 }, -- use which-key for spelling hints
-      },
-      icons = {
-        breadcrumb = vim.icons.ui.DoubleChevronRight, -- symbol used in the command line area that shows your active key combo
-        separator = vim.icons.ui.BoldArrowRight, -- symbol used between a key and it's label
-        group = vim.icons.ui.Plus, -- symbol prepended to a group
-      },
-      popup_mappings = {
-        scroll_down = "<c-d>", -- binding to scroll down inside the popup
-        scroll_up = "<c-u>", -- binding to scroll up inside the popup
-      },
-      window = {
-        border = "single", -- none, single, double, shadow
-        position = "bottom", -- bottom, top
-        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-        winblend = 0,
-      },
-      layout = {
-        height = { min = 4, max = 25 }, -- min and max height of the columns
-        width = { min = 20, max = 50 }, -- min and max width of the columns
-        spacing = 3, -- spacing between columns
-        align = "left", -- align columns left, center or right
-      },
-      hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-      ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
-      show_help = true, -- show help message on the command line when the popup is visible
-      triggers = "auto", -- automatically setup triggers
-      -- triggers = {"<leader>"} -- or specify a list manually
-      triggers_blacklist = {
-        -- list of mode / prefixes that should never be hooked by WhichKey
-        -- this is mostly relevant for key maps that start with a native binding
-        -- most people should not need to change this
-        i = { "j", "k" },
-        v = { "j", "k" },
-      },
-    },
+local present, wk = pcall(require, "which-key")
 
-    opts = {
-      mode = "n", -- NORMAL mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-    },
-    vopts = {
-      mode = "v", -- VISUAL mode
-      prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-    },
-    -- NOTE: Prefer using : over <cmd> as the latter avoids going back in normal-mode.
-    -- see https://neovim.io/doc/user/map.html#:map-cmd
-    vmappings = {
-      ["/"] = { "<Plug>(comment_toggle_linewise_visual)", "Comment toggle linewise (visual)" },
-    },
-    mappings = {
-      [";"] = { "<cmd>Alpha<CR>", "Dashboard" },
-      ["w"] = { "<cmd>w!<CR>", "Save" },
-      ["q"] = { "<cmd>lua require('vim.utils.functions').smart_quit()<CR>", "Quit" },
-      ["/"] = { "<Plug>(comment_toggle_linewise_current)", "Comment toggle current line" },
-      ["c"] = { "<cmd>BufferKill<CR>", "Close Buffer" },
-      ["f"] = {
-        function()
-          require("vim.core.telescope.custom-finders").find_project_files { previewer = false }
-        end,
-        "Find File",
-      },
-      ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-      ["e"] = { "<cmd>NvimTreeToggle<CR>", "Explorer" },
-      b = {
-        name = "Buffers",
-        j = { "<cmd>BufferLinePick<cr>", "Jump" },
-        f = { "<cmd>Telescope buffers previewer=false<cr>", "Find" },
-        b = { "<cmd>BufferLineCyclePrev<cr>", "Previous" },
-        n = { "<cmd>BufferLineCycleNext<cr>", "Next" },
-        W = { "<cmd>noautocmd w<cr>", "Save without formatting (noautocmd)" },
-        -- w = { "<cmd>BufferWipeout<cr>", "Wipeout" }, -- TODO: implement this for bufferline
-        e = {
-          "<cmd>BufferLinePickClose<cr>",
-          "Pick which buffer to close",
-        },
-        h = { "<cmd>BufferLineCloseLeft<cr>", "Close all to the left" },
-        l = {
-          "<cmd>BufferLineCloseRight<cr>",
-          "Close all to the right",
-        },
-        D = {
-          "<cmd>BufferLineSortByDirectory<cr>",
-          "Sort by directory",
-        },
-        L = {
-          "<cmd>BufferLineSortByExtension<cr>",
-          "Sort by language",
-        },
-      },
-      d = {
-        name = "Debug",
-        t = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-        b = { "<cmd>lua require'dap'.step_back()<cr>", "Step Back" },
-        c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
-        C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", "Run To Cursor" },
-        d = { "<cmd>lua require'dap'.disconnect()<cr>", "Disconnect" },
-        g = { "<cmd>lua require'dap'.session()<cr>", "Get Session" },
-        i = { "<cmd>lua require'dap'.step_into()<cr>", "Step Into" },
-        o = { "<cmd>lua require'dap'.step_over()<cr>", "Step Over" },
-        u = { "<cmd>lua require'dap'.step_out()<cr>", "Step Out" },
-        p = { "<cmd>lua require'dap'.pause()<cr>", "Pause" },
-        r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Toggle Repl" },
-        s = { "<cmd>lua require'dap'.continue()<cr>", "Start" },
-        q = { "<cmd>lua require'dap'.close()<cr>", "Quit" },
-        U = { "<cmd>lua require'dapui'.toggle({reset = true})<cr>", "Toggle UI" },
-      },
-      p = {
-        name = "Packer",
-        c = { "<cmd>PackerCompile<cr>", "Compile" },
-        i = { "<cmd>PackerInstall<cr>", "Install" },
-        r = { "<cmd>lua require('vim.plugin-loader').recompile()<cr>", "Re-compile" },
-        s = { "<cmd>PackerSync<cr>", "Sync" },
-        S = { "<cmd>PackerStatus<cr>", "Status" },
-        u = { "<cmd>PackerUpdate<cr>", "Update" },
-      },
-
-      -- " Available Debug Adapters:
-      -- "   https://microsoft.github.io/debug-adapter-protocol/implementors/adapters/
-      -- " Adapter configuration and installation instructions:
-      -- "   https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
-      -- " Debug Adapter protocol:
-      -- "   https://microsoft.github.io/debug-adapter-protocol/
-      -- " Debugging
-      g = {
-        name = "Git",
-        g = { "<cmd>lua require 'vim.core.terminal'.lazygit_toggle()<cr>", "Lazygit" },
-        j = { "<cmd>lua require 'gitsigns'.next_hunk({navigation_message = false})<cr>", "Next Hunk" },
-        k = { "<cmd>lua require 'gitsigns'.prev_hunk({navigation_message = false})<cr>", "Prev Hunk" },
-        l = { "<cmd>lua require 'gitsigns'.blame_line()<cr>", "Blame" },
-        p = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-        r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
-        R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-        s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-        u = {
-          "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-          "Undo Stage Hunk",
-        },
-        o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-        C = {
-          "<cmd>Telescope git_bcommits<cr>",
-          "Checkout commit(for current file)",
-        },
-        d = {
-          "<cmd>Gitsigns diffthis HEAD<cr>",
-          "Git Diff",
-        },
-      },
-      l = {
-        name = "LSP",
-        a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-        d = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" },
-        w = { "<cmd>Telescope diagnostics<cr>", "Diagnostics" },
-        f = { require("vim.lsp.utils").format, "Format" },
-        i = { "<cmd>LspInfo<cr>", "Info" },
-        I = { "<cmd>Mason<cr>", "Mason Info" },
-        j = {
-          vim.diagnostic.goto_next,
-          "Next Diagnostic",
-        },
-        k = {
-          vim.diagnostic.goto_prev,
-          "Prev Diagnostic",
-        },
-        l = { vim.lsp.codelens.run, "CodeLens Action" },
-        q = { vim.diagnostic.setloclist, "Quickfix" },
-        r = { vim.lsp.buf.rename, "Rename" },
-        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-        S = {
-          "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-          "Workspace Symbols",
-        },
-        e = { "<cmd>Telescope quickfix<cr>", "Telescope Quickfix" },
-      },
-      L = {
-        name = "+LunarVim",
-        c = {
-          "<cmd>edit " .. get_config_dir() .. "/config.lua<cr>",
-          "Edit config.lua",
-        },
-        d = { "<cmd>vimDocs<cr>", "View LunarVim's docs" },
-        f = {
-          "<cmd>lua require('vim.core.telescope.custom-finders').find_lunarvim_files()<cr>",
-          "Find LunarVim files",
-        },
-        g = {
-          "<cmd>lua require('vim.core.telescope.custom-finders').grep_lunarvim_files()<cr>",
-          "Grep LunarVim files",
-        },
-        k = { "<cmd>Telescope keymaps<cr>", "View LunarVim's keymappings" },
-        i = {
-          "<cmd>lua require('vim.core.info').toggle_popup(vim.bo.filetype)<cr>",
-          "Toggle LunarVim Info",
-        },
-        I = {
-          "<cmd>lua require('vim.core.telescope.custom-finders').view_lunarvim_changelog()<cr>",
-          "View LunarVim's changelog",
-        },
-        l = {
-          name = "+logs",
-          d = {
-            "<cmd>lua require('vim.core.terminal').toggle_log_view(require('vim.core.log').get_path())<cr>",
-            "view default log",
-          },
-          D = {
-            "<cmd>lua vim.fn.execute('edit ' .. require('vim.core.log').get_path())<cr>",
-            "Open the default logfile",
-          },
-          l = {
-            "<cmd>lua require('vim.core.terminal').toggle_log_view(vim.lsp.get_log_path())<cr>",
-            "view lsp log",
-          },
-          L = { "<cmd>lua vim.fn.execute('edit ' .. vim.lsp.get_log_path())<cr>", "Open the LSP logfile" },
-          n = {
-            "<cmd>lua require('vim.core.terminal').toggle_log_view(os.getenv('NVIM_LOG_FILE'))<cr>",
-            "view neovim log",
-          },
-          N = { "<cmd>edit $NVIM_LOG_FILE<cr>", "Open the Neovim logfile" },
-          p = {
-            "<cmd>lua require('vim.core.terminal').toggle_log_view(get_cache_dir() .. '/packer.nvim.log')<cr>",
-            "view packer log",
-          },
-          P = { "<cmd>edit $LUNARVIM_CACHE_DIR/packer.nvim.log<cr>", "Open the Packer logfile" },
-        },
-        r = { "<cmd>vimReload<cr>", "Reload LunarVim's configuration" },
-        u = { "<cmd>vimUpdate<cr>", "Update LunarVim" },
-      },
-      s = {
-        name = "Search",
-        b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
-        c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
-        f = { "<cmd>Telescope find_files<cr>", "Find File" },
-        h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
-        H = { "<cmd>Telescope highlights<cr>", "Find highlight groups" },
-        M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
-        r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
-        R = { "<cmd>Telescope registers<cr>", "Registers" },
-        t = { "<cmd>Telescope live_grep<cr>", "Text" },
-        k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
-        C = { "<cmd>Telescope commands<cr>", "Commands" },
-        p = {
-          "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
-          "Colorscheme with Preview",
-        },
-      },
-      T = {
-        name = "Treesitter",
-        i = { ":TSConfigInfo<cr>", "Info" },
-      },
-    },
-  }
+if not present then
+  return
 end
 
-M.setup = function()
-  local which_key = require "which-key"
+wk.setup {
+  plugins = {
+    marks = true, -- shows a list of your marks on ' and `
+    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+    spelling = {
+      enabled = false, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+      suggestions = 20, -- how many suggestions should be shown in the list?
+    },
+    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+    -- No actual key bindings are created
+    presets = {
+      operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+      motions = true, -- adds help for motions
+      text_objects = true, -- help for text objects triggered after entering an operator
+      windows = true, -- default bindings on <c-w>
+      nav = true, -- misc bindings to work with windows
+      z = true, -- bindings for folds, spelling and others prefixed with z
+      g = true, -- bindings for prefixed with g
+    },
+  },
+  -- add operators that will trigger motion and text object completion
+  -- to enable all native operators, set the preset / operators plugin above
+  operators = { gc = "Comments" },
+  key_labels = {
+    -- override the label used to display some keys. It doesn't effect WK in any other way.
+    -- For example:
+    -- ["<space>"] = "SPC",
+    -- ["<cr>"] = "RET",
+    -- ["<tab>"] = "TAB",
+  },
+  icons = {
+    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+    separator = "➜", -- symbol used between a key and it's label
+    group = "+", -- symbol prepended to a group
+  },
+  popup_mappings = {
+    scroll_down = '<c-d>', -- binding to scroll down inside the popup
+    scroll_up = '<c-u>', -- binding to scroll up inside the popup
+  },
+  window = {
+    border = "none", -- none, single, double, shadow
+    position = "bottom", -- bottom, top
+    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+    padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+    winblend = 0
+  },
+  layout = {
+    height = { min = 4, max = 25 }, -- min and max height of the columns
+    width = { min = 20, max = 50 }, -- min and max width of the columns
+    spacing = 3, -- spacing between columns
+    align = "left", -- align columns left, center or right
+  },
+  ignore_missing = false, -- enable this to hide mappings for which you didn't specify a label
+  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ "}, -- hide mapping boilerplate
+  show_help = true, -- show help message on the command line when the popup is visible
+  show_keys = true, -- show the currently pressed key and its label as a message in the command line
+  triggers = "auto", -- automatically setup triggers
+  -- triggers = {"<leader>"}, -- or specify a list manually
+  triggers_blacklist = {
+    -- list of mode / prefixes that should never be hooked by WhichKey
+    -- this is mostly relevant for key maps that start with a native binding
+    -- most people should not need to change this
+    i = { "j", "k" },
+    v = { "j", "k" },
+  },
+  -- disable the WhichKey popup for certain buf types and file types.
+  -- Disabled by deafult for Telescope
+  disable = {
+    buftypes = {},
+    filetypes = { "TelescopePrompt" },
+  },
+}
 
-  which_key.setup(vim.builtin.which_key.setup)
 
-  local opts = vim.builtin.which_key.opts
-  local vopts = vim.builtin.which_key.vopts
+local opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
 
-  local mappings = vim.builtin.which_key.mappings
-  local vmappings = vim.builtin.which_key.vmappings
+local visual_opts = {
+  mode = "v", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
 
-  which_key.register(mappings, opts)
-  which_key.register(vmappings, vopts)
+local normal_mode_mappings = {
+  b = {
+    name = "Buffer",
+    a = { "<Cmd>BWipeout other<Cr>", "Delete all buffers" },
+    d = { "<Cmd>bd<Cr>", "Delete current buffer" },
+    l = { "<Cmd>ls<Cr>", "List buffers" },
+    n = { "<Cmd>bn<Cr>", "Next buffer" },
+    p = { "<Cmd>bp<Cr>", "Previous buffer" },
+    f = { "<Cmd>bd!<Cr>", "Force delete current buffer" },
+  },
+  f = {
+    name = "File",
+    b = { "<Cmd>Telescope buffers<Cr>", "Search buffers" },
+    c = { "<Cmd>Telescope current_buffer_fuzzy_find<Cr>", "Search current buffer" },
+    f = { "<Cmd>Telescope git_files<Cr>", "Git files" },
+    g = { "<Cmd>Telescope live_grep<Cr>", "Live grep" },
+    h = { "<Cmd>Telescope help_tags<Cr>", "Help" },
+    p = { "<Cmd>Telescope file_browser<Cr>", "Pop-up file browser" },
+    o = { "<Cmd>Telescope oldfiles<Cr>", "Old files" },
+    s = { "<Cmd>Telescope symbols<Cr>", "Symbols" },
+    t = { "<Cmd>Telescope<CR>", "Telescope" },
+    l = { "<Cmd>e!<CR>", "Reload file" },
+  },
+  g = { name = "Git" },
+  l = {
+    name = "LSP",
+    a = { "code action" },
+    d = { "<cmd>TroubleToggle<CR>", "local diagnostics" },
+    D = { "<cmd>Telescope diagnostics wrap_results=true<CR>", "workspace diagnostics" },
+    f = { "format" },
+    l = { "line diagnostics" },
+    r = { "rename" },
+    t = { "<cmd>LspToggleAutoFormat<CR>", "toggle format on save" },
+  },
+  p = {
+    name = "Project",
+    p = {
+      "<Cmd>lua require('telescope').extensions.project.project({})<Cr>",
+      "List projects",
+    },
+    r = {
+      "<Cmd>Telescope projects<Cr>",
+      "Recent projects",
+    },
+  },
+  s = {
+    name = "Search",
+    b = { "<Cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy find buffer" },
+    c = { "q:", "Command history" },
+    d = { '<cmd>lua require("plugins.telescope").edit_neovim()<CR>', "dotfiles" },
+    e = { "<cmd>Telescope emoji<CR>", "Emoji" },
+    f = {
+      "viw:lua require('spectre').open_file_search()<Cr>",
+      "Open file search",
+    },
+    g = {
+      "<Cmd>lua require('telescope').extensions.arecibo.websearch()<CR>",
+      "Web search",
+    },
+    h = { "q/", "Grep history" },
+    l = { "<Cmd>lua require('custom.utils.cheatsheet').cheatsheet()<CR>", "Search code" },
+    o = { "<Cmd>SymbolsOutline<CR>", "Symbols Outline" },
+    s = { "<Cmd>lua require('spectre').open()<CR>", "Search file" },
+    t = { "<cmd>Telescope colorscheme<CR>", "color schemes" },
+    u = { "<Cmd>Telescope ultisnips<CR>", "Search snippets" },
+    v = {
+      "<Cmd>lua require('spectre').open_visual({select_word=true})<CR>",
+      "Visual search",
+    },
+    w = { "<cmd>Telescope grep_string theme=dropdown<CR>", "search word" },
+    z = { "<Plug>SearchNormal", "Browser search" },
+  },
+  S = {
+    name = "System",
+    b = {
+      "<Cmd>hi Normal ctermbg=none guibg=none<CR>",
+      "Transparent background",
+    },
+    d = { "<cmd>Alpha<CR>", "open Dashboard" },
+    i = { "<Cmd>PackerStatus<Cr>", "Packer status" },
+    s = { "<Cmd>PackerSync<Cr>", "Packer sync" },
 
-  if vim.builtin.which_key.on_config_done then
-    vim.builtin.which_key.on_config_done(which_key)
-  end
+    S = { ":<C-u>SaveSession<Cr>", "Save session" },
+    L = { ":<C-u>SearchSession<Cr>", "Load session" },
+    -- h = { "<Cmd>15sp +term<CR>", "New horizontal terminal" },
+    m = {
+      function()
+u = {
+    name = '+ultest',
+    a = {'<cmd>UltestAttach<cr>',                               'Attach (Debugging live)'},
+    j = {'<cmd>UltestNearest<cr>',                              'Run nearest test current file'},
+    r = {'<cmd>Ultest<cr>',                                     'Run all test current file'},
+    s = {'<cmd>UltestSummary<cr>',                              'Toggle summary window'},
+    x = {'<cmd>UltestStop<cr>',                                 'Stop running tests'}
+  },
+        require("telescope").extensions.notify.notify()
+      end,
+      "Messages",
+    },
+    t = { "<Cmd>Telescope colorscheme<Cr>", "Color scheme" },
+    y = { "<Cmd>Telescope neoclip<Cr>", "Clipboard manager" },
+    z = {
+      ":e $MYVIMRC | :cd %:p:h <CR>",
+      "Configuration",
+    },
+  },
+  t = { name = "Terminal" },
+  u = { name = "Update" },
+  w = { name = "Workspace" },
+  z = { name = "Fold" },
+}
+
+local visual_mode_mappings = {
+  -- single
+  ["s"] = { "<cmd>'<,'>sort<CR>", "sort" },
+
+  a = {
+    name = "Actions",
+    c = { "comment box" },
+  },
+
+  c = {
+    name = "LSP",
+    a = { "range code action" },
+    f = { "range format" },
+  },
+
+  g = {
+    name = "Git",
+    h = {
+      name = "Hunk",
+      r = "reset hunk",
+      s = "stage hunk",
+    },
+  },
+
+  p = {
+    name = "Project",
+    r = { "refactor" },
+  },
+
+  t = {
+    name = "Table Mode",
+    t = { "tableize" },
+  },
+}
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Register                                                 │
+-- ╰──────────────────────────────────────────────────────────╯
+
+wk.register(normal_mode_mappings, opts)
+wk.register(visual_mode_mappings, visual_opts)
+
+local function attach_typescript(bufnr)
+  wk.register({
+    c = {
+      name = "LSP",
+      F = { "<cmd>TypescriptFixAll<CR>", "fix all" },
+      i = { "<cmd>TypescriptAddMissingImports<CR>", "import all" },
+      o = { "<cmd>TypescriptOrganizeImports<CR>", "organize imports" },
+      u = { "<cmd>TypescriptRemoveUnused<CR>", "remove unused" },
+    },
+  }, {
+    buffer = bufnr,
+    mode = "n", -- NORMAL mode
+    prefix = "<leader>",
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  })
 end
 
-return M
+local function attach_npm(bufnr)
+  wk.register({
+    n = {
+      name = "NPM",
+      c = { '<cmd>lua require("package-info").change_version()<CR>', "change version" },
+      d = { '<cmd>lua require("package-info").delete()<CR>', "delete package" },
+      h = { "<cmd>lua require('package-info').hide()<CR>", "hide" },
+      i = { '<cmd>lua require("package-info").install()<CR>', "install new package" },
+      r = { '<cmd>lua require("package-info").reinstall()<CR>', "reinstall dependencies" },
+      s = { '<cmd>lua require("package-info").show()<CR>', "show" },
+      u = { '<cmd>lua require("package-info").update()<CR>', "update package" },
+    },
+  }, {
+    buffer = bufnr,
+    mode = "n", -- NORMAL mode
+    prefix = "<leader>",
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  })
+end
+
+local function attach_jest(bufnr)
+  wk.register({
+    j = {
+      name = "Jest",
+      f = { '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', "run current file" },
+      i = { '<cmd>lua require("neotest").summary.toggle()<CR>', "toggle info panel" },
+      j = { '<cmd>lua require("neotest").run.run()<CR>', "run nearest test" },
+      l = { '<cmd>lua require("neotest").run.run_last()<CR>', "run last test" },
+      o = { '<cmd>lua require("neotest").output.open({ enter = true })<CR>', "open test output" },
+      s = { '<cmd>lua require("neotest").run.stop()<CR>', "stop" },
+    },
+  }, {
+    buffer = bufnr,
+    mode = "n", -- NORMAL mode
+    prefix = "<leader>",
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = false, -- use `nowait` when creating keymaps
+  })
+end
+
+return {
+  attach_typescript = attach_typescript,
+  attach_npm = attach_npm,
+  attach_jest = attach_jest,
+}

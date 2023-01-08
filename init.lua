@@ -2,6 +2,7 @@ pcall(require, 'impatient')
 
 require('core.packer_commands')
 require('core.utils.globals')
+require('plugins')
 require('config')
 require('keymappings')
 require('autocmds')
