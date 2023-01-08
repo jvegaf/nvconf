@@ -1,4 +1,4 @@
-local icons = require("icons")
+local icons = require("user.icons")
 
 
 vim.cmd("autocmd!")

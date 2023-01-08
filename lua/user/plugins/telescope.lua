@@ -1,7 +1,7 @@
 local actions    = require('telescope.actions')
 local previewers = require('telescope.previewers')
 local builtin    = require('telescope.builtin')
-local icons      = require('icons')
+local icons      = require('user.icons')
 
 require('telescope').load_extension('git_worktree')
 require('telescope').load_extension('project')

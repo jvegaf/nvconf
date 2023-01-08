@@ -4,7 +4,7 @@ if not present then
 end
 
 local dashboard = require("alpha.themes.dashboard")
-local icons = require("icons")
+local icons = require("user.icons")
 local if_nil = vim.F.if_nil
 local fn = vim.fn
 local config_dir = fn.stdpath('config')
@@ -112,7 +112,7 @@ end
 
 dashboard.section.buttons.val = {
   button("SPC s h", icons.fileRecent .. " " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
-  button("<C-P>", icons.fileNoBg .. " " .. "Find File", "<cmd>lua require('plugins.telescope').project_files()<CR>", {}),
+  button("<C-P>", icons.fileNoBg .. " " .. "Find File", "<cmd>lua require('user.plugins.telescope').project_files()<CR>", {}),
   button("P", icons.folderOpen .. " " .. "Project", "<cmd>lua require'telescope'.extensions.project{}<CR>", {}),
   button("SPC / s d", icons.timer .. " " .. "Load Current Dir Session", "<cmd>SessionManager load_current_dir_session<CR>", {}),
   button("SPC / u", icons.container .. " " .. "Update Plugins", "<cmd>PackerSync<CR>", {}),

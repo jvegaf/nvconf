@@ -5,7 +5,7 @@ if not cmp_status_ok then
   return
 end
 
-local icons = require('icons')
+local icons = require('user.icons')
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then

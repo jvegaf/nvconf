@@ -5,7 +5,7 @@ end
 
 local keymap = vim.keymap.set
 local silent = { silent = true }
-local utils = require('core.utils')
+local utils = require('user.core.utils')
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Setup                                                    │

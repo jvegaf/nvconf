@@ -30,7 +30,7 @@ keymap("v", "`", "u", opts) --downcase
 keymap("v", "<A-`>", "U", opts) --uppercase
 
 -- Telescope
-keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.multi-rg')()<CR>")
+keymap("n", "<S-p>", "<CMD>lua require('user.plugins.telescope.pickers.multi-rg')()<CR>")
 
 -- Terminal
 keymap("n", "<M-3>", "<CMD>ToggleTerm direction=float<CR>")

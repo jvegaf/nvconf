@@ -1,6 +1,6 @@
 -- Diagnostic config
 
-local icons = require('icons')
+local icons = require('user.icons')
 
 local codes = {
   -- Lua

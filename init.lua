@@ -1,19 +1,19 @@
 pcall(require, 'impatient')
 
-require('core.packer_commands')
-require('core.utils.globals')
-require('plugins')
-require('config')
-require('keymappings')
-require('autocmds')
-require('functions')
-require('colorscheme')
+require('user.core.packer_commands')
+require('user.core.utils.globals')
+require('user.plugins')
+require('user.config')
+require('user.keymappings')
+require('user.autocmds')
+require('user.functions')
+require('user.colorscheme')
 
-require('lsp.config')
-require('lsp.setup')
-require('lsp.functions')
+require('user.lsp.config')
+require('user.lsp.setup')
+require('user.lsp.functions')
 
-require('snippets.react')
+require('user.snippets.react')
 
 local has = function(x)
   return vim.fn.has(x) == 1
@@ -23,10 +23,10 @@ local is_win = has "win32"
 local is_lin = has "linux"
 
 if is_win then
-  require('windows')
+  require('user.windows')
 end
 
 if is_lin then
-  require('linux')
+  require('user.linux')
 end
 

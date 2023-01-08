@@ -23,7 +23,7 @@ return require("packer").startup({
     use {
       "goolord/alpha-nvim",
       config = function()
-        require "plugins.alpha"
+        require "user.plugins.alpha"
       end
     }
 
@@ -42,12 +42,12 @@ return require("packer").startup({
           "ChristianChiarulli/nvim-gps",
           branch = "text_hl",
           config = function()
-            require "plugins.gps"
+            require "user.plugins.gps"
           end
         }
       },
       config = function()
-        require "plugins.treesitter"
+        require "user.plugins.treesitter"
       end
     }
 
@@ -61,7 +61,7 @@ return require("packer").startup({
     use {
       "stevearc/aerial.nvim",
       config = function()
-        require "plugins.aerial"
+        require "user.plugins.aerial"
       end
     }
 
@@ -76,7 +76,7 @@ return require("packer").startup({
         {"nvim-telescope/telescope-fzf-native.nvim", run = 'make'}
       },
       config = function()
-        require "plugins.telescope"
+        require "user.plugins.telescope"
       end
     }
 
@@ -90,7 +90,7 @@ return require("packer").startup({
     use {
       "nvim-tree/nvim-tree.lua",
       config = function()
-        require "plugins.nvim-tree"
+        require "user.plugins.nvim-tree"
       end
     }
 
@@ -115,7 +115,7 @@ return require("packer").startup({
       "hrsh7th/nvim-cmp",
       event = "InsertEnter",
       config = function()
-        require "plugins.cmp"
+        require "user.plugins.cmp"
       end,
       requires = {
         "hrsh7th/cmp-nvim-lua",
@@ -133,7 +133,7 @@ return require("packer").startup({
           "David-Kunz/cmp-npm",
           requires = "nvim-lua/plenary.nvim",
           config = function()
-            require "plugins.cmp-npm"
+            require "user.plugins.cmp-npm"
           end
         },
       }
@@ -145,7 +145,7 @@ return require("packer").startup({
       "stevearc/dressing.nvim",
       requires = "MunifTanjim/nui.nvim",
       config = function()
-        require "plugins.dressing"
+        require "user.plugins.dressing"
       end
     }
 
@@ -154,7 +154,7 @@ return require("packer").startup({
     use {
       "folke/lsp-trouble.nvim",
       config = function()
-        require "plugins.trouble"
+        require "user.plugins.trouble"
       end
     }
     use { "nvim-lua/popup.nvim" }
@@ -168,7 +168,7 @@ return require("packer").startup({
     use {
       "p00f/clangd_extensions.nvim",
       config = function()
-        require "plugins.clangd-extensions"
+        require "user.plugins.clangd-extensions"
       end
     }
 
@@ -179,7 +179,7 @@ return require("packer").startup({
     use {
       "numToStr/Comment.nvim",
       config = function()
-        require "plugins.comment"
+        require "user.plugins.comment"
       end
     }
 
@@ -189,7 +189,7 @@ return require("packer").startup({
       "akinsho/nvim-toggleterm.lua",
       branch = "main",
       config = function()
-        require "plugins.toggleterm"
+        require "user.plugins.toggleterm"
       end
     }
 
@@ -200,7 +200,7 @@ return require("packer").startup({
     use {
       "folke/todo-comments.nvim",
       config = function()
-        require "plugins.todo-comments"
+        require "user.plugins.todo-comments"
       end
     }
 
@@ -208,7 +208,7 @@ return require("packer").startup({
       "folke/which-key.nvim",
       event = "BufWinEnter",
       config = function()
-        require"plugins.which-key"
+        require"user.plugins.whichkey"
       end
     }
 
@@ -217,7 +217,7 @@ return require("packer").startup({
     --   branch = "main",
     --   requires = "Iron-E/nvim-highlite",
     --   config = function()
-    --     require "plugins.galaxyline"
+    --     require "user.plugins.galaxyline"
     --   end,
     -- }
 
@@ -225,7 +225,7 @@ return require("packer").startup({
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true },
       config = function ()
-        require "plugins.lualine"
+        require "user.plugins.lualine"
       end
     }
 
@@ -237,7 +237,7 @@ return require("packer").startup({
       },
       event = "BufWinEnter",
       config = function ()
-        require "plugins.bufferline"
+        require "user.plugins.bufferline"
       end
     }
 
@@ -249,21 +249,21 @@ return require("packer").startup({
       "vuki656/package-info.nvim",
       event = "BufEnter package.json",
       config = function()
-        require "plugins.package-info"
+        require "user.plugins.package-info"
       end
     }
 
     use {
       "declancm/cinnamon.nvim",
       config = function()
-        require "plugins.cinnamon"
+        require "user.plugins.cinnamon"
       end
     }
 
     use {
       "Shatur/neovim-session-manager",
       config = function()
-        require "plugins.session-manager"
+        require "user.plugins.session-manager"
       end
     }
 
@@ -286,7 +286,7 @@ return require("packer").startup({
     --   "kevinhwang91/nvim-ufo",
     --   requires = "kevinhwang91/promise-async",
     --   config = function()
-    --     require "plugins.nvim-ufo"
+    --     require "user.plugins.nvim-ufo"
     --   end
     -- }
 
@@ -315,7 +315,7 @@ return require("packer").startup({
         "STSSwapPrevVisual",
       },
       config = function()
-        require "plugins.syntax-tree-surfer"
+        require "user.plugins.syntax-tree-surfer"
       end
     }
 
@@ -324,21 +324,21 @@ return require("packer").startup({
     use {
       "windwp/nvim-autopairs",
       config = function()
-        require "plugins.autopairs"
+        require "user.plugins.autopairs"
       end
     }
 
     use {
       "lukas-reineke/indent-blankline.nvim",
       config = function()
-        require "plugins.indent"
+        require "user.plugins.indent"
       end
     }
 
     use {
       "NvChad/nvim-colorizer.lua",
       config = function()
-        require "plugins.colorizer"
+        require "user.plugins.colorizer"
       end
     }
 
@@ -348,14 +348,14 @@ return require("packer").startup({
       requires = { "nvim-lua/plenary.nvim" },
       event = "BufRead",
       config = function()
-        require "plugins.git.signs"
+        require "user.plugins.git.signs"
       end
     }
 
     use {
       "sindrets/diffview.nvim",
       config = function()
-        require "plugins.git.diffview"
+        require "user.plugins.git.diffview"
       end
     }
 
@@ -363,14 +363,14 @@ return require("packer").startup({
       "akinsho/git-conflict.nvim",
       tag = "*",
       config = function()
-        require "plugins.git.conflict"
+        require "user.plugins.git.conflict"
       end
     }
 
     use {
       "ThePrimeagen/git-worktree.nvim",
       config = function()
-        require"plugins.git.worktree"
+        require"user.plugins.git.worktree"
       end
     }
 
@@ -386,7 +386,7 @@ return require("packer").startup({
         "haydenmeade/neotest-jest"
       },
       config = function()
-        require "plugins.neotest"
+        require "user.plugins.neotest"
       end
     }
 

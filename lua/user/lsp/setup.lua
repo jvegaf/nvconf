@@ -2,7 +2,7 @@
 local typescript_ok, typescript = pcall(require, 'typescript')
 local mason_ok, mason = pcall(require, 'mason')
 local mason_lsp_ok, mason_lsp = pcall(require, 'mason-lspconfig')
-local ufo_config = require('plugins.nvim-ufo')
+local ufo_config = require('user.plugins.nvim-ufo')
 
 if not mason_ok or not mason_lsp_ok then
   return
@@ -59,55 +59,55 @@ if typescript_ok then
     debug = false, -- enable debug logging for commands
     -- LSP Config options
     server = {
-      capabilities = require('lsp.servers.tsserver').capabilities,
-      handlers = require('lsp.servers.tsserver').handlers,
-      on_attach = require('lsp.servers.tsserver').on_attach,
-      settings = require('lsp.servers.tsserver').settings,
+      capabilities = require('user.lsp.servers.tsserver').capabilities,
+      handlers = require('user.lsp.servers.tsserver').handlers,
+      on_attach = require('user.lsp.servers.tsserver').on_attach,
+      settings = require('user.lsp.servers.tsserver').settings,
     }
   })
 end
 
 lspconfig.tailwindcss.setup {
-  capabilities = require('lsp.servers.tailwindcss').capabilities,
-  filetypes = require('lsp.servers.tailwindcss').filetypes,
+  capabilities = require('user.lsp.servers.tailwindcss').capabilities,
+  filetypes = require('user.lsp.servers.tailwindcss').filetypes,
   handlers = handlers,
-  init_options = require('lsp.servers.tailwindcss').init_options,
-  on_attach = require('lsp.servers.tailwindcss').on_attach,
-  settings = require('lsp.servers.tailwindcss').settings,
+  init_options = require('user.lsp.servers.tailwindcss').init_options,
+  on_attach = require('user.lsp.servers.tailwindcss').on_attach,
+  settings = require('user.lsp.servers.tailwindcss').settings,
 }
 
 lspconfig.cssls.setup {
   capabilities = capabilities,
   handlers = handlers,
-  on_attach = require('lsp.servers.cssls').on_attach,
-  settings = require('lsp.servers.cssls').settings,
+  on_attach = require('user.lsp.servers.cssls').on_attach,
+  settings = require('user.lsp.servers.cssls').settings,
 }
 
 lspconfig.eslint.setup {
   capabilities = capabilities,
   handlers = handlers,
-  on_attach = require('lsp.servers.eslint').on_attach,
-  settings = require('lsp.servers.eslint').settings,
+  on_attach = require('user.lsp.servers.eslint').on_attach,
+  settings = require('user.lsp.servers.eslint').settings,
 }
 
 lspconfig.jsonls.setup {
   capabilities = capabilities,
   handlers = handlers,
   on_attach = on_attach,
-  settings = require('lsp.servers.jsonls').settings,
+  settings = require('user.lsp.servers.jsonls').settings,
 }
 
 lspconfig.sumneko_lua.setup {
   capabilities = capabilities,
   handlers = handlers,
   on_attach = on_attach,
-  settings = require('lsp.servers.sumneko_lua').settings,
+  settings = require('user.lsp.servers.sumneko_lua').settings,
 }
 
 lspconfig.vuels.setup {
-  filetypes = require('lsp.servers.vuels').filetypes,
+  filetypes = require('user.lsp.servers.vuels').filetypes,
   handlers = handlers,
-  init_options = require('lsp.servers.vuels').init_options,
+  init_options = require('user.lsp.servers.vuels').init_options,
   on_attach = on_attach,
 }
 

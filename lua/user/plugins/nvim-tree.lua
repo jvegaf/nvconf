@@ -4,7 +4,7 @@ if not present then
   return
 end
 
-local utils = require('core.utils')
+local utils = require('user.core.utils')
 local nvim_tree_events = require('nvim-tree.events')
 
 local TREE_WIDTH = 40
@@ -19,7 +19,7 @@ local git_icons = {
   ignored = "◌"
 }
 
-local icons = require('icons')
+local icons = require('user.icons')
 
 local keymappings = {
   { key = {"<CR>", "o", "<2-LeftMouse>"}, action = "edit" },
