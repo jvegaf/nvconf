@@ -4,13 +4,14 @@ require('jvegaf.maps')
 require('jvegaf.plugins')
 require('jvegaf.settings')
 
-local has = vim.fn.has
-local is_lin = has "linux"
-local is_win = has "win32"
 
-if is_lin then
+local host = vim.loop.os_uname().sysname
+
+print(host)
+
+if host == 'Linux' then
   require('jvegaf.linux')
+  return
 end
-if is_win then
-  require('jvegaf.windows')
-end
+
+require('jvegaf.windows')

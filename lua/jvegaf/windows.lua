@@ -1,3 +1,7 @@
+if vim.loop.os_uname().sysname == 'Linux' then
+  return
+end
+
 vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 
 -- Set a compatible clipboard manager
@@ -11,4 +15,3 @@ vim.g.clipboard = {
     ["*"] = "win32yank.exe -o --lf",
   },
 }
-

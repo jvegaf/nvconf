@@ -106,7 +106,6 @@ nvim_tree.setup({
           ignored = "◌",
         },
       },
-
     },
   },
   update_focused_file = {
@@ -153,9 +152,6 @@ nvim_tree.setup({
       git = false,
       profile = false,
       watcher = false,
-    },
-  },
-})
     },
   },
 })
