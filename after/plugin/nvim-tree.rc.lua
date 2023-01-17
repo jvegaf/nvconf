@@ -5,7 +5,7 @@ if not present then
 end
 
 nvim_tree.setup({
-  hijack_cursor = true,
+  hijack_cursor = false,
   open_on_setup = false,
   ignore_ft_on_setup = {
     "startify",
@@ -14,7 +14,7 @@ nvim_tree.setup({
   },
   auto_reload_on_write = false,
   -- open_on_setup_file = true,
-  sync_root_with_cwd = true,
+  sync_root_with_cwd = false,
   view = {
     adaptive_size = false,
     width = 30,
@@ -97,11 +97,11 @@ nvim_tree.setup({
           symlink_open = "",
         },
         git = {
-          unstaged = "✗",
+          unstaged = "★",
           staged = "✓",
           unmerged = "",
           renamed = "➜",
-          untracked = "★",
+          untracked = "✗",
           deleted = "",
           ignored = "◌",
         },
@@ -110,12 +110,18 @@ nvim_tree.setup({
   },
   update_focused_file = {
     enable = true,
-    update_root = true,
+    update_root = false,
     ignore_list = { "help" },
   },
   diagnostics = {
     enable = true,
     show_on_dirs = true,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
   },
   filters = {
     custom = {
@@ -123,13 +129,17 @@ nvim_tree.setup({
     },
   },
   actions = {
+    use_system_clipboard = true,
     change_dir = {
       enable = true,
-      restrict_above_cwd = true,
+      global = false,
+      restrict_above_cwd = false,
     },
     open_file = {
-      resize_window = true,
+      quit_on_open = true,
+      resize_window = false,
       window_picker = {
+        enable = true,
         chars = "aoeui",
         exclude = {
           filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
@@ -139,6 +149,17 @@ nvim_tree.setup({
     },
     remove_file = {
       close_window = true,
+    },
+  },
+  live_filter = {
+    prefix = "[FILTER]: ",
+    always_show_folders = true,
+  },
+  tab = {
+    sync = {
+      open = false,
+      close = false,
+      ignore = {},
     },
   },
   log = {
