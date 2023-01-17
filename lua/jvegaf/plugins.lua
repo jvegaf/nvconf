@@ -23,7 +23,15 @@ packer.startup(function(use)
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
 
-  use 'glepnir/lspsaga.nvim' -- LSP UIs
+  -- LSP UIs
+  use({
+    "glepnir/lspsaga.nvim",
+    branch = "main",
+    config = function()
+      require('lspsaga').setup({})
+    end,
+  })
+
   use 'L3MON4D3/LuaSnip'
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -32,6 +40,7 @@ packer.startup(function(use)
   use 'kyazdani42/nvim-web-devicons' -- File icons
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-telescope/telescope-file-browser.nvim'
+  use 'nvim-telescope/telescope-project.nvim'
   use 'windwp/nvim-autopairs'
   use 'windwp/nvim-ts-autotag'
   use { 'numToStr/Comment.nvim',

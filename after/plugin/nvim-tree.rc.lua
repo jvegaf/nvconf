@@ -6,8 +6,14 @@ end
 
 nvim_tree.setup({
   hijack_cursor = true,
-  open_on_setup = true,
-  open_on_setup_file = true,
+  open_on_setup = false,
+  ignore_ft_on_setup = {
+    "startify",
+    "dashboard",
+    "alpha",
+  },
+  auto_reload_on_write = false,
+  -- open_on_setup_file = true,
   sync_root_with_cwd = true,
   view = {
     adaptive_size = false,
@@ -126,6 +132,10 @@ nvim_tree.setup({
       resize_window = true,
       window_picker = {
         chars = "aoeui",
+        exclude = {
+          filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+          buftype = { "nofile", "terminal", "help" },
+        },
       },
     },
     remove_file = {
@@ -143,6 +153,9 @@ nvim_tree.setup({
       git = false,
       profile = false,
       watcher = false,
+    },
+  },
+})
     },
   },
 })
