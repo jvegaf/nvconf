@@ -78,6 +78,11 @@ packer.startup(function(use)
 
   use { "mg979/vim-visual-multi", config = function() vim.g.VM_leader = ";" end }
 
+  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup()
+  end
+  }
+
   -- Themes
   use 'navarasu/onedark.nvim'
 

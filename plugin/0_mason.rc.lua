@@ -16,7 +16,6 @@ lspconfig.setup {
     "dockerls",
     "emmet_ls",
     "spectral", -- openapi
-    "powershell_es",
     "sqlls",
     "taplo",
     "vimls",
