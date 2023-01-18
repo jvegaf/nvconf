@@ -18,7 +18,11 @@ vim.cmd([[
 
 local packer_bootstrap = ensure_packer()
 
-return require('packer').startup(function(use)
+local use = require('packer').use
+
+
+
+return require('packer').startup({ function()
   use 'wbthomason/packer.nvim'
   use 'nvim-lualine/lualine.nvim' -- Statusline
   use 'nvim-lua/plenary.nvim' -- Common utilities
@@ -55,7 +59,7 @@ return require('packer').startup(function(use)
     end,
   }
 
-  use 'kyazdani42/nvim-web-devicons' -- File icons
+  use 'nvim-tree/nvim-web-devicons' -- File icons
 
   use 'nvim-telescope/telescope.nvim'
 
@@ -79,6 +83,11 @@ return require('packer').startup(function(use)
     setup = function()
       vim.cmd [[packadd telescope.nvim]]
     end,
+  }
+
+  use {
+    'Shatur/neovim-session-manager',
+    requires = 'nvim-lua/plenary.nvim'
   }
 
   use 'windwp/nvim-autopairs'
@@ -134,12 +143,20 @@ return require('packer').startup(function(use)
 
   use { "mg979/vim-visual-multi", config = function() vim.g.VM_leader = ";" end }
 
-  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
-    require("toggleterm").setup()
-  end
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = '*',
+    config = function()
+      require("toggleterm").setup()
+    end
   }
 
-  use 'goolord/alpha-nvim'
+  use {
+    'goolord/alpha-nvim',
+    requires = {
+      'nvim-tree/nvim-web-devicons'
+    }
+  }
 
   use 'jvegaf/move.nvim'
 
@@ -151,4 +168,11 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 
-end)
+end,
+  config = {
+    display = {
+      open_fn = function()
+        return require('packer.util').float({ border = 'single' })
+      end
+    }
+  } })
