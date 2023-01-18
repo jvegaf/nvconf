@@ -15,7 +15,6 @@ lspconfig.setup {
     "cssmodules_ls",
     "dockerls",
     "emmet_ls",
-    "spectral", -- openapi
     "sqlls",
     "taplo",
     "vimls",

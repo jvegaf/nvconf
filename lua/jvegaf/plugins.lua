@@ -8,10 +8,6 @@ vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
   use 'wbthomason/packer.nvim'
-  use {
-    'svrana/neosolarized.nvim',
-    requires = { 'tjdevries/colorbuddy.nvim' }
-  }
   use 'nvim-lualine/lualine.nvim' -- Statusline
   use 'nvim-lua/plenary.nvim' -- Common utilities
   use 'onsails/lspkind-nvim' -- vscode-like pictograms
@@ -22,7 +18,7 @@ packer.startup(function(use)
   use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
-
+  use 'WhoIsSethDaniel/mason-tool-installer.nvim'
   -- LSP UIs
   use({
     "glepnir/lspsaga.nvim",
@@ -33,16 +29,50 @@ packer.startup(function(use)
   })
 
   use 'L3MON4D3/LuaSnip'
+
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    requires = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "RRethy/nvim-treesitter-textsubjects",
+      "p00f/nvim-ts-rainbow",
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    run = function()
+      require('nvim-treesitter.install').update({ with_sync = true })
+    end,
   }
+
   use 'kyazdani42/nvim-web-devicons' -- File icons
+
   use 'nvim-telescope/telescope.nvim'
+
   use 'nvim-telescope/telescope-file-browser.nvim'
-  use 'nvim-telescope/telescope-project.nvim'
+
+  use {
+    "folke/lsp-colors.nvim",
+    event = "BufRead",
+  }
+
+  use {
+    'ThePrimeagen/harpoon',
+    requires = 'nvim-lua/plenary.nvim'
+  }
+
+  use {
+    "nvim-telescope/telescope-project.nvim",
+    event = "BufWinEnter",
+    after = "telescope.nvim",
+    requires = { "nvim-telescope/telescope.nvim" },
+    setup = function()
+      vim.cmd [[packadd telescope.nvim]]
+    end,
+  }
+
   use 'windwp/nvim-autopairs'
+
   use 'windwp/nvim-ts-autotag'
+
   use { 'numToStr/Comment.nvim',
     requires = {
       'JoosepAlviste/nvim-ts-context-commentstring'
@@ -58,8 +88,23 @@ packer.startup(function(use)
   }
   -- use 'github/copilot.vim'
 
-  use 'lewis6991/gitsigns.nvim'
   use 'dinhhuy258/git.nvim' -- For git blame & browse
+
+  -- Git
+
+  use { "lewis6991/gitsigns.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    event = "BufRead",
+  }
+
+  use "sindrets/diffview.nvim"
+
+  use {
+    "akinsho/git-conflict.nvim",
+    tag = "*",
+  }
+
+  use "ThePrimeagen/git-worktree.nvim"
 
   use {
     'nvim-tree/nvim-tree.lua',
@@ -68,7 +113,6 @@ packer.startup(function(use)
     }
   }
 
-  use { 'romgrk/barbar.nvim', wants = 'nvim-web-devicons' }
 
   use 'junegunn/vim-easy-align'
 
@@ -82,6 +126,10 @@ packer.startup(function(use)
     require("toggleterm").setup()
   end
   }
+
+  use 'goolord/alpha-nvim'
+
+  use 'jvegaf/move.nvim'
 
   -- Themes
   use 'navarasu/onedark.nvim'
