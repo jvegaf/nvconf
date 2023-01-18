@@ -3,6 +3,13 @@ if not present then
   return
 end
 
+local status = pcall(require, "telescope")
+if not status then
+  return
+end
+
+
+
 local keymap = vim.keymap.set
 local silent = { silent = true }
 -- local utils = require('user.core.utils')
