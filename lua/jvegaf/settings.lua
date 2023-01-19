@@ -1,7 +1,13 @@
--- Lua
-require('onedark').setup {
+local present, onedark = pcall(require, 'onedark')
+
+if not present then
+  return
+end
+
+onedark.setup {
   style = 'deep'
 }
-require('onedark').load()
 
-vim.cmd.colorscheme "onedark"
+onedark.load()
+
+-- vim.cmd.colorscheme "onedark"

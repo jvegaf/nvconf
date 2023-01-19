@@ -71,7 +71,8 @@ return require('packer').startup({ function()
   }
 
   use {
-    'ThePrimeagen/harpoon',
+    -- 'ThePrimeagen/harpoon',
+    use "christianchiarulli/harpoon",
     requires = 'nvim-lua/plenary.nvim'
   }
 

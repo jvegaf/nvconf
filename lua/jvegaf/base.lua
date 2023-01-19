@@ -38,9 +38,9 @@ local options = {
   sidescrolloff = 8,
   guifont = "monospace:h17", -- the font used in graphical neovim applications
   title = true,
-  pumblend = 17,
-  wildmode = "longest:full",
-  wildoptions = "pum",
+  -- pumblend = 17,
+  -- wildmode = "longest:full",
+  -- wildoptions = "pum",
 }
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
@@ -74,17 +74,19 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 --   1. :center, :left, :right
 --   2. gw{motion} - Put cursor back after formatting motion.
 --
--- TODO: w, {v, b, l}
-vim.opt.formatoptions = vim.opt.formatoptions
-    - "a" -- Auto formatting is BAD.
-    - "t" -- Don't auto format my code. I got linters for that.
-    + "c" -- In general, I like it when comments respect textwidth
-    + "q" -- Allow formatting comments w/ gq
-    - "o" -- O and o, don't continue comments
-    + "r" -- But do continue when pressing enter.
-    + "n" -- Indent past the formatlistpat, not underneath it.
-    + "j" -- Auto-remove comments if possible.
-    - "2" -- I'm not in gradeschool anymore
+-- -- TODO: w, {v, b, l}
+-- vim.opt.formatoptions = vim.opt.formatoptions
+--     - "a" -- Auto formatting is BAD.
+--     - "t" -- Don't auto format my code. I got linters for that.
+--     + "c" -- In general, I like it when comments respect textwidth
+--     + "q" -- Allow formatting comments w/ gq
+--     - "o" -- O and o, don't continue comments
+--     + "r" -- But do continue when pressing enter.
+--     + "n" -- Indent past the formatlistpat, not underneath it.
+--     + "j" -- Auto-remove comments if possible.
+
+-- Add asterisks in block comments
+vim.opt.formatoptions:append { 'r' }
 
 for k, v in pairs(options) do
   vim.opt[k] = v

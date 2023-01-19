@@ -7,7 +7,6 @@ local dashboard = require("alpha.themes.dashboard")
 local icons = require("jvegaf.icons")
 local if_nil = vim.F.if_nil
 local fn = vim.fn
-local config_dir = fn.stdpath('config')
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Header                                                   │
@@ -28,7 +27,6 @@ dashboard.section.header.type = "text";
 dashboard.section.header.val = header;
 dashboard.section.header.opts = {
   position = "center",
-  hl = "EcovimHeader",
 }
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -42,32 +40,7 @@ thingy:close()
 
 local datetime = os.date " %H:%M"
 
-local hi_top_section = {
-  type = "text",
-  val = "┌────────────   Today is " .. date .. " ────────────┐",
-  opts = {
-    position = "center",
-    hl = "EcovimHeaderInfo"
-  }
-}
 
-local hi_middle_section = {
-  type = "text",
-  val = "│                                                │",
-  opts = {
-    position = "center",
-    hl = "EcovimHeaderInfo"
-  }
-}
-
-local hi_bottom_section = {
-  type = "text",
-  val = "└───══───══───══───  " .. datetime .. "  ───══───══───══────┘",
-  opts = {
-    position = "center",
-    hl = "EcovimHeaderInfo"
-  }
-}
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Buttons                                                  │
@@ -89,7 +62,6 @@ local function button(sc, txt, keybind, keybind_opts)
     cursor = 5,
     width = 50,
     align_shortcut = "right",
-    hl_shortcut = "EcovimPrimary",
   }
   if keybind then
     keybind_opts = if_nil(keybind_opts, { noremap = true, silent = true, nowait = true })
@@ -111,15 +83,12 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 dashboard.section.buttons.val = {
-  button("SPC s h", icons.fileRecent .. " " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
-  button("<C-P>", icons.fileNoBg .. " " .. "Find File", "<cmd>lua require('user.plugins.telescope').project_files()<CR>"
-    , {}),
-  button("P", icons.folderOpen .. " " .. "Project", "<cmd>lua require'telescope'.extensions.project{}<CR>", {}),
-  button("SPC / s d", icons.timer .. " " .. "Load Current Dir Session",
-    "<cmd>SessionManager load_current_dir_session<CR>", {}),
-  button("SPC / u", icons.container .. " " .. "Update Plugins", "<cmd>PackerSync<CR>", {}),
-  button("SPC / c", icons.cog .. " " .. "Settings", "<cmd>e $MYVIMRC<CR>", {}),
-  button("-", icons.exit .. " " .. "Exit", "<cmd>exit<CR>", {}),
+  button("r", icons.fileRecent .. " " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
+  button("f", icons.fileNoBg .. " " .. "Find File", "<cmd>Telescope find_files<CR>", {}),
+  button("s", icons.timer .. " " .. "Load Current Dir Session", "<cmd>SessionManager load_current_dir_session<CR>", {}),
+  button("u", icons.container .. " " .. "Update Plugins", "<cmd>PackerSync<CR>", {}),
+  button("c", icons.cog .. " " .. "Settings", "<cmd>e $MYVIMRC<CR>", {}),
+  button("q", icons.exit .. " " .. "Exit", "<cmd>exit<CR>", {}),
 }
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -141,26 +110,15 @@ local function line_from(file)
   return lines
 end
 
-local function footer()
-  local plugins = #vim.tbl_keys(packer_plugins)
-  local v = vim.version()
-  local ecovim_version = line_from(config_dir .. "/.ecovim.version")
-  return string.format(" v%d.%d.%d   %d   %s ", v.major, v.minor, v.patch, plugins, ecovim_version[1])
-end
-
 dashboard.section.footer.val = {
-  footer()
+  'olaKeAse'
 }
 dashboard.section.footer.opts = {
   position = "center",
-  hl = "EcovimFooter",
 }
 
 local section = {
   header = dashboard.section.header,
-  hi_top_section = hi_top_section,
-  hi_middle_section = hi_middle_section,
-  hi_bottom_section = hi_bottom_section,
   buttons = dashboard.section.buttons,
   footer = dashboard.section.footer,
 }
@@ -173,13 +131,9 @@ local opts = {
   layout = {
     { type = "padding", val = 5 },
     section.header,
-    { type = "padding", val = 1 },
-    section.hi_top_section,
-    section.hi_middle_section,
-    section.hi_bottom_section,
-    { type = "padding", val = 2 },
-    section.buttons,
     { type = "padding", val = 5 },
+    section.buttons,
+    { type = "padding", val = 2 },
     section.footer,
   },
   opts = {
@@ -211,4 +165,3 @@ vim.api.nvim_create_autocmd("FileType", {
     })
   end,
 })
-

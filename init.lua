@@ -4,7 +4,7 @@ require('jvegaf.maps')
 require('jvegaf.plugins')
 require('jvegaf.settings')
 
-vim.cmd [[colorscheme onedark]]
+-- vim.cmd [[colorscheme onedark]]
 
 local host = vim.loop.os_uname().sysname
 
