@@ -35,6 +35,7 @@ keymap("n", "<m-tab>", "<c-6>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
+keymap('n', '<S-q>', ':Bdelete<CR>', opts)
 -- Select all
 keymap('n', '<C-a>', 'gg<S-v>G', opts)
 
@@ -49,11 +50,22 @@ keymap('n', '<m-1>', ':NvimTreeToggle<CR>', opts)
 keymap('n', '<leader>e', ':NvimTreeFocus<CR>', opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("n", "<A-Up>", ":MoveLine(-1)<CR>", opts)
+keymap("n", "<A-Down>", ":MoveLine(1)<CR>", opts)
+keymap("n", "<A-Left>", ":MoveHChar(-1)<CR>", opts)
+keymap("n", "<A-Right>", ":MoveHChar(1)<CR>", opts)
+
+keymap("v", "<A-Up>", ":MoveBlock(-1)<CR>", opts)
+keymap("v", "<A-Down>", ":MoveBlock(1)<CR>", opts)
+keymap("v", "<A-Left>", ":MoveHBlock(-1)<CR>", opts)
+keymap("v", "<A-Right>", ":MoveHBlock(1)<CR>", opts)
+
 
 -- dont yank on visual paste
 keymap("v", "p", '"_dP', opts)
+
+
+
 
 -- Visual Block --
 -- Move text up and down

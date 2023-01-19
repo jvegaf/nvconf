@@ -29,6 +29,8 @@ return require('packer').startup({ function()
   use 'onsails/lspkind-nvim' -- vscode-like pictograms
   use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
   use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
+  use 'hrsh7th/cmp-emoji' -- nvim-cmp source for neovim's built-in LSP
+  use 'saadparwaiz1/cmp_luasnip'
   use 'hrsh7th/nvim-cmp' -- Completion
   use 'neovim/nvim-lspconfig' -- LSP
   use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
@@ -72,7 +74,7 @@ return require('packer').startup({ function()
 
   use {
     -- 'ThePrimeagen/harpoon',
-    use "christianchiarulli/harpoon",
+    "christianchiarulli/harpoon",
     requires = 'nvim-lua/plenary.nvim'
   }
 
@@ -90,6 +92,8 @@ return require('packer').startup({ function()
     'Shatur/neovim-session-manager',
     requires = 'nvim-lua/plenary.nvim'
   }
+
+  use 'moll/vim-bbye'
 
   use 'windwp/nvim-autopairs'
 
@@ -135,8 +139,32 @@ return require('packer').startup({ function()
     }
   }
 
+  use {
+    'weilbith/nvim-code-action-menu',
+    cmd = 'CodeActionMenu',
+    after = 'nvim-lspconfig'
+  }
 
-  use 'junegunn/vim-easy-align'
+  use {
+    "tzachar/cmp-tabnine",
+    after = "nvim-cmp",
+    run = "powershell ./install.ps1",
+    requires = "hrsh7th/nvim-cmp",
+  }
+
+  use {
+    'junegunn/vim-easy-align',
+    event = 'BufReadPost'
+  }
+
+  -- Motion
+  use "phaazon/hop.nvim"
+  -- use "jinh0/eyeliner.nvim"
+
+  -- Keybinding
+  use "folke/which-key.nvim"
+
+  use 'antoinemadec/FixCursorHold.nvim'
 
   use { "voldikss/vim-browser-search" }
 
