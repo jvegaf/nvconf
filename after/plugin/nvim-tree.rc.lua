@@ -110,7 +110,7 @@ nvim_tree.setup({
   },
   update_focused_file = {
     enable = true,
-    update_root = false,
+    update_root = true,
     ignore_list = { "help" },
   },
   diagnostics = {
@@ -132,7 +132,7 @@ nvim_tree.setup({
     use_system_clipboard = true,
     change_dir = {
       enable = true,
-      global = false,
+      global = true,
       restrict_above_cwd = false,
     },
     open_file = {
@@ -155,15 +155,8 @@ nvim_tree.setup({
     prefix = "[FILTER]: ",
     always_show_folders = true,
   },
-  tab = {
-    sync = {
-      open = false,
-      close = false,
-      ignore = {},
-    },
-  },
   log = {
-    enable = false,
+    enable = true,
     truncate = true,
     types = {
       all = false,
