@@ -90,7 +90,7 @@ local m_opts = {
 
 local m_mappings = {
   a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
-  c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
+  -- c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
   b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
   m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
   ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
@@ -112,6 +112,7 @@ local mappings = {
   -- ["1"] = "which_key_ignore",
   a = { "<cmd>CodeActionMenu<cr>", "Action" },
   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+  c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
   e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   v = { "<cmd>vsplit<cr>", "vsplit" },
   h = { "<cmd>split<cr>", "split" },

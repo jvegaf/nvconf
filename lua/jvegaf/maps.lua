@@ -35,7 +35,6 @@ keymap("n", "<m-tab>", "<c-6>", opts)
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
-keymap('n', '<S-q>', ':Bdelete<CR>', opts)
 -- Select all
 keymap('n', '<C-a>', 'gg<S-v>G', opts)
 
@@ -64,14 +63,6 @@ keymap("v", "<A-Right>", ":MoveHBlock(1)<CR>", opts)
 -- dont yank on visual paste
 keymap("v", "p", '"_dP', opts)
 
-
-
-
--- Visual Block --
--- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
 keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
@@ -109,20 +100,19 @@ vim.api.nvim_set_keymap("n", "K", ":lua require('user.keymaps').show_documentati
 keymap("n", "<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 keymap("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<s-tab>",
-  "<cmd>lua require('telescope').extensions.harpoon.marks(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal', prompt_title='Harpoon'})<cr>"
-  ,
-  opts
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<tab>",
-  "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
-  ,
-  opts
-)
+-- vim.api.nvim_set_keymap(
+--   "n",
+--   "<tab>",
+--   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
+--   ,
+--   opts
+-- )
+
+-- Tabs
+keymap("n", "<Tab>", "<cmd>BufferNext<CR>", opts)
+keymap("n", "<S-Tab>", "<cmd>BufferPrevious<CR>", opts)
+keymap('n', '<S-q>', '<cmd>BufferClose<CR>', opts)
+
 
 -- Easyalign
 keymap("n", "ga", "<Plug>(EasyAlign)", opts)

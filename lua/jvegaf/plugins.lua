@@ -24,8 +24,8 @@ local use = require('packer').use
 
 return require('packer').startup({ function()
   use 'wbthomason/packer.nvim'
-  use 'nvim-lualine/lualine.nvim' -- Statusline
   use 'nvim-lua/plenary.nvim' -- Common utilities
+  use 'L3MON4D3/LuaSnip'
   use 'onsails/lspkind-nvim' -- vscode-like pictograms
   use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
   use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
@@ -46,7 +46,18 @@ return require('packer').startup({ function()
     end,
   })
 
-  use 'L3MON4D3/LuaSnip'
+  use 'nvim-lualine/lualine.nvim' -- Statusline
+
+  -- use {
+  --   'akinsho/nvim-bufferline.lua',
+  --   tag = 'v3.*',
+  --   event = 'BufWinEnter',
+  --   requires = {
+  --     'nvim-tree/nvim-web-devicons',
+  --   }
+  -- }
+
+  use 'romgrk/barbar.nvim'
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -72,12 +83,6 @@ return require('packer').startup({ function()
   use {
     "folke/lsp-colors.nvim",
     event = "BufRead",
-  }
-
-  use {
-    -- 'ThePrimeagen/harpoon',
-    "christianchiarulli/harpoon",
-    requires = 'nvim-lua/plenary.nvim'
   }
 
   use {
@@ -108,15 +113,6 @@ return require('packer').startup({ function()
   }
   use 'norcalli/nvim-colorizer.lua'
 
-  use {
-    'akinsho/nvim-bufferline.lua',
-    tag = 'v3.*',
-    event = 'BufWinEnter',
-    requires = {
-      'nvim-tree/nvim-web-devicons',
-      'tiagovla/scope.nvim'
-    }
-  }
   -- use 'github/copilot.vim'
 
   use 'dinhhuy258/git.nvim' -- For git blame & browse
@@ -209,6 +205,13 @@ return require('packer').startup({ function()
   -- Themes
   use 'navarasu/onedark.nvim'
 
+  use "olimorris/onedarkpro.nvim"
+
+  use 'tanvirtin/monokai.nvim'
+
+  use 'folke/tokyonight.nvim'
+
+  ----------------------
 
   if packer_bootstrap then
     require('packer').sync()
@@ -221,4 +224,5 @@ end,
         return require('packer.util').float({ border = 'single' })
       end
     }
-  } })
+  }
+})
