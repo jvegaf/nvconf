@@ -67,6 +67,8 @@ return require('packer').startup({ function()
 
   use 'nvim-telescope/telescope-file-browser.nvim'
 
+  use 'rcarriga/nvim-notify'
+
   use {
     "folke/lsp-colors.nvim",
     event = "BufRead",
@@ -110,7 +112,10 @@ return require('packer').startup({ function()
     'akinsho/nvim-bufferline.lua',
     tag = 'v3.*',
     event = 'BufWinEnter',
-    requires = 'nvim-tree/nvim-web-devicons'
+    requires = {
+      'nvim-tree/nvim-web-devicons',
+      'tiagovla/scope.nvim'
+    }
   }
   -- use 'github/copilot.vim'
 
@@ -166,7 +171,14 @@ return require('packer').startup({ function()
 
   use 'antoinemadec/FixCursorHold.nvim'
 
+  use({
+    "lalitmee/browse.nvim",
+    requires = { "nvim-telescope/telescope.nvim" },
+  })
+
   use { "voldikss/vim-browser-search" }
+
+  use 'windwp/nvim-spectre'
 
   use { "normen/vim-pio" }
 
@@ -178,6 +190,11 @@ return require('packer').startup({ function()
     config = function()
       require("toggleterm").setup()
     end
+  }
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
   }
 
   use {

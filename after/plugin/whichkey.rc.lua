@@ -110,7 +110,7 @@ local m_mappings = {
 
 local mappings = {
   -- ["1"] = "which_key_ignore",
-  a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Action" },
+  a = { "<cmd>CodeActionMenu<cr>", "Action" },
   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
   e = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   v = { "<cmd>vsplit<cr>", "vsplit" },
@@ -120,7 +120,7 @@ local mappings = {
   q = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" },
   ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
   -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+  -- c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
 
   -- :lua require'lir.float'.toggle()
   -- ["f"] = {
