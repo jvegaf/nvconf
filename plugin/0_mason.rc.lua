@@ -20,7 +20,8 @@ lspconfig.setup {
     "vimls",
     "jsonls",
     "arduino_language_server",
-    "yamlls"
+    "yamlls",
+    "lemminx" -- xml
   },
   automatic_installation = true
 }

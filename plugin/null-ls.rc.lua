@@ -12,12 +12,22 @@ local lsp_formatting = function(bufnr)
   })
 end
 
+local b = null_ls.builtins
+
 null_ls.setup {
   sources = {
-    null_ls.builtins.formatting.prettierd,
-    null_ls.builtins.diagnostics.eslint_d.with({
+    b.formatting.stylua,
+    b.formatting.xmllint,
+    b.formatting.prettier,
+
+
+    b.diagnostics.eslint_d.with({
       diagnostics_format = '[eslint] #{m}\n(#{c})'
     }),
+    b.diagnostics.php,
+    b.diagnostics.shellcheck,
+    b.diagnostics.stylelint,
+    b.diagnostics.yamllint
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
