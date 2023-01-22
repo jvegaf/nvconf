@@ -128,8 +128,6 @@ return require('packer').startup {
       tag = '*',
     }
 
-    use 'mhinz/vim-signify'
-
     use 'adoy/vim-php-refactoring-toolbox'
 
     use 'ThePrimeagen/git-worktree.nvim'
