@@ -47,14 +47,7 @@ return require('packer').startup {
 
     use 'nvim-lualine/lualine.nvim' -- Statusline
 
-    -- use {
-    --   'akinsho/nvim-bufferline.lua',
-    --   tag = 'v3.*',
-    --   event = 'BufWinEnter',
-    --   requires = {
-    --     'nvim-tree/nvim-web-devicons',
-    --   }
-    -- }
+    use 'lukas-reineke/indent-blankline.nvim'
 
     use 'romgrk/barbar.nvim'
 
@@ -77,6 +70,8 @@ return require('packer').startup {
 
     use 'nvim-telescope/telescope-file-browser.nvim'
 
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+
     use 'rcarriga/nvim-notify'
 
     use {
@@ -84,15 +79,15 @@ return require('packer').startup {
       event = 'BufRead',
     }
 
-    use {
-      'nvim-telescope/telescope-project.nvim',
-      event = 'BufWinEnter',
-      after = 'telescope.nvim',
-      requires = { 'nvim-telescope/telescope.nvim' },
-      setup = function()
-        vim.cmd [[packadd telescope.nvim]]
-      end,
-    }
+    -- use {
+    --   'nvim-telescope/telescope-project.nvim',
+    --   event = 'BufWinEnter',
+    --   after = 'telescope.nvim',
+    --   requires = { 'nvim-telescope/telescope.nvim' },
+    --   setup = function()
+    --     vim.cmd [[packadd telescope.nvim]]
+    --   end,
+    -- }
 
     use {
       'Shatur/neovim-session-manager',
@@ -109,8 +104,6 @@ return require('packer').startup {
       'JoosepAlviste/nvim-ts-context-commentstring',
     } }
     use 'norcalli/nvim-colorizer.lua'
-
-    -- use 'github/copilot.vim'
 
     use 'dinhhuy258/git.nvim' -- For git blame & browse
 
@@ -229,5 +222,6 @@ return require('packer').startup {
         return require('packer.util').float { border = 'single' }
       end,
     },
+    log = { level = 'info' },
   },
 }
