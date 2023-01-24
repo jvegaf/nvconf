@@ -70,8 +70,6 @@ return require('packer').startup {
 
     use 'nvim-telescope/telescope-file-browser.nvim'
 
-    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-
     use 'rcarriga/nvim-notify'
 
     use {
