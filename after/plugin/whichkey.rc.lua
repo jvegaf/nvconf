@@ -215,6 +215,7 @@ local mappings = {
     f = { '<cmd>Telescope find_files<cr>', 'Find files' },
     t = { '<cmd>Telescope live_grep<cr>', 'Find Text' },
     s = { '<cmd>Telescope grep_string<cr>', 'Find String' },
+    S = { '<cmd>require("luasnip.loaders").edit_snippet_files()<cr>', 'Find Snippets' },
     h = { '<cmd>Telescope help_tags<cr>', 'Help' },
     H = { '<cmd>Telescope highlights<cr>', 'Highlights' },
     i = { "<cmd>lua require('telescope').extensions.media_files.media_files()<cr>", 'Media' },
