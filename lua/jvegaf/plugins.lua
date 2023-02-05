@@ -200,9 +200,10 @@ return require('packer').startup {
     use 'jvegaf/move.nvim'
 
     -- Themes
-    use 'navarasu/onedark.nvim'
 
-    use 'olimorris/onedarkpro.nvim'
+    use 'RRethy/nvim-base16'
+
+    use 'navarasu/onedark.nvim'
 
     use 'tanvirtin/monokai.nvim'
 

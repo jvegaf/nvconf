@@ -12,7 +12,6 @@ nvim_tree.setup {
     'alpha',
   },
   auto_reload_on_write = false,
-  -- open_on_setup_file = true,
   sync_root_with_cwd = false,
   view = {
     adaptive_size = false,
@@ -139,7 +138,7 @@ nvim_tree.setup {
       resize_window = false,
       window_picker = {
         enable = true,
-        chars = 'aoeui',
+        chars = 'abcdefghijklmnopqrstuvwxyz',
         exclude = {
           filetype = { 'notify', 'packer', 'qf', 'diff', 'fugitive', 'fugitiveblame' },
           buftype = { 'nofile', 'terminal', 'help' },
