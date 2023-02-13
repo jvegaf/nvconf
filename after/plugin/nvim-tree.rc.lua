@@ -6,11 +6,6 @@ end
 
 nvim_tree.setup {
   hijack_cursor = false,
-  ignore_ft_on_setup = {
-    'startify',
-    'dashboard',
-    'alpha',
-  },
   auto_reload_on_write = false,
   sync_root_with_cwd = false,
   view = {
