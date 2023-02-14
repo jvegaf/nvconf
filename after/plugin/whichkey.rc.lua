@@ -116,6 +116,7 @@ local mappings = {
   e = { '<cmd>NvimTreeToggle<cr>', 'Explorer' },
   v = { '<cmd>vsplit<cr>', 'vsplit' },
   h = { '<cmd>split<cr>', 'split' },
+  n = { '<cmd>Telescope notify<cr>', 'Notifications' },
   w = { '<cmd>w<CR>', 'Write' },
   -- h = { "<cmd>nohlsearch<CR>", "No HL" },
   q = { '<cmd>lua require("user.functions").smart_quit()<CR>', 'Quit' },
@@ -133,7 +134,6 @@ local mappings = {
   -- ["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Rename" },
   -- ["z"] = { "<cmd>ZenMode<cr>", "Zen" },
   ['gy'] = 'Link',
-
   B = {
     name = 'Browse',
     i = { '<cmd>BrowseInputSearch<cr>', 'Input Search' },
@@ -142,7 +142,6 @@ local mappings = {
     f = { '<cmd>BrowseDevdocsFiletypeSearch<cr>', 'Devdocs Filetype' },
     m = { '<cmd>BrowseMdnSearch<cr>', 'Mdn' },
   },
-
   p = {
     name = 'Packer',
     c = { '<cmd>PackerCompile<cr>', 'Compile' },
@@ -151,7 +150,6 @@ local mappings = {
     S = { '<cmd>PackerStatus<cr>', 'Status' },
     u = { '<cmd>PackerUpdate<cr>', 'Update' },
   },
-
   o = {
     name = 'Options',
     c = { '<cmd>lua vim.g.cmp_active=false<cr>', 'Completion off' },
@@ -162,7 +160,6 @@ local mappings = {
     s = { '<cmd>lua require("user.functions").toggle_option("spell")<cr>', 'Spell' },
     t = { '<cmd>lua require("user.functions").toggle_tabline()<cr>', 'Tabline' },
   },
-
   -- s = {
   --   name = "Split",
   --   s = { "<cmd>split<cr>", "HSplit" },
@@ -181,14 +178,12 @@ local mappings = {
     -- a = { ":RestoreSessionFromFile<cr>", "test" },
     -- a = { ":DeleteSession<cr>", "test" },
   },
-
   r = {
     name = 'Replace',
     r = { "<cmd>lua require('spectre').open()<cr>", 'Replace' },
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", 'Replace Word' },
     f = { "<cmd>lua require('spectre').open_file_search()<cr>", 'Replace Buffer' },
   },
-
   d = {
     name = 'Debug',
     b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", 'Breakpoint' },
@@ -201,7 +196,6 @@ local mappings = {
     u = { "<cmd>lua require'dapui'.toggle()<cr>", 'UI' },
     x = { "<cmd>lua require'dap'.terminate()<cr>", 'Exit' },
   },
-
   -- nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
   -- nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
   -- require("dapui").open()
@@ -226,7 +220,6 @@ local mappings = {
     k = { '<cmd>Telescope keymaps<cr>', 'Keymaps' },
     C = { '<cmd>Telescope commands<cr>', 'Commands' },
   },
-
   g = {
     name = 'Git',
     g = { '<cmd>lua _LAZYGIT_TOGGLE()<CR>', 'Lazygit' },
@@ -258,10 +251,10 @@ local mappings = {
       p = { '<cmd>Gist -b -p<cr>', 'Create Private' },
     },
   },
-
   l = {
     name = 'LSP',
-    a = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
+    -- a = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
+    a = { '<cmd>CodeActionMenu<cr>', 'Code Action' },
     c = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", 'Get Capabilities' },
     d = { '<cmd>TroubleToggle<cr>', 'Diagnostics' },
     w = {
@@ -296,7 +289,6 @@ local mappings = {
     t = { '<cmd>lua require("user.functions").toggle_diagnostics()<cr>', 'Toggle Diagnostics' },
     u = { '<cmd>LuaSnipUnlinkCurrent<cr>', 'Unlink Snippet' },
   },
-
   -- s = {
   --   name = "Surround",
   --   ["."] = { "<cmd>lua require('surround').repeat_last()<cr>", "Repeat" },
@@ -322,7 +314,6 @@ local mappings = {
     t = { '<cmd>SnipRunToggle<cr>', 'Toggle' },
     x = { '<cmd>SnipTerminate<cr>', 'Terminate' },
   },
-
   t = {
     name = 'Terminal',
     ['1'] = { ':1ToggleTerm<cr>', '1' },
@@ -337,14 +328,12 @@ local mappings = {
     h = { '<cmd>ToggleTerm size=10 direction=horizontal<cr>', 'Horizontal' },
     v = { '<cmd>ToggleTerm size=80 direction=vertical<cr>', 'Vertical' },
   },
-
   T = {
     name = 'Treesitter',
     h = { '<cmd>TSHighlightCapturesUnderCursor<cr>', 'Highlight' },
     p = { '<cmd>TSPlaygroundToggle<cr>', 'Playground' },
     r = { '<cmd>TSToggle rainbow<cr>', 'Rainbow' },
   },
-
   -- z = {
   --   name = "Zen",
   --   z = { "<cmd>TZAtaraxis<cr>", "Zen" },

@@ -52,6 +52,25 @@ return require('packer').startup {
 
     use 'romgrk/barbar.nvim'
 
+    use 'jose-elias-alvarez/typescript.nvim'
+
+    use {
+      'axelvc/template-string.nvim',
+      event = 'InsertEnter',
+      ft = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
+      config = function()
+        require('template-string').setup()
+      end,
+    }
+
+    use {
+      'lvimuser/lsp-inlayhints.nvim',
+      branch = 'main', -- or "anticonceal"
+      config = function()
+        require 'plugins.inlay-hints'
+      end,
+    }
+
     use {
       'nvim-treesitter/nvim-treesitter',
       requires = {
@@ -78,15 +97,15 @@ return require('packer').startup {
       event = 'BufRead',
     }
 
-    -- use {
-    --   'nvim-telescope/telescope-project.nvim',
-    --   event = 'BufWinEnter',
-    --   after = 'telescope.nvim',
-    --   requires = { 'nvim-telescope/telescope.nvim' },
-    --   setup = function()
-    --     vim.cmd [[packadd telescope.nvim]]
-    --   end,
-    -- }
+    use {
+      'kevinhwang91/nvim-ufo',
+      requires = 'kevinhwang91/promise-async',
+      config = function()
+        vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+        vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+        vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds)
+      end,
+    }
 
     use {
       'Shatur/neovim-session-manager',

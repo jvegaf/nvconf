@@ -1,4 +1,7 @@
 --vim.lsp.set_log_level("debug")
+local ufo_config_handler = require('plugins.nvim-ufo').handler
+
+local typescript_ok, typescript = pcall(require, 'typescript')
 
 local status, nvim_lsp = pcall(require, 'lspconfig')
 if not status then
@@ -71,85 +74,10 @@ protocol.CompletionItemKind = {
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-  filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
-  cmd = { 'typescript-language-server', '--stdio' },
-  capabilities = capabilities,
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
 }
-
-nvim_lsp.sourcekit.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-nvim_lsp.lua_ls.setup {
-  capabilities = capabilities,
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    enable_format_on_save(client, bufnr)
-  end,
-  settings = {
-    Lua = {
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
-        checkThirdParty = false,
-      },
-    },
-  },
-}
-
-nvim_lsp.tailwindcss.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-nvim_lsp.cssls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-
-nvim_lsp.intelephense.setup {
-  settings = {
-    intelephense = {
-      stubs = {
-        'bcmath',
-        'bz2',
-        'calendar',
-        'Core',
-        'curl',
-        'zip',
-        'zlib',
-        'wordpress',
-        'woocommerce',
-        'acf-pro',
-        'wordpress-globals',
-        'wp-cli',
-        'genesis',
-        'polylang',
-      },
-      environment = {
-        includePaths = '$HOME/.composer/vendor/php-stubs/',
-      },
-      files = {
-        maxSize = 5000000,
-      },
-    },
-  },
-}
-
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = true,
-  update_in_insert = false,
-  virtual_text = { spacing = 4, prefix = '●' },
-  severity_sort = true,
-})
 
 -- Diagnostic symbols in the sign column (gutter)
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
@@ -170,11 +98,9 @@ vim.diagnostic.config {
 
 local status_notify, notify = pcall(require, 'notify')
 
-if not status_notify then
-  return
+if status_notify then
+  vim.notify = notify
 end
-
-vim.notify = notify
 
 -- table from lsp severity to vim severity.
 local severity = {
@@ -184,10 +110,19 @@ local severity = {
   'info', -- map both hint and info to info?
 }
 
-vim.lsp.handlers['window/showMessage'] = function(err, method, params, client_id)
-  vim.notify(method.message, severity[params.type])
-end
-
+local handlers = {
+  ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+  ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
+  ['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    update_in_insert = false,
+    virtual_text = { spacing = 4, prefix = '●' },
+    severity_sort = true,
+  }),
+  ['window/showMessage'] = function(err, method, params, client_id)
+    vim.notify(method.message, severity[params.type])
+  end,
+}
 -- Utility functions shared between progress reports for LSP and DAP
 
 local client_notifs = {}
@@ -233,46 +168,98 @@ local function format_message(message, percentage)
   return (percentage and percentage .. '%\t' or '') .. (message or '')
 end
 
--- LSP integration
--- Make sure to also have the snippet with the common helper functions in your config!
+if typescript_ok then
+  typescript.setup {
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    -- LSP Config options
+    server = {
+      capabilities = require('lsp.servers.tsserver').capabilities,
+      handlers = require('lsp.servers.tsserver').handlers,
+      on_attach = require('lsp.servers.tsserver').on_attach,
+      settings = require('lsp.servers.tsserver').settings,
+    },
+  }
+end
 
--- disabled temporary
+nvim_lsp.tailwindcss.setup {
+  capabilities = require('lsp.servers.tailwindcss').capabilities,
+  filetypes = require('lsp.servers.tailwindcss').filetypes,
+  handlers = handlers,
+  init_options = require('lsp.servers.tailwindcss').init_options,
+  on_attach = require('lsp.servers.tailwindcss').on_attach,
+  settings = require('lsp.servers.tailwindcss').settings,
+}
 
--- vim.lsp.handlers['$/progress'] = function(_, result, ctx)
---   local client_id = ctx.client_id
---
---   local val = result.value
---
---   if not val.kind then
---     return
---   end
---
---   local notif_data = get_notif_data(client_id, result.token)
---
---   if val.kind == 'begin' then
---     local message = format_message(val.message, val.percentage)
---
---     notif_data.notification = vim.notify(message, 'info', {
---       title = format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
---       icon = spinner_frames[1],
---       timeout = false,
---       hide_from_history = false,
---     })
---
---     notif_data.spinner = 1
---     update_spinner(client_id, result.token)
---   elseif val.kind == 'report' and notif_data then
---     notif_data.notification = vim.notify(format_message(val.message, val.percentage), 'info', {
---       replace = notif_data.notification,
---       hide_from_history = false,
---     })
---   elseif val.kind == 'end' and notif_data then
---     notif_data.notification = vim.notify(val.message and format_message(val.message) or 'Complete', 'info', {
---       icon = '',
---       replace = notif_data.notification,
---       timeout = 3000,
---     })
---
---     notif_data.spinner = nil
---   end
--- end
+nvim_lsp.cssls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = require('lsp.servers.cssls').on_attach,
+  settings = require('lsp.servers.cssls').settings,
+}
+
+nvim_lsp.eslint.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = require('lsp.servers.eslint').on_attach,
+  settings = require('lsp.servers.eslint').settings,
+}
+
+nvim_lsp.jsonls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.jsonls').settings,
+}
+
+nvim_lsp.lua_ls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = require('lsp.servers.lua_ls').settings,
+}
+
+nvim_lsp.sourcekit.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+nvim_lsp.intelephense.setup {
+  settings = {
+    intelephense = {
+      stubs = {
+        'bcmath',
+        'bz2',
+        'calendar',
+        'Core',
+        'curl',
+        'zip',
+        'zlib',
+        'wordpress',
+        'woocommerce',
+        'acf-pro',
+        'wordpress-globals',
+        'wp-cli',
+        'genesis',
+        'polylang',
+      },
+      environment = {
+        includePaths = '$HOME/.composer/vendor/php-stubs/',
+      },
+      files = {
+        maxSize = 5000000,
+      },
+    },
+  },
+}
+
+local status_ufo, ufo = pcall(require, 'ufo')
+
+if not status_ufo then
+  return
+end
+
+ufo.setup {
+  fold_virt_text_handler = ufo_config_handler,
+  close_fold_kinds = { 'imports' },
+}

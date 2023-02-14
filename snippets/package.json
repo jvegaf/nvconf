@@ -1,29 +1,29 @@
 {
   "name": "nvim-snippets",
-  "author": "authorname",
-  "engines": {
-    "vscode": "^1.11.0"
-  },
   "contributes": {
     "snippets": [
       {
-        "language": "cpp",
+        "language": ["cpp"],
         "path": "./cpp.json"
       },
+       {
+        "language": ["typescriptreact"],
+        "path": "./typescriptreact.json"
+      },
       {
-        "language": "typescript",
+        "language": ["typescript"],
         "path": "./typescript.json"
       },
       {
-        "language": "javascript",
+        "language": ["javascript"],
         "path": "./javascript.json"
       },
       {
-        "language": "json",
+        "language": ["json"],
         "path": "./jsonc.json"
       },
       {
-        "language": "html",
+        "language": ["html"],
         "path": "./html.json"
       },
     ]
