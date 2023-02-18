@@ -1,14 +1,19 @@
-require('jvegaf.base')
-require('jvegaf.highlights')
-require('jvegaf.maps')
-require('jvegaf.plugins')
-require('jvegaf.settings')
+require('config.base')
+require('config.highlights')
+require('config.EcoVim')
+require('config.maps')
+require('config.lazy')
+-- require('config.settings')
+
+require('lsp.config')
+require('lsp.setup')
+require('lsp.functions')
 
 local host = vim.loop.os_uname().sysname
 
 if host == 'Linux' then
-  require('jvegaf.linux')
+  require('config.linux')
   return
 end
 
-require('jvegaf.windows')
+require('config.windows')
