@@ -2,7 +2,7 @@ local utils = require('utils')
 local nvim_tree_events = require('nvim-tree.events')
 local bufferline_api = require('bufferline.api')
 
-local TREE_WIDTH = 40
+local TREE_WIDTH = 30
 
 local git_icons = {
   unstaged = "",
@@ -49,7 +49,7 @@ local keymappings = {
   { key = "-",                            action = "dir_up" },
   { key = "s",                            action = "system_open" },
   { key = "q",                            action = "close" },
-  { key = "g?",                           action = "toggle_help" },
+  { key = "?",                           action = "toggle_help" },
   { key = "W",                            action = "collapse_all" },
   { key = "S",                            action = "search_node" }
 }
@@ -68,14 +68,14 @@ require'nvim-tree'.setup {
   -- hijack the cursor in the tree to put it at the start of the filename
   hijack_cursor       = false,
   -- updates the root directory of the tree on `DirChanged` (when your run `:cd` usually)
-  update_cwd          = true,
+  update_cwd          = false,
   -- opens in place of the unnamed buffer if it's empty
   hijack_unnamed_buffer_when_opening = false,
   --false by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree
   respect_buf_cwd = true,
-  -- show lsp diagnostics in the signcolumn
+  -- show lsp diagnotruestics in the signcolumn
   diagnostics         = {
-    enable = false,
+    enable = true,
     icons  = {
       hint    = "",
       info    = "",
@@ -87,7 +87,8 @@ require'nvim-tree'.setup {
     add_trailing = false,
     group_empty = true,
     highlight_git = true,
-    highlight_opened_files = "none",
+    highlight_opened_files = "name",
+    highlight_modified = "all",
     root_folder_modifier = ":~",
     indent_markers = {
       enable = false,
@@ -112,7 +113,7 @@ require'nvim-tree'.setup {
     update_cwd  = true,
     -- list of buffer names / filetypes that will not update the cwd if the file isn't found under the current root directory
     -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
-    ignore_list = {}
+    ignore_list = { 'help' }
   },
   -- configuration options for the system open command (`s` in the tree by default)
   system_open = {
@@ -138,7 +139,7 @@ require'nvim-tree'.setup {
       restrict_above_cwd = false,
     },
     open_file = {
-      quit_on_open = false,
+      quit_on_open = true,
       -- if true the tree will resize itself after opening a file
       resize_window = false,
       window_picker = {
@@ -173,7 +174,7 @@ require'nvim-tree'.setup {
   }
 }
 
-vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", { noremap = true, silent = true })
 
 nvim_tree_events.on_tree_open(function ()
     bufferline_api.set_offset(TREE_WIDTH + 1, utils.add_whitespaces(13) .. 'File Explorer')

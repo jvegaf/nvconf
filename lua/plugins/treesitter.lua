@@ -1,6 +1,6 @@
 require'nvim-treesitter.configs'.setup {
   ensure_installed = {}, -- one of "all", or a list of languages
-  sync_install = false,            -- install languages synchronously (only applied to `ensure_installed`)
+  auto_install = true,
   ignore_install = { "haskell" },  -- list of parsers to ignore installing
   highlight = {
     enable = true,
@@ -9,8 +9,7 @@ require'nvim-treesitter.configs'.setup {
   },
 
   incremental_selection = {
-    enable = false,
-    keymaps = {
+    enable = true, keymaps = {
       init_selection    = "<leader>gnn",
       node_incremental  = "<leader>gnr",
       scope_incremental = "<leader>gne",
