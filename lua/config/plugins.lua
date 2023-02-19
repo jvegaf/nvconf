@@ -16,7 +16,7 @@ return {
   --   lazy = false,
   --   config = true,
   -- },
-  { "RRethy/nvim-base16",   lazy = false },
+  { "RRethy/nvim-base16", lazy = false },
   {
     "navarasu/onedark.nvim",
     lazy = false,
@@ -81,8 +81,8 @@ return {
     dependencies = {
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
-      { "stevearc/aerial.nvim",                      config = true },
-      { "nvim-telescope/telescope-fzf-native.nvim",  build = "make" },
+      { "stevearc/aerial.nvim", config = true },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "cljoly/telescope-repo.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
       { "nvim-telescope/telescope-file-browser.nvim" },
@@ -96,7 +96,7 @@ return {
       { "nvim-tree/nvim-web-devicons" },
     },
     config = function()
-      require("plugins.tree")
+      require "plugins.tree"
     end,
     cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
     -- event = "User DirOpened",
@@ -118,6 +118,11 @@ return {
     config = true,
   },
   {
+    "moll/vim-bbye",
+    lazy = false,
+    cmd = { "Bdelete" },
+  },
+  {
     "akinsho/bufferline.nvim",
     dependencies = {
       "nvim-tree/nvim-web-devicons",
@@ -132,14 +137,14 @@ return {
         left_mouse_command = "buffer %d", -- can be a string | function, see "Mouse actions"
         middle_mouse_command = nil, -- can be a string | function, see "Mouse actions"
         indicator = {
-          icon = '▎', -- this should be omitted if indicator style is not 'icon'
-          style = 'icon',
+          icon = "▎", -- this should be omitted if indicator style is not 'icon'
+          style = "icon",
         },
-        buffer_close_icon = '',
-        modified_icon = '●',
-        close_icon = '',
-        left_trunc_marker = '',
-        right_trunc_marker = '',
+        buffer_close_icon = "",
+        modified_icon = "●",
+        close_icon = "",
+        left_trunc_marker = "",
+        right_trunc_marker = "",
         --- name_formatter can be used to change the buffer's label in the bufferline.
         --- Please note some names can/will break the
         --- bufferline so use this at your discretion knowing that it has
@@ -186,8 +191,8 @@ return {
             filetype = "NvimTree",
             text = "",
             text_align = "left",
-            separator = true
-          }
+            separator = true,
+          },
         },
         color_icons = true, -- whether or not to add the filetype icon highlights
         show_buffer_icons = true, -- disable filetype icons for buffers
@@ -205,10 +210,10 @@ return {
         hover = {
           enabled = true,
           delay = 200,
-          reveal = { 'close' }
+          reveal = { "close" },
         },
-        sort_by = 'insert_after_current'
-      }
+        sort_by = "insert_after_current",
+      },
     },
   },
   -- LSP Base
@@ -268,7 +273,7 @@ return {
           require "plugins.cmp-npm"
         end,
       },
-      { "L3MON4D3/LuaSnip",    dependencies = "rafamadriz/friendly-snippets" },
+      { "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
     },
     config = function()
       require "plugins.cmp"
@@ -316,7 +321,7 @@ return {
   },
 
   -- General
-  { "AndrewRadev/switch.vim",    lazy = false },
+  { "AndrewRadev/switch.vim", lazy = false },
   { "AndrewRadev/splitjoin.vim", lazy = false },
   {
     "numToStr/Comment.nvim",
@@ -335,7 +340,7 @@ return {
       require "plugins.toggleterm"
     end,
   },
-  { "dhruvasagar/vim-table-mode",  ft = { "markdown" } },
+  { "dhruvasagar/vim-table-mode", ft = { "markdown" } },
   {
     "mg979/vim-visual-multi",
     keys = {
@@ -358,7 +363,7 @@ return {
   {
     "nacro90/numb.nvim",
     lazy = false,
-    config = true
+    config = true,
   },
   {
     "folke/todo-comments.nvim",
@@ -406,14 +411,14 @@ return {
     end,
     init = function()
       local banned_messages =
-      { "No information available", "LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+." }
+        { "No information available", "LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+." }
       vim.notify = function(msg, ...)
         for _, banned in ipairs(banned_messages) do
           if msg == banned then
             return
           end
         end
-        require "notify" (msg, ...)
+        require "notify"(msg, ...)
       end
     end,
   },
