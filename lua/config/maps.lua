@@ -1,8 +1,6 @@
 M = {}
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -24,11 +22,11 @@ keymap('n', 'x', '"_x', opts)
 
 -- Normal --
 -- Better window navigation
-keymap('n', '<m-h>', '<C-w>h', opts)
-keymap('n', '<m-j>', '<C-w>j', opts)
-keymap('n', '<m-k>', '<C-w>k', opts)
-keymap('n', '<m-l>', '<C-w>l', opts)
-keymap('n', '<m-tab>', '<c-6>', opts)
+keymap('n', '<C-h>', '<C-w>h', opts)
+keymap('n', '<C-j>', '<C-w>j', opts)
+keymap('n', '<C-k>', '<C-w>k', opts)
+keymap('n', '<C-l>', '<C-w>l', opts)
+-- keymap('n', '<m-tab>', '<c-6>', opts)
 
 -- Cancel search highlighting with ESC
 keymap('n', '<ESC>', ':nohlsearch<Bar>:echo<CR>', opts)
@@ -48,8 +46,8 @@ keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
 keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 
 -- File Browser
-keymap('n', '<A-1>', '<cmd>lua require\'nvim-tree\'.toggle()<CR>', opts)
-keymap('n', '<leader>e', '<cmd>lua require\'nvim-tree\'.focus()<CR>', opts)
+-- keymap('n', '<A-1>', '<cmd>lua require\'nvim-tree\'.toggle()<CR>', opts)
+-- keymap('n', '<leader>e', '<cmd>lua require\'nvim-tree\'.focus()<CR>', opts)
 -- Move Lines
 keymap("n", "<A-Down>", ":m .+1<CR>==", opts)
 keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
@@ -104,15 +102,15 @@ keymap('x', '<m-/>', '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vi
 -- )
 
 -- Tabs
-keymap('n', '<Tab>', '<cmd>BufferNext<CR>', opts)
-keymap('n', '<S-Tab>', '<cmd>BufferPrevious<CR>', opts)
-keymap('n', '<S-q>', '<cmd>BufferClose<CR>', opts)
+keymap('n', '<Tab>', '<cmd>BufferLineCycleNext<CR>', opts)
+keymap('n', '<S-Tab>', '<cmd>BufferLineCyclePrev<CR>', opts)
+keymap('n', '<S-q>', '<cmd>bdelete<CR>', opts)
 
 -- Easyalign
-keymap('n', 'ga', '<Plug>(EasyAlign)', opts)
-keymap('x', 'ga', '<Plug>(EasyAlign)', opts)
+-- keymap('n', 'ga', '<Plug>(EasyAlign)', opts)
+-- keymap('x', 'ga', '<Plug>(EasyAlign)', opts)
 --
 -- Browser Search
-keymap('v', '<m-s>', ":'<,'>BrowserSearch<CR>", opts)
+-- keymap('v', '<m-s>', ":'<,'>BrowserSearch<CR>", opts)
 
 return M
