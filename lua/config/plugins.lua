@@ -6,8 +6,8 @@ return {
     priority = 1000,
     config = function()
       -- load the colorscheme here
-      vim.cmd([[colorscheme tokyonight]])
-      require("config.colorscheme")
+      vim.cmd [[colorscheme tokyonight]]
+      require "config.colorscheme"
     end,
   },
   {
@@ -21,14 +21,14 @@ return {
   {
     "nvim-tree/nvim-web-devicons",
     config = function()
-      require("nvim-web-devicons").setup({ default = true })
+      require("nvim-web-devicons").setup { default = true }
     end,
   },
   {
     "goolord/alpha-nvim",
     lazy = false,
     config = function()
-      require("plugins.alpha")
+      require "plugins.alpha"
     end,
   },
 
@@ -37,7 +37,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = "BufReadPre",
     config = function()
-      require("plugins.treesitter")
+      require "plugins.treesitter"
     end,
     dependencies = {
       "mrjones2014/nvim-ts-rainbow",
@@ -47,24 +47,34 @@ return {
       {
         "m-demare/hlargs.nvim",
         config = function()
-          require("hlargs").setup({ color = "#F7768E" })
+          require("hlargs").setup { color = "#F7768E" }
         end,
       },
     },
   },
 
   -- Navigating (Telescope/Tree/Refactor)
+
+  {
+    "RRethy/vim-illuminate",
+  },
+
   {
     "nvim-telescope/telescope.nvim",
     lazy = false,
     config = function()
-      require("plugins.telescope")
+      require "plugins.telescope"
     end,
     dependencies = {
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
-      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "stevearc/aerial.nvim",                      config = true },
+      { "nvim-telescope/telescope-fzf-native.nvim",  build = "make" },
       { "cljoly/telescope-repo.nvim" },
+      { "nvim-telescope/telescope-symbols.nvim" },
+      { "nvim-telescope/telescope-file-browser.nvim" },
+      { "nvim-telescope/telescope-media-files.nvim" },
+      { "nvim-telescope/telescope-project.nvim" },
     },
   },
   { "nvim-pack/nvim-spectre" },
@@ -75,13 +85,19 @@ return {
     },
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     config = function()
-      require("plugins.tree")
+      require "plugins.tree"
     end,
   },
   {
     "gbprod/stay-in-place.nvim",
     lazy = false,
     config = true, -- run require("stay-in-place").setup()
+  },
+  {
+    "phaazon/hop.nvim",
+    config = function()
+      require "plugins.hop"
+    end,
   },
 
   -- LSP Base
@@ -107,20 +123,18 @@ return {
     event = "BufReadPre",
     dependencies = { "mason.nvim" },
     config = function()
-      local nls = require("null-ls")
-      nls.setup({
-        sources = {
-          -- nls.builtins.formatting.prettierd,
-          nls.builtins.formatting.stylua,
-          nls.builtins.diagnostics.flake8,
-        },
-      })
+      require "plugins.null-ls"
     end,
   },
   {
-    'weilbith/nvim-code-action-menu',
-    cmd = 'CodeActionMenu',
-    after = 'nvim-lspconfig',
+    "weilbith/nvim-code-action-menu",
+    cmd = "CodeActionMenu",
+    after = "nvim-lspconfig",
+  },
+  {
+    "ErichDonGubler/lsp_lines.nvim",
+    config = true,
+    after = "nvim-lspconfig"
   },
 
   -- LSP Cmp
@@ -133,20 +147,20 @@ return {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      'hrsh7th/cmp-emoji',
+      "hrsh7th/cmp-emoji",
       "hrsh7th/cmp-calc",
       "saadparwaiz1/cmp_luasnip",
       { "tzachar/cmp-tabnine", build = "./install.sh" },
       {
         "David-Kunz/cmp-npm",
         config = function()
-          require("plugins.cmp-npm")
+          require "plugins.cmp-npm"
         end,
       },
       { "L3MON4D3/LuaSnip",    dependencies = "rafamadriz/friendly-snippets" },
     },
     config = function()
-      require("plugins.cmp")
+      require "plugins.cmp"
     end,
   },
 
@@ -156,7 +170,7 @@ return {
     event = "VeryLazy",
     dependencies = "MunifTanjim/nui.nvim",
     config = function()
-      require("plugins.dressing")
+      require "plugins.dressing"
     end,
   },
   { "onsails/lspkind-nvim" },
@@ -164,7 +178,7 @@ return {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
-      require("plugins.trouble")
+      require "plugins.trouble"
     end,
   },
   { "nvim-lua/popup.nvim" },
@@ -172,7 +186,7 @@ return {
     "ChristianChiarulli/nvim-gps",
     branch = "text_hl",
     config = function()
-      require("plugins.gps")
+      require "plugins.gps"
     end,
   },
   { "jose-elias-alvarez/typescript.nvim" },
@@ -186,7 +200,7 @@ return {
     "lvimuser/lsp-inlayhints.nvim",
     branch = "main", -- or "anticonceal"
     config = function()
-      require("plugins.inlay-hints")
+      require "plugins.inlay-hints"
     end,
   },
 
@@ -194,15 +208,15 @@ return {
   { "AndrewRadev/switch.vim",    lazy = false },
   { "AndrewRadev/splitjoin.vim", lazy = false },
   {
-    'junegunn/vim-easy-align',
-    event = 'BufReadPost',
+    "junegunn/vim-easy-align",
+    event = "BufReadPost",
   },
   {
     "numToStr/Comment.nvim",
     lazy = false,
     branch = "jsx",
     config = function()
-      require("plugins.comment")
+      require "plugins.comment"
     end,
   },
   { "LudoPinelli/comment-box.nvim" },
@@ -211,7 +225,7 @@ return {
     lazy = false,
     branch = "main",
     config = function()
-      require("plugins.toggleterm")
+      require "plugins.toggleterm"
     end,
   },
   { "tpope/vim-repeat",            lazy = false },
@@ -240,7 +254,7 @@ return {
     "nacro90/numb.nvim",
     lazy = false,
     config = function()
-      require("plugins.numb")
+      require "plugins.numb"
     end,
   },
   {
@@ -248,13 +262,13 @@ return {
     lazy = false,
     event = "BufEnter",
     config = function()
-      require("plugins.todo-comments")
+      require "plugins.todo-comments"
     end,
   },
   {
     "ggandor/lightspeed.nvim",
     config = function()
-      require("plugins.lightspeed")
+      require "plugins.lightspeed"
     end,
   },
   {
@@ -262,13 +276,13 @@ return {
     event = "VeryLazy",
     lazy = true,
     config = function()
-      require("plugins.whichkey")
+      require "plugins.whichkey"
     end,
   },
   {
     "ecosse3/galaxyline.nvim",
     config = function()
-      require("plugins.galaxyline")
+      require "plugins.galaxyline"
     end,
     event = "VeryLazy",
   },
@@ -277,27 +291,27 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     event = "BufAdd",
     config = function()
-      require("plugins.barbar")
+      require "plugins.barbar"
     end,
   },
   { "antoinemadec/FixCursorHold.nvim" }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   {
     "rcarriga/nvim-notify",
     config = function()
-      require("notify").setup({
+      require("notify").setup {
         background_colour = "#000000",
-      })
+      }
     end,
     init = function()
-      local banned_messages = { "No information available",
-        "LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+." }
+      local banned_messages =
+      { "No information available", "LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+." }
       vim.notify = function(msg, ...)
         for _, banned in ipairs(banned_messages) do
           if msg == banned then
             return
           end
         end
-        require("notify")(msg, ...)
+        require "notify" (msg, ...)
       end
     end,
   },
@@ -305,7 +319,7 @@ return {
     "vuki656/package-info.nvim",
     event = "BufEnter package.json",
     config = function()
-      require("plugins.package-info")
+      require "plugins.package-info"
     end,
   },
   {
@@ -319,17 +333,17 @@ return {
   {
     "declancm/cinnamon.nvim",
     config = function()
-      require("plugins.cinnamon")
+      require "plugins.cinnamon"
     end,
   },
   {
     "Shatur/neovim-session-manager",
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
     },
     lazy = false,
     config = function()
-      require("plugins.session-manager")
+      require "plugins.session-manager"
     end,
   },
   { "kylechui/nvim-surround",         lazy = false, config = true },
@@ -361,14 +375,14 @@ return {
     "rareitems/printer.nvim",
     lazy = false,
     config = function()
-      require("plugins.printer")
+      require "plugins.printer"
     end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     config = function()
-      require("plugins.indent")
+      require "plugins.indent"
     end,
   },
   {
@@ -381,13 +395,13 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
-      require("plugins.autopairs")
+      require "plugins.autopairs"
     end,
   },
   {
     "NvChad/nvim-colorizer.lua",
     config = function()
-      require("plugins.colorizer")
+      require "plugins.colorizer"
     end,
   },
   -- Git
@@ -396,20 +410,20 @@ return {
     event = "BufReadPre",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require("plugins.git.signs")
+      require "plugins.git.signs"
     end,
   },
   {
     "sindrets/diffview.nvim",
     event = "BufRead",
     config = function()
-      require("plugins.git.diffview")
+      require "plugins.git.diffview"
     end,
   },
   {
     "akinsho/git-conflict.nvim",
     config = function()
-      require("plugins.git.conflict")
+      require "plugins.git.conflict"
     end,
   },
   {
@@ -419,7 +433,7 @@ return {
       "<Leader>gww",
     },
     config = function()
-      require("plugins.git.worktree")
+      require "plugins.git.worktree"
     end,
   },
   {
@@ -440,7 +454,7 @@ return {
       "haydenmeade/neotest-jest",
     },
     config = function()
-      require("plugins.neotest")
+      require "plugins.neotest"
     end,
   },
 
@@ -448,7 +462,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     config = function()
-      require("plugins.dap")
+      require "plugins.dap"
     end,
     keys = {
       "<Leader>da",
@@ -467,4 +481,3 @@ return {
     },
   },
 }
-
