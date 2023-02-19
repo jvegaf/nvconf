@@ -11,11 +11,11 @@ return {
       require "config.colorscheme"
     end,
   },
-  {
-    "tanvirtin/monokai.nvim",
-    lazy = false,
-    config = true,
-  },
+  -- {
+  --   "tanvirtin/monokai.nvim",
+  --   lazy = false,
+  --   config = true,
+  -- },
   { "RRethy/nvim-base16",   lazy = false },
   {
     "navarasu/onedark.nvim",
@@ -87,7 +87,6 @@ return {
       { "nvim-telescope/telescope-symbols.nvim" },
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-media-files.nvim" },
-      { "nvim-telescope/telescope-project.nvim" },
     },
   },
   { "nvim-pack/nvim-spectre" },
@@ -336,8 +335,6 @@ return {
       require "plugins.toggleterm"
     end,
   },
-  { "tpope/vim-repeat",            lazy = false },
-  { "tpope/vim-speeddating",       lazy = false },
   { "dhruvasagar/vim-table-mode",  ft = { "markdown" } },
   {
     "mg979/vim-visual-multi",
@@ -474,13 +471,6 @@ return {
     version = false,
     config = function()
       require("mini.align").setup()
-    end,
-  },
-  {
-    "rareitems/printer.nvim",
-    lazy = false,
-    config = function()
-      require "plugins.printer"
     end,
   },
   {

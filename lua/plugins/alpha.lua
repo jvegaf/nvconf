@@ -85,9 +85,10 @@ end
 dashboard.section.buttons.val = {
   button("r", icons.fileRecent .. " " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
   button("f", icons.fileNoBg .. " " .. "Find File", "<cmd>Telescope find_files<CR>", {}),
-  button("s", icons.timer .. " " .. "Load Current Dir Session", "<cmd>SessionManager load_current_dir_session<CR>", {}),
-  button("u", icons.container .. " " .. "Update Plugins", "<cmd>Lazy sync<CR>", {}),
-  button("c", icons.cog .. " " .. "Settings", "<cmd>e $MYVIMRC<CR>", {}),
+  button("d", icons.timer .. " " .. "Load Current Dir Session", "<cmd>SessionManager load_current_dir_session<CR>", {}),
+  button("u", icons.container .. " " .. "Sync Plugins", "<cmd>Lazy sync<CR>", {}),
+  button("c", icons.pencil .. " " .. "Select Theme", "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", {}),
+  button("s", icons.cog .. " " .. "Settings", "<cmd>e $MYVIMRC<CR>", {}),
   button("q", icons.exit .. " " .. "Exit", "<cmd>exit<CR>", {}),
 }
 

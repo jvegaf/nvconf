@@ -8,7 +8,6 @@ require("telescope").load_extension "repo"
 require("telescope").load_extension "git_worktree"
 require("telescope").load_extension "aerial"
 require("telescope").load_extension "file_browser"
-require("telescope").load_extension "project"
 require("telescope").load_extension "media_files"
 
 local git_icons = {
