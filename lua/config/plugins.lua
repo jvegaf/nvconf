@@ -16,10 +16,10 @@ return {
   --   lazy = false,
   --   config = true,
   -- },
-  { "RRethy/nvim-base16", lazy = false },
+  { "RRethy/nvim-base16", lazy = true },
   {
     "navarasu/onedark.nvim",
-    lazy = false,
+    lazy = true,
     opts = {
       code_style = {
         comments = "italic",
@@ -74,9 +74,33 @@ return {
     },
     opts = {
       auto = true,
-    }
+    },
   },
 
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = false,
+    dependencies = {
+      "mason.nvim",
+    },
+    opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "vim-language-server",
+        "stylua",
+        "luacheck",
+        "misspell",
+        "shellcheck",
+        "shfmt",
+        "xmlformatter",
+        "stylelint",
+        "yamllint",
+        "prettier",
+        "eslint_d",
+      },
+      run_on_start = false,
+    },
+  },
   -- Navigating (Telescope/Tree/Refactor)
 
   {
@@ -147,11 +171,13 @@ return {
   },
   {
     "gbprod/stay-in-place.nvim",
-    lazy = false,
+    lazy = true,
     config = true, -- run require("stay-in-place").setup()
   },
   {
     "phaazon/hop.nvim",
+    lazy = false,
+    branch = "v2",
     config = function()
       require "plugins.hop"
     end,
@@ -163,7 +189,7 @@ return {
   },
   {
     "moll/vim-bbye",
-    lazy = false,
+    lazy = true,
     cmd = { "Bdelete" },
   },
   -- bufferline
@@ -290,12 +316,12 @@ return {
   {
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu",
-    dependencies = {"nvim-lspconfig"},
+    dependencies = { "nvim-lspconfig" },
   },
   {
     "ErichDonGubler/lsp_lines.nvim",
     config = true,
-    dependencies = {"nvim-lspconfig"},
+    dependencies = { "nvim-lspconfig" },
   },
 
   -- LSP Cmp
@@ -366,11 +392,11 @@ return {
   },
 
   -- General
-  { "AndrewRadev/switch.vim", lazy = false },
-  { "AndrewRadev/splitjoin.vim", lazy = false },
+  { "AndrewRadev/switch.vim", lazy = true },
+  { "AndrewRadev/splitjoin.vim", lazy = true },
   {
     "numToStr/Comment.nvim",
-    lazy = false,
+    lazy = true,
     branch = "jsx",
     config = function()
       require "plugins.comment"
@@ -379,7 +405,7 @@ return {
   { "LudoPinelli/comment-box.nvim" },
   {
     "akinsho/nvim-toggleterm.lua",
-    lazy = false,
+    lazy = true,
     branch = "main",
     config = function()
       require "plugins.toggleterm"
@@ -516,11 +542,34 @@ return {
     end,
   },
   {
-    "echasnovski/mini.align",
-    lazy = false,
-    version = false,
+    "Vonr/align.nvim",
     config = function()
-      require("mini.align").setup()
+      local NS = { noremap = true, silent = true }
+
+      vim.keymap.set("x", "gaa", function()
+        require("align").align_to_char(1, true)
+      end, NS) -- Aligns to 1 character, looking left
+      vim.keymap.set("x", "gas", function()
+        require("align").align_to_char(2, true, true)
+      end, NS) -- Aligns to 2 characters, looking left and with previews
+      vim.keymap.set("x", "gaw", function()
+        require("align").align_to_string(false, true, true)
+      end, NS) -- Aligns to a string, looking left and with previews
+      vim.keymap.set("x", "gar", function()
+        require("align").align_to_string(true, true, true)
+      end, NS) -- Aligns to a Lua pattern, looking left and with previews
+
+      -- Example gawip to align a paragraph to a string, looking left and with previews
+      vim.keymap.set("n", "gaw", function()
+        local a = require "align"
+        a.operator(a.align_to_string, { is_pattern = false, reverse = true, preview = true })
+      end, NS)
+
+      -- Example gaaip to aling a paragraph to 1 character, looking left
+      vim.keymap.set("n", "gaa", function()
+        local a = require "align"
+        a.operator(a.align_to_char, { length = 1, reverse = true })
+      end, NS)
     end,
   },
   {

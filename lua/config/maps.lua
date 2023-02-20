@@ -45,9 +45,6 @@ keymap("n", "<C-Down>", ":resize +2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- File Browser
--- keymap('n', '<A-1>', '<cmd>lua require\'nvim-tree\'.toggle()<CR>', opts)
--- keymap('n', '<leader>e', '<cmd>lua require\'nvim-tree\'.focus()<CR>', opts)
 -- Move Lines
 keymap("n", "<A-Down>", ":m .+1<CR>==", opts)
 keymap("v", "<A-Down>", ":m '>+1<CR>gv=gv", opts)
@@ -96,24 +93,9 @@ vim.api.nvim_set_keymap("n", "K", ":lua require('user.keymaps').show_documentati
 keymap("n", "<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
 keymap("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', opts)
 
--- vim.api.nvim_set_keymap(
---   "n",
---   "<tab>",
---   "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>"
---   ,
---   opts
--- )
-
 -- Tabs
 keymap("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts)
 keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", opts)
 keymap("n", "<S-q>", "<cmd>Bdelete<CR>", opts)
-
--- Easyalign
--- keymap('n', 'ga', '<Plug>(EasyAlign)', opts)
--- keymap('x', 'ga', '<Plug>(EasyAlign)', opts)
---
--- Browser Search
--- keymap('v', '<m-s>', ":'<,'>BrowserSearch<CR>", opts)
 
 return M

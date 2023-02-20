@@ -125,9 +125,10 @@ local mappings = {
   },
   v = { "<cmd>vsplit<cr>", "vsplit" },
   n = { "<cmd>Telescope notify<cr>", "Notifications" },
+  q = { "<cmd>qall<CR>", "Exit" },
   w = { "<cmd>w<CR>", "Write" },
   x = { "<cmd>q<CR>", "Close Window" },
-  q = { "<cmd>qall<CR>", "Exit" },
+  y = { "<cmd>lua require('telescope').extensions.yank_history.yank_history()<cr>", "Yank History" },
   ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
   ["gy"] = "Link",
   c = {
@@ -146,6 +147,7 @@ local mappings = {
     name = "Lazy",
     c = { "<cmd>Lazy compile<cr>", "Compile" },
     i = { "<cmd>Lazy install<cr>", "Install" },
+    l = { "<cmd>Lazy<cr>", "Lazy" },
     s = { "<cmd>Lazy sync<cr>", "Sync" },
     p = { "<cmd>Lazy profile<cr>", "Profile" },
     d = { "<cmd>Lazy debug<cr>", "Debug" },
@@ -289,7 +291,6 @@ local mappings = {
     h = { "<cmd>lua require('telescope').extensions.hop.hop()<cr>", "Hop" },
     t = { "<cmd>lua require('telescope').extensions.tailiscope.tailiscope()<cr>", "Tailwincss" },
     u = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo Changes" },
-    y = { "<cmd>lua require('telescope').extensions.yank_history.yank_history()<cr>", "Yank History" },
   },
   T = {
     name = "Treesitter",
