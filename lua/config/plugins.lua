@@ -71,11 +71,41 @@ return {
   {
     "RRethy/vim-illuminate",
   },
-
+  -- {
+  --   "ray-x/navigator.lua",
+  --   dependencies = {
+  --     { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
+  --     { "neovim/nvim-lspconfig" },
+  --   },
+  --   config = function()
+  --     require("navigator").setup {
+  --       disable_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
+  --     }
+  --
+  --     if vim.o.ft == "clap_input" and vim.o.ft == "guihua" and vim.o.ft == "guihua_rust" then
+  --       require("cmp").setup.buffer { completion = { enable = false } }
+  --     end
+  --   end,
+  -- },
+  {
+    "AckslD/nvim-neoclip.lua",
+    dependencies = {
+      -- { "kkharji/sqlite.lua", module = "sqlite" },
+      -- you'll need at least one of these
+      { "nvim-telescope/telescope.nvim" },
+      -- {'ibhagwan/fzf-lua'},
+    },
+    config = function()
+      require("neoclip").setup()
+      require("telescope").load_extension "neoclip"
+    end,
+  },
+  -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     lazy = false,
     config = function()
+      ---@diagnostic disable-next-line: different-requires
       require "plugins.telescope"
     end,
     dependencies = {
@@ -90,6 +120,7 @@ return {
     },
   },
   { "nvim-pack/nvim-spectre" },
+  -- file browser
   {
     "kyazdani42/nvim-tree.lua",
     dependencies = {
@@ -122,6 +153,7 @@ return {
     lazy = false,
     cmd = { "Bdelete" },
   },
+  -- bufferline
   {
     "akinsho/bufferline.nvim",
     dependencies = {
