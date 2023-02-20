@@ -89,23 +89,23 @@ local m_opts = {
 }
 
 local m_mappings = {
-  a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
-  -- c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
-  b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
-  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
-  ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
-  [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
-  l = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
-  j = { "<cmd>silent BookmarkNext<cr>", "Next" },
-  s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
-  k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
-  S = { "<cmd>silent BookmarkShowAll<cr>", "Prev" },
-  -- s = {
   --   "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
   --   "Show",
+  -- c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
+  -- s = {
   -- },
-  x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
+  S = { "<cmd>silent BookmarkShowAll<cr>", "Prev" },
+  [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
+  ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
   [";"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" },
+  a = { "<cmd>silent BookmarkAnnotate<cr>", "Annotate" },
+  b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
+  j = { "<cmd>silent BookmarkNext<cr>", "Next" },
+  k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
+  l = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
+  m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
+  s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
+  x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
 }
 
 local mappings = {
@@ -113,7 +113,7 @@ local mappings = {
   a = { "<cmd>CodeActionMenu<cr>", "Action" },
   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
   e = { "<cmd>lua require'nvim-tree'.toggle()<cr>", "Explorer" },
-  h = { "<cmd>split<cr>", "split" },
+  -- h = { "<cmd>split<cr>", "split" },
   H = { "<cmd>checkhealth<cr>", "Check health" },
   j = {
     "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
@@ -123,7 +123,7 @@ local mappings = {
     "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
     "Prev Diagnostic",
   },
-  v = { "<cmd>vsplit<cr>", "vsplit" },
+  -- v = { "<cmd>vsplit<cr>", "vsplit" },
   n = { "<cmd>Telescope notify<cr>", "Notifications" },
   q = { "<cmd>qall<CR>", "Exit" },
   w = { "<cmd>w<CR>", "Write" },
@@ -156,11 +156,6 @@ local mappings = {
     name = "Options",
     c = { "<cmd>lua vim.g.cmp_active=false<cr>", "Completion off" },
     C = { "<cmd>lua vim.g.cmp_active=true<cr>", "Completion on" },
-    w = { '<cmd>lua require("user.functions").toggle_option("wrap")<cr>', "Wrap" },
-    r = { '<cmd>lua require("user.functions").toggle_option("relativenumber")<cr>', "Relative" },
-    l = { '<cmd>lua require("user.functions").toggle_option("cursorline")<cr>', "Cursorline" },
-    s = { '<cmd>lua require("user.functions").toggle_option("spell")<cr>', "Spell" },
-    t = { '<cmd>lua require("user.functions").toggle_tabline()<cr>', "Tabline" },
   },
   r = {
     name = "Replace",
@@ -204,7 +199,7 @@ local mappings = {
   g = {
     name = "Git",
     e = { "<cmd>lua require'telescope.builtin'.symbols{ sources = { 'gitmoji'} }<cr>", "GitMojis 🤪" },
-    g = { "<cmd>Lazygit<CR>", "Lazygit" },
+    g = { ":Lazygit<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>GitBlameToggle<cr>", "Blame" },
@@ -288,7 +283,6 @@ local mappings = {
     name = "Telescope",
     n = { "<cmd>Telescope node_modules list<cr>", "Node Modules" },
     c = { "<cmd>lua require('telescope').extensions.changes.changes()<cr>", "Changes" },
-    h = { "<cmd>lua require('telescope').extensions.hop.hop()<cr>", "Hop" },
     l = { "<cmd>lua require('telescope').extensions.lazygit.lazygit()<cr>", "Lazygit" },
     t = { "<cmd>lua require('telescope').extensions.tailiscope.tailiscope()<cr>", "Tailwincss" },
     u = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo Changes" },

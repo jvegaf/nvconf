@@ -131,7 +131,6 @@ return {
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-media-files.nvim" },
       { "nvim-telescope/telescope-node-modules.nvim" },
-      { "nvim-telescope/telescope-hop.nvim" },
       { "gbrlsnchs/telescope-lsp-handlers.nvim" },
       { "xiyaowong/telescope-emoji.nvim" },
       { "LinArcX/telescope-changes.nvim" },
@@ -400,8 +399,8 @@ return {
   { "LudoPinelli/comment-box.nvim" },
   {
     "akinsho/nvim-toggleterm.lua",
-    lazy = true,
-    branch = "main",
+    lazy = false,
+    version = "*",
     config = function()
       require "plugins.toggleterm"
     end,
