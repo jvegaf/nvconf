@@ -11,12 +11,7 @@ return {
       require "config.colorscheme"
     end,
   },
-  -- {
-  --   "tanvirtin/monokai.nvim",
-  --   lazy = false,
-  --   config = true,
-  -- },
-  { "RRethy/nvim-base16", lazy = true },
+  { "RRethy/nvim-base16", lazy = false },
   {
     "navarasu/onedark.nvim",
     lazy = true,
@@ -632,12 +627,21 @@ return {
   },
   {
     "kdheepak/lazygit.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
     cmd = { "LazyGit", "LazyGitCurrentFile", "LazyGitFilterCurrentFile", "LazyGitFilter" },
     config = function()
       vim.g.lazygit_floating_window_scaling_factor = 1
+
+      require("telescope").load_extension "lazygit"
     end,
   },
-
+  {
+    "tanvirtin/vgit.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = true,
+  },
   -- Testing
   {
     "rcarriga/neotest",

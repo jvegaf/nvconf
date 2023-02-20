@@ -204,7 +204,7 @@ local mappings = {
   g = {
     name = "Git",
     e = { "<cmd>lua require'telescope.builtin'.symbols{ sources = { 'gitmoji'} }<cr>", "GitMojis 🤪" },
-    g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
+    g = { "<cmd>Lazygit<CR>", "Lazygit" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
     l = { "<cmd>GitBlameToggle<cr>", "Blame" },
@@ -289,6 +289,7 @@ local mappings = {
     n = { "<cmd>Telescope node_modules list<cr>", "Node Modules" },
     c = { "<cmd>lua require('telescope').extensions.changes.changes()<cr>", "Changes" },
     h = { "<cmd>lua require('telescope').extensions.hop.hop()<cr>", "Hop" },
+    l = { "<cmd>lua require('telescope').extensions.lazygit.lazygit()<cr>", "Lazygit" },
     t = { "<cmd>lua require('telescope').extensions.tailiscope.tailiscope()<cr>", "Tailwincss" },
     u = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo Changes" },
   },

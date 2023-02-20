@@ -4,7 +4,7 @@ require('config.highlights')
 require('config.EcoVim')
 require('config.maps')
 require('config.lazy')
--- require('config.settings')
+require('config.autocmds')
 
 require('lsp.config')
 require('lsp.setup')

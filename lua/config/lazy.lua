@@ -13,18 +13,19 @@ vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("config.plugins", {
   defaults = { lazy = true },
-  install = { colorscheme = { "tokyonight" } },
+  install = { missing= true, colorscheme = { "tokyonight" } },
   checker = { enabled = true },
   performance = {
     rtp = {
       disabled_plugins = {
         "gzip",
+        "matchit",
+        "matchparen",
         "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",
-        "zipPlugin",
-      },
+        "zipPlugin",     },
     },
   },
   debug = false,
@@ -33,4 +34,4 @@ require("lazy").setup("config.plugins", {
   }
 })
 
-vim.keymap.set("n", "<leader>/l", "<cmd>:Lazy<cr>")
+-- vim.keymap.set("n", "<leader>/l", "<cmd>:Lazy<cr>")
