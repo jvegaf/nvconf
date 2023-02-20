@@ -9,19 +9,27 @@ require("telescope").load_extension "git_worktree"
 require("telescope").load_extension "aerial"
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "media_files"
+require("telescope").load_extension "node_modules"
+require("telescope").load_extension "lsp_handlers"
+require("telescope").load_extension "emoji"
+require("telescope").load_extension "changes"
+require("telescope").load_extension "undo"
+require("telescope").load_extension "tailiscope"
+require("telescope").load_extension "yank_history"
+require("telescope").load_extension "hop"
 
 local git_icons = {
   added = icons.gitAdd,
   changed = icons.gitChange,
-  copied = ">",
+  copied = icons.fileCopy,
   deleted = icons.gitRemove,
-  renamed = "➡",
-  unmerged = "‡",
-  untracked = "?",
+  renamed = icons.circle,
+  unmerged = icons.questionCircle,
+  untracked = icons.rectangleIntersect,
 }
 
 require("telescope").setup {
-  defaults = {
+  defults = {
     vimgrep_arguments = {
       "rg",
       "--color=never",
@@ -41,6 +49,8 @@ require("telescope").setup {
     prompt_prefix = "  ",
     color_devicons = true,
 
+    dynamic_preview_title = true,
+
     git_icons = git_icons,
 
     sorting_strategy = "ascending",
@@ -57,7 +67,14 @@ require("telescope").setup {
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<C-s>"] = actions.cycle_previewers_next,
         ["<C-a>"] = actions.cycle_previewers_prev,
-        ["<C-h>"] = "which_key",
+        ["<C-h>"] = R("telescope").extensions.hop.hop,
+        ["<C-space>"] = function(prompt_bufnr)
+          local opts = {
+            callback = actions.toggle_selection,
+            loop_callback = actions.send_selected_to_qflist,
+          }
+          require("telescope").extensions.hop._hop_loop(prompt_bufnr, opts)
+        end,
         ["<ESC>"] = actions.close,
       },
       n = {
@@ -82,6 +99,69 @@ require("telescope").setup {
     },
     file_browser = {
       hijack_netrw = true,
+    },
+    lsp_handlers = {
+      code_action = {
+        telescope = require("telescope.themes").get_dropdown {},
+      },
+    },
+    hop = {
+      -- the shown `keys` are the defaults, no need to set `keys` if defaults work for you ;)
+      keys = {
+        "a",
+        "s",
+        "d",
+        "f",
+        "g",
+        "h",
+        "j",
+        "k",
+        "l",
+        ";",
+        "q",
+        "w",
+        "e",
+        "r",
+        "t",
+        "y",
+        "u",
+        "i",
+        "o",
+        "p",
+        "A",
+        "S",
+        "D",
+        "F",
+        "G",
+        "H",
+        "J",
+        "K",
+        "L",
+        ":",
+        "Q",
+        "W",
+        "E",
+        "R",
+        "T",
+        "Y",
+        "U",
+        "I",
+        "O",
+        "P",
+      },
+      -- Highlight groups to link to signs and lines; the below configuration refers to demo
+      -- sign_hl typically only defines foreground to possibly be combined with line_hl
+      sign_hl = { "WarningMsg", "Title" },
+      -- optional, typically a table of two highlight groups that are alternated between
+      line_hl = { "CursorLine", "Normal" },
+      -- options specific to `hop_loop`
+      -- true temporarily disables Telescope selection highlighting
+      clear_selection_hl = false,
+      -- highlight hopped to entry with telescope selection highlight
+      -- note: mutually exclusive with `clear_selection_hl`
+      trace_entry = true,
+      -- jump to entry where hoop loop was started from
+      reset_selection = true,
     },
   },
 }

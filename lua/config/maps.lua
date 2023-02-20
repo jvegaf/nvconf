@@ -71,9 +71,12 @@ keymap("n", "<F7>", "<cmd>TSHighlightCapturesUnderCursor<cr>", opts)
 keymap("n", "<F8>", "<cmd>TSPlaygroundToggle<cr>", opts)
 keymap("n", "<F11>", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
 keymap("n", "<F12>", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-keymap("v", "//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], opts)
-keymap("n", "<C-p>", "<cmd>Telescope projects<cr>", opts)
+keymap("v", "//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], opts) -- search for visualy selected text
+keymap("n", "<C-p>", "<cmd>Telescope command_center<cr>", opts)
 keymap("n", "<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
+
+keymap("n", "y", "<Plug>(YankyYank)", opts)
+keymap("x", "y", "<Plug>(YankyYank)", opts)
 
 M.show_documentation = function()
   local filetype = vim.bo.filetype

@@ -66,31 +66,25 @@ return {
     },
   },
 
+  {
+    "bennypowers/nvim-regexplainer",
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter" },
+      { "MunifTanjim/nui.nvim" },
+    },
+    opts = {
+      auto = true,
+    }
+  },
+
   -- Navigating (Telescope/Tree/Refactor)
 
   {
     "RRethy/vim-illuminate",
   },
-  -- {
-  --   "ray-x/navigator.lua",
-  --   dependencies = {
-  --     { "ray-x/guihua.lua", run = "cd lua/fzy && make" },
-  --     { "neovim/nvim-lspconfig" },
-  --   },
-  --   config = function()
-  --     require("navigator").setup {
-  --       disable_filetype = { "TelescopePrompt", "guihua", "guihua_rust", "clap_input" },
-  --     }
-  --
-  --     if vim.o.ft == "clap_input" and vim.o.ft == "guihua" and vim.o.ft == "guihua_rust" then
-  --       require("cmp").setup.buffer { completion = { enable = false } }
-  --     end
-  --   end,
-  -- },
   {
     "AckslD/nvim-neoclip.lua",
     dependencies = {
-      -- { "kkharji/sqlite.lua", module = "sqlite" },
       -- you'll need at least one of these
       { "nvim-telescope/telescope.nvim" },
       -- {'ibhagwan/fzf-lua'},
@@ -117,7 +111,26 @@ return {
       { "nvim-telescope/telescope-symbols.nvim" },
       { "nvim-telescope/telescope-file-browser.nvim" },
       { "nvim-telescope/telescope-media-files.nvim" },
+      { "nvim-telescope/telescope-node-modules.nvim" },
+      { "nvim-telescope/telescope-hop.nvim" },
+      { "gbrlsnchs/telescope-lsp-handlers.nvim" },
+      { "xiyaowong/telescope-emoji.nvim" },
+      { "LinArcX/telescope-changes.nvim" },
+      { "FeiyouG/command_center.nvim" },
+      { "debugloop/telescope-undo.nvim" },
+      { "danielvolchek/tailiscope.nvim" },
+      { "gbprod/yanky.nvim", config = true },
     },
+  },
+  {
+    "sudormrfbin/cheatsheet.nvim",
+    dependencies = {
+      { "nvim-telescope/telescope.nvim" },
+      { "nvim-lua/popup.nvim" },
+      { "nvim-lua/plenary.nvim" },
+    },
+    config = true,
+    cmd = { "Cheatsheet", "CheatsheetEdit" },
   },
   { "nvim-pack/nvim-spectre" },
   -- file browser
@@ -277,12 +290,12 @@ return {
   {
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu",
-    after = "nvim-lspconfig",
+    dependencies = {"nvim-lspconfig"},
   },
   {
     "ErichDonGubler/lsp_lines.nvim",
     config = true,
-    after = "nvim-lspconfig",
+    dependencies = {"nvim-lspconfig"},
   },
 
   -- LSP Cmp

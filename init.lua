@@ -1,4 +1,5 @@
 require('config.base')
+require('utils.globals')
 require('config.highlights')
 require('config.EcoVim')
 require('config.maps')

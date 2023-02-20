@@ -3,8 +3,8 @@ if not present then
   return
 end
 
-local dashboard = require("alpha.themes.dashboard")
-local icons = require("config.icons")
+local dashboard = require "alpha.themes.dashboard"
+local icons = require "config.icons"
 local if_nil = vim.F.if_nil
 local fn = vim.fn
 
@@ -23,8 +23,8 @@ local header = {
   "                                                     ",
 }
 
-dashboard.section.header.type = "text";
-dashboard.section.header.val = header;
+dashboard.section.header.type = "text"
+dashboard.section.header.val = header
 dashboard.section.header.opts = {
   position = "center",
 }
@@ -33,14 +33,14 @@ dashboard.section.header.opts = {
 -- │ Heading Info                                             │
 -- ╰──────────────────────────────────────────────────────────╯
 
-local thingy = io.popen('echo "$(date +%a) $(date +%d) $(date +%b)" | tr -d "\n"')
-if thingy == nil then return end
-local date = thingy:read("*a")
+local thingy = io.popen 'echo "$(date +%a) $(date +%d) $(date +%b)" | tr -d "\n"'
+if thingy == nil then
+  return
+end
+local date = thingy:read "*a"
 thingy:close()
 
 local datetime = os.date " %H:%M"
-
-
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Buttons                                                  │
@@ -83,13 +83,24 @@ local function button(sc, txt, keybind, keybind_opts)
 end
 
 dashboard.section.buttons.val = {
-  button("r", icons.fileRecent .. " " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
-  button("f", icons.fileNoBg .. " " .. "Find File", "<cmd>Telescope find_files<CR>", {}),
-  button("d", icons.timer .. " " .. "Load Current Dir Session", "<cmd>SessionManager load_current_dir_session<CR>", {}),
-  button("u", icons.container .. " " .. "Sync Plugins", "<cmd>Lazy sync<CR>", {}),
-  button("c", icons.pencil .. " " .. "Select Theme", "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", {}),
-  button("s", icons.cog .. " " .. "Settings", "<cmd>e $MYVIMRC<CR>", {}),
-  button("q", icons.exit .. " " .. "Exit", "<cmd>exit<CR>", {}),
+  button("r", " 🕒  " .. "Recents", "<cmd>Telescope oldfiles hidden=true<CR>", {}),
+  button("f", " 🔎  " .. "Find File", "<cmd>Telescope find_files<CR>", {}),
+  button(
+    "b",
+    " 🌍  " .. "Browse Files",
+    "<cmd>lua require('telescope').extensions.file_browser.file_browser()<CR>",
+    {}
+  ),
+  button("d", " 📁  " .. "Load Current Dir Session", "<cmd>SessionManager load_current_dir_session<CR>", {}),
+  button("u", " 🔄  " .. "Sync Plugins", "<cmd>Lazy sync<CR>", {}),
+  button(
+    "c",
+    " 🎨  " .. "Select Theme",
+    "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>",
+    {}
+  ),
+  button("s", " 🖥️  " .. "Settings", "<cmd>e $MYVIMRC<CR>", {}),
+  button("q", " 👋  " .. "Exit", "<cmd>exit<CR>", {}),
 }
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -98,12 +109,16 @@ dashboard.section.buttons.val = {
 
 local function file_exists(file)
   local f = io.open(file, "rb")
-  if f then f:close() end
+  if f then
+    f:close()
+  end
   return f ~= nil
 end
 
 local function line_from(file)
-  if not file_exists(file) then return {} end
+  if not file_exists(file) then
+    return {}
+  end
   local lines = {}
   for line in io.lines(file) do
     lines[#lines + 1] = line
@@ -112,7 +127,7 @@ local function line_from(file)
 end
 
 dashboard.section.footer.val = {
-  'olaKeAse'
+  "olaKeAse",
 }
 dashboard.section.footer.opts = {
   position = "center",
@@ -138,7 +153,7 @@ local opts = {
     section.footer,
   },
   opts = {
-    margin = 5
+    margin = 5,
   },
 }
 
