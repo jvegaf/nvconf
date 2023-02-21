@@ -640,6 +640,8 @@ return {
       "nvim-lua/plenary.nvim",
     },
     config = true,
+    lazy = false,
+    cmd = {"VGit"}
   },
   -- Testing
   {

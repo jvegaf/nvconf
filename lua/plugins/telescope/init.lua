@@ -16,7 +16,6 @@ require("telescope").load_extension "changes"
 require("telescope").load_extension "undo"
 require("telescope").load_extension "tailiscope"
 require("telescope").load_extension "yank_history"
-require("telescope").load_extension "hop"
 
 local git_icons = {
   added = icons.gitAdd,
