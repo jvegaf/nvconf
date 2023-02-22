@@ -6,12 +6,20 @@ return {
     dashboard.section.header.val = require("plugins.config.logo")["random"]
     dashboard.section.buttons.val = {
       dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-      dashboard.button("b", " " .. " Browse files", ":Telescope browse_files <CR>"),
+      dashboard.button("b", " " .. " Browse files", ":Telescope file_browser <CR>"),
       dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
       dashboard.button("w", " " .. " Find text", ":Telescope live_grep <CR>"),
       dashboard.button("s", " " .. " Open Settings", ":e $MYVIMRC <CR>"),
-      dashboard.button("d", "勒" .. " Restore Dir Session", [[:lua require("session-manager").load_current_dir_session() <cr>]]),
-      dashboard.button("c", " " .. " Select color theme", [[:lua require('telescope.builtin').colorscheme({enable_preview = true}) <cr>]]),
+      dashboard.button(
+        "d",
+        "勒" .. " Restore Dir Session",
+        [[:lua require("session-manager").load_current_dir_session() <cr>]]
+      ),
+      dashboard.button(
+        "c",
+        " " .. " Select color theme",
+        [[:lua require('telescope.builtin').colorscheme({enable_preview = true}) <cr>]]
+      ),
       dashboard.button("l", "鈴" .. " Lazy", ":Lazy<CR>"),
       dashboard.button("q", " " .. " Quit", ":qa<CR>"),
     }

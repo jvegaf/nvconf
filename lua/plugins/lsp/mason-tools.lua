@@ -6,6 +6,8 @@ return {
     },
     opts = {
       ensure_installed = {
+        "lua_language_server",
+        "vim_language_server",
         "stylua",
         "luacheck",
         "shellcheck",
