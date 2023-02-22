@@ -1,4 +1,3 @@
-M = {}
 local opts = { noremap = true, silent = true }
 
 -- Shorten function name
@@ -28,8 +27,9 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 -- keymap('n', '<m-tab>', '<c-6>', opts)
 
+
 -- Cancel search highlighting with ESC
-keymap("n", "<leader><ESC>", ":nohlsearch<Bar>:echo<CR>", opts)
+keymap("n", "<ESC><ESC>", ":nohlsearch<Bar>:echo<CR>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -75,19 +75,6 @@ keymap("n", "<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", opts)
 keymap("n", "y", "<Plug>(YankyYank)", opts)
 keymap("x", "y", "<Plug>(YankyYank)", opts)
 
-M.show_documentation = function()
-  local filetype = vim.bo.filetype
-  if vim.tbl_contains({ "vim", "help" }, filetype) then
-    vim.cmd("h " .. vim.fn.expand "<cword>")
-  elseif vim.tbl_contains({ "man" }, filetype) then
-    vim.cmd("Man " .. vim.fn.expand "<cword>")
-  elseif vim.fn.expand "%:t" == "Cargo.toml" then
-    require("crates").show_popup()
-  else
-    vim.lsp.buf.hover()
-  end
-end
-vim.api.nvim_set_keymap("n", "K", ":lua require('user.keymaps').show_documentation()<CR>", opts)
 
 -- Comment
 keymap("n", "<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", opts)
@@ -98,4 +85,3 @@ keymap("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts)
 keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", opts)
 keymap("n", "<S-q>", "<cmd>Bdelete<CR>", opts)
 
-return M

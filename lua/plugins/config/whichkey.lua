@@ -110,7 +110,6 @@ local m_mappings = {
 
 local mappings = {
   -- ["1"] = "which_key_ignore",
-  a = { "<cmd>CodeActionMenu<cr>", "Action" },
   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
   e = { "<cmd>lua require'nvim-tree'.toggle()<cr>", "Explorer" },
   -- h = { "<cmd>split<cr>", "split" },
@@ -123,7 +122,6 @@ local mappings = {
     "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
     "Prev Diagnostic",
   },
-  -- v = { "<cmd>vsplit<cr>", "vsplit" },
   n = { "<cmd>Telescope notify<cr>", "Notifications" },
   q = { "<cmd>qall<CR>", "Exit" },
   w = { "<cmd>w<CR>", "Write" },
@@ -201,7 +199,7 @@ local mappings = {
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
     e = { "<cmd>lua require'telescope.builtin'.symbols{ sources = { 'gitmoji'} }<cr>", "GitMojis 🤪" },
-    g = { ":LazyGit<CR>", "Lazygit" },
+    g = { "<cmd>LazyGit<CR>", "Lazygit" },
     h = { "<cmd>VGit buffer_history_preview<CR>", "Buffer History" },
     j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
     k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
@@ -211,10 +209,7 @@ local mappings = {
     r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
     R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
     s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-    u = {
-      "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-      "Undo Stage Hunk",
-    },
+    u = { "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>", "Undo Stage Hunk" },
   },
   l = {
     name = "LSP",
@@ -264,7 +259,7 @@ local mappings = {
   },
   S = {
     name = "System",
-    c = { "<cmd>lua require('telescope').extensions.neoclip.default()<cr>", "Clipboard" },
+    d = { "<cmd>Alpha<cr>", "Dashboard" },
     n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
   },
   t = {
