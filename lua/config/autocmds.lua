@@ -1,12 +1,5 @@
--- -- highlight yanked text for 200ms using the "Visual" highlight group
--- vim.cmd [[
---   augroup highlight_yank
---   autocmd!
---   au TextYankPost * silent! lua vim.highlight.on_yank({higroup="Visual", timeout=100})
---   augroup END
--- ]]
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
--- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -23,9 +16,9 @@ vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
 
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*",
-  callback = function ()
-    require 'lazygit.utils'.project_root_dir()
-  end
+  callback = function()
+    require("lazygit.utils").project_root_dir()
+  end,
 })
 -- Go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPre", {
@@ -78,6 +71,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {
     end
   end,
 })
+
 vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
   callback = function()
     local cl = vim.wo.cursorline
@@ -85,5 +79,25 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "WinLeave" }, {
       vim.api.nvim_win_set_var(0, "auto-cursorline", cl)
       vim.wo.cursorline = false
     end
+  end,
+})
+
+-- Session loaded
+vim.api.nvim_create_autocmd({ "User" }, {
+  pattern = "SessionLoadPost",
+  group = config_group,
+  callback = function()
+    require("nvim-tree").toggle(false, true)
+    require "notify"("Session loaded!", "info", { title = "Session Manager" })
+  end,
+})
+
+-- Session Saved
+vim.api.nvim_create_autocmd({ "User" }, {
+  pattern = "SessionSavePost",
+  group = config_group,
+  callback = function()
+    require "notify"("Session saved!", "info", { title = "Session Manager", bufid = 0 })
+    require("nvim-tree").toggle(false, true)
   end,
 })

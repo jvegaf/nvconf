@@ -1,13 +1,20 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  return
-end
-
-local n_status_ok, notify = pcall(require, "notify")
-if not n_status_ok then
-  return
-end
-
-telescope.load_extension "notify"
-
-vim.notify = notify
+return {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup {
+        background_colour = "#000000",
+      }
+    end,
+    init = function()
+      local banned_messages =
+        { "No information available", "LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+." }
+      vim.notify = function(msg, ...)
+        for _, banned in ipairs(banned_messages) do
+          if msg == banned then
+            return
+          end
+        end
+        require "notify"(msg, ...)
+      end
+    end,
+  }

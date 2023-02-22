@@ -1,12 +1,9 @@
-local present, signs = pcall(require, "gitsigns")
-if not present then
-  return
-end
-
--- ╭──────────────────────────────────────────────────────────╮
--- │ Setup                                                    │
--- ╰──────────────────────────────────────────────────────────╯
-signs.setup {
+return {
+    "lewis6991/gitsigns.nvim",
+    event = "BufReadPre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require "gitsigns".setup {
   signs                        = {
     add          = { hl = 'GitGutterAdd', text = '▎', numhl = 'GitSignsAddNr' },
     change       = { hl = 'GitGutterChange', text = '▎', numhl = 'GitSignsChangeNr' },
@@ -87,3 +84,8 @@ signs.setup {
     map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
   end
 }
+
+    end,
+  }
+
+
