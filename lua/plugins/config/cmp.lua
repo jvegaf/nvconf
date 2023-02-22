@@ -161,9 +161,9 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp', priority = 9 },
     { name = 'npm', priority = 9 },
+    { name = 'luasnip', priority = 9, max_item_count = 8 },
     -- { name = 'copilot', priority = 8 },
     { name = 'cmp_tabnine', priority = 8, max_num_results = 3 },
-    { name = 'luasnip', priority = 9, max_item_count = 8 },
     { name = 'buffer', priority = 7, keyword_length = 5, option = buffer_option, max_item_count = 8 },
     { name = 'nvim_lua', priority = 5 },
     { name = 'emoji', priority = 4 },

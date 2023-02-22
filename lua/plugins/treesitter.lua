@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"mrjones2014/nvim-ts-rainbow",
 		"JoosepAlviste/nvim-ts-context-commentstring",
+    "windwp/nvim-ts-autotag",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"RRethy/nvim-treesitter-textsubjects",
 		{
@@ -17,6 +18,9 @@ return {
 		ensure_installed = { "lua", "vim", "regex", "typescript" }, -- one of "all", or a list of languages
 		auto_install = true,
 		ignore_install = { "haskell" }, -- list of parsers to ignore installing
+    autotag = {
+      enable = true,
+    },
 		highlight = {
 			enable = true,
 			-- disable = { "c", "rust" },  -- list of language that will be disabled

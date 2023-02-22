@@ -19,6 +19,7 @@ require("lazy").setup {
     { import = "plugins.git" },
     { import = "plugins.testing" },
     { import = "plugins.dap" },
+    { import = "plugins.extras" },
   },
   defaults = { lazy = true, version = "*" },
   install = { missing = true, colorscheme = { "tokyonight" } },
@@ -40,7 +41,7 @@ require("lazy").setup {
       },
     },
   },
-  debug = true,
+  debug = false,
   ui = {
     border = "rounded",
   },

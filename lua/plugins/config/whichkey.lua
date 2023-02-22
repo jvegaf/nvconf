@@ -89,11 +89,6 @@ local m_opts = {
 }
 
 local m_mappings = {
-  --   "<cmd>lua require('telescope').extensions.vim_bookmarks.all({ hide_filename=false, prompt_title=\"bookmarks\", shorten_path=false })<cr>",
-  --   "Show",
-  -- c = { "<cmd>silent BookmarkClear<cr>", "Clear" },
-  -- s = {
-  -- },
   S = { "<cmd>silent BookmarkShowAll<cr>", "Prev" },
   [","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" },
   ["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" },
@@ -102,7 +97,6 @@ local m_mappings = {
   b = { "<cmd>silent BookmarkToggle<cr>", "Toggle" },
   j = { "<cmd>silent BookmarkNext<cr>", "Next" },
   k = { "<cmd>silent BookmarkPrev<cr>", "Prev" },
-  l = { "<cmd>lua require('user.bfs').open()<cr>", "Buffers" },
   m = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" },
   s = { "<cmd>Telescope harpoon marks<cr>", "Search Files" },
   x = { "<cmd>BookmarkClearAll<cr>", "Clear All" },
@@ -179,7 +173,6 @@ local mappings = {
     c = { "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", "Colorscheme" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
     e = { "<cmd>Telescope emoji<cr>", "Find Emoji Symbol" },
-    -- e = { "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji', 'gitmoji'} }<cr>", "Find Emoji Symbol" },
     f = { "<cmd>Telescope find_files<cr>", "Find files" },
     h = { "<cmd>Telescope help_tags<cr>", "Help" },
     H = { "<cmd>Telescope highlights<cr>", "Highlights" },
