@@ -14,16 +14,18 @@ vim.opt.runtimepath:prepend(lazypath)
 require("lazy").setup {
   spec = {
     { import = "plugins" },
+    { import = "plugins.lsp" },
     { import = "plugins.dashboard" },
     { import = "plugins.git" },
-    { import = "plugins.telescope" },
+    { import = "plugins.testing" },
+    { import = "plugins.dap" },
   },
   defaults = { lazy = true, version = "*" },
   install = { missing = true, colorscheme = { "tokyonight" } },
   checker = { enabled = true },
   performance = {
     cache = {
-      enabled = true,
+      enabled = false,
     },
     rtp = {
       disabled_plugins = {

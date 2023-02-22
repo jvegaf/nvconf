@@ -1,7 +1,9 @@
 local icons = EcoVim.icons
 
-require('package-info').setup
-    {
+return {
+    "vuki656/package-info.nvim",
+    event = "BufEnter package.json",
+    opts = {
       colors = {
         up_to_date = "#3C4048", -- Text color for up to date package virtual text
         outdated = "#fc514e", -- Text color for outdated package virtual text
@@ -23,5 +25,4 @@ require('package-info').setup
       -- provided one,                              if nothing is provided it will use `yarn`
       package_manager = 'yarn'
     }
-
--- Keymappings are set in which key config
+}

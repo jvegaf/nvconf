@@ -2,8 +2,8 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-    "onsails/lspkind-nvim",
-    "hrsh7th/cmp-nvim-lua",
+      "onsails/lspkind-nvim",
+      "hrsh7th/cmp-nvim-lua",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
