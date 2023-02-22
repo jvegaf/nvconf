@@ -38,18 +38,6 @@ return {
     cmd = { "Cheatsheet", "CheatsheetEdit" },
   },
   { "nvim-pack/nvim-spectre" },
-  -- file browser
-  {
-    "kyazdani42/nvim-tree.lua",
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
-    },
-    config = function()
-      require "plugins.config.tree"
-    end,
-    cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
-    -- event = "User DirOpened",
-  },
   {
     "gbprod/stay-in-place.nvim",
     lazy = true,

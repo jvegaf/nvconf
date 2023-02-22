@@ -50,7 +50,14 @@ local keymappings = {
   { key = "S",                            action = "search_node" }
 }
 
-require'nvim-tree'.setup {
+return {
+    "kyazdani42/nvim-tree.lua",
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+    },
+    cmd = { "NvimTreeToggle", "NvimTreeOpen", "NvimTreeFocus", "NvimTreeFindFileToggle" },
+    config = function()
+     require'nvim-tree'.setup {
   -- disables netrw completely
   disable_netrw       = false,
   -- hijack netrw window on startup
@@ -168,7 +175,14 @@ require'nvim-tree'.setup {
     cmd = "trash",
     require_confirm = true
   }
-}
+} 
+    end,
+    -- event = "User DirOpened",
+  }
+
+
+
+  
 
 -- vim.api.nvim_set_keymap("n", "<leader>e", "<cmd>lua require'nvim-tree'.toggle()<CR>", { noremap = true, silent = true })
 
