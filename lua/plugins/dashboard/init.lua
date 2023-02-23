@@ -10,7 +10,7 @@ return {
       dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
       dashboard.button("w", " " .. " Find text", ":Telescope live_grep <CR>"),
       dashboard.button("s", " " .. " Open Settings", ":e $MYVIMRC <CR>"),
-      dashboard.button("d", "勒" .. " Restore Dir Session",[[: lua require('session_manager')load_current_dir_session() <cr>]]),
+      dashboard.button("d", "勒" .. " Restore Dir Session",[[:lua require('session_manager').load_current_dir_session() <cr>]]),
       dashboard.button("c", ""  .. " Select color theme", [[:lua require('telescope.builtin').colorscheme({enable_preview = true}) <cr>]]),
       dashboard.button("l", "鈴" .. " Lazy", ":Lazy<CR>"),
       dashboard.button("q", " " .. " Quit", ":qa<CR>"),

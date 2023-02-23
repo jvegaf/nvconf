@@ -3,6 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
+  cmd = "SessionManager",
   lazy = false,
   config = function()
     local Path = require "plenary.path"
