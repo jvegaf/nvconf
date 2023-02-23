@@ -117,9 +117,6 @@ local mappings = {
     "Prev Diagnostic",
   },
   n = { "<cmd>Telescope notify<cr>", "Notifications" },
-  q = { "<cmd>qall<CR>", "Exit" },
-  w = { "<cmd>w<CR>", "Write" },
-  x = { "<cmd>q<CR>", "Close Window" },
   y = { "<cmd>lua require('telescope').extensions.yank_history.yank_history()<cr>", "Yank History" },
   ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
   ["gy"] = "Link",
@@ -129,11 +126,11 @@ local mappings = {
   },
   B = {
     name = "Browse",
-    i = { "<cmd>BrowseInputSearch<cr>", "Input Search" },
-    b = { "<cmd>Browse<cr>", "Browse" },
-    d = { "<cmd>BrowseDevdocsSearch<cr>", "Devdocs" },
-    f = { "<cmd>BrowseDevdocsFiletypeSearch<cr>", "Devdocs Filetype" },
-    m = { "<cmd>BrowseMdnSearch<cr>", "Mdn" },
+    -- i = { "<cmd>BrowseInputSearch<cr>", "Input Search" },
+    -- b = { "<cmd>Browse<cr>", "Browse" },
+    -- d = { "<cmd>BrowseDevdocsSearch<cr>", "Devdocs" },
+    -- f = { "<cmd>BrowseDevdocsFiletypeSearch<cr>", "Devdocs Filetype" },
+    -- m = { "<cmd>BrowseMdnSearch<cr>", "Mdn" },
   },
   L = {
     name = "Lazy",
@@ -170,7 +167,6 @@ local mappings = {
   f = {
     name = "Find",
     b = { "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>", "File Browser" },
-    c = { "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", "Colorscheme" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
     e = { "<cmd>Telescope emoji<cr>", "Find Emoji Symbol" },
     f = { "<cmd>Telescope find_files<cr>", "Find files" },
@@ -185,6 +181,7 @@ local mappings = {
     R = { "<cmd>Telescope registers<cr>", "Registers" },
     s = { "<cmd>lua require('telescope').extensions.aerial.aerial()<cr>", "Find Symbol" },
     S = { '<cmd>lua require("luasnip.loaders").edit_snippet_files()<cr>', "Find Snippets" },
+    t = { "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", "Color Theme" },
     w = { "<cmd>Telescope live_grep<cr>", "Find Text" },
   },
   g = {

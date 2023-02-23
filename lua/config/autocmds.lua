@@ -13,13 +13,13 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
 
 -- makes sure that any opened buffer which is contained in a git repo will be tracked.
-
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*",
   callback = function()
     require("lazygit.utils").project_root_dir()
   end,
 })
+
 -- Go to last loc when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPre", {
   pattern = "*",
@@ -87,7 +87,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
   pattern = "SessionLoadPost",
   group = config_group,
   callback = function()
-    require("nvim-tree").toggle(false, true)
+    -- require("nvim-tree").toggle(false, true)
     require "notify"("Session loaded!", "info", { title = "Session Manager" })
   end,
 })
@@ -98,6 +98,6 @@ vim.api.nvim_create_autocmd({ "User" }, {
   group = config_group,
   callback = function()
     require "notify"("Session saved!", "info", { title = "Session Manager", bufid = 0 })
-    require("nvim-tree").toggle(false, true)
+    -- require("nvim-tree").toggle(false, true)
   end,
 })

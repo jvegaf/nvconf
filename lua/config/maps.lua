@@ -56,6 +56,7 @@ keymap("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", opts)
 -- dont yank on visual paste
 keymap("v", "p", '"_dP', opts)
 
+keymap("n", "<F1>", "<cmd>vertical  help<cr>", opts)
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
 keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
 keymap(
@@ -85,3 +86,6 @@ keymap("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", opts)
 keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", opts)
 keymap("n", "<S-q>", "<cmd>Bdelete<CR>", opts)
 
+keymap("n", "<leader>x", "<cmd>qall<CR>", {desc = "Exit" ,  noremap = true, silent = true })   
+keymap("n", "<leader>w", "<cmd>w<CR>", {desc = "Write" ,  noremap = true, silent = true })
+keymap("n", "<leader>q", "<cmd>q<CR>", {desc = "Close Window" ,  noremap = true, silent = true} )   

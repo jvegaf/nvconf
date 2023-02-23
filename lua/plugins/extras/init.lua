@@ -24,10 +24,6 @@ return {
     end,
   },
   {
-    "voldikss/vim-browser-search",
-    keys = { { "<A-s>", ":'<,'>BrowserSearch<cr>", mode = "v", desc = "Search on web" } },
-  },
-  {
     "nacro90/numb.nvim",
     lazy = false,
     config = true,
@@ -75,12 +71,7 @@ return {
       require "plugins.config.indent-blankline"
     end,
   },
-  {
-    "lalitmee/browse.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-  },
   { "normen/vim-pio" },
-  -- Snippets & Language & Syntax
   {
     "NvChad/nvim-colorizer.lua",
     config = function()

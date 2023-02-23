@@ -3,7 +3,6 @@ return {
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
-    config = true,
   },
   {
     "neovim/nvim-lspconfig",
@@ -17,26 +16,26 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    lazy = false,
+    -- lazy = false,
     dependencies = {
       "mason.nvim",
     },
-    opts = {
-      ensure_installed = {
-        "lua-language-server",
-        "vim-language-server",
-        "stylua",
-        "luacheck",
-        "shellcheck",
-        "shfmt",
-        "xmlformatter",
-        "stylelint",
-        "yamllint",
-        "prettier",
-        "eslint_d",
-      },
-      run_on_start = false,
-    },
+    -- opts = {
+    --   ensure_installed = {
+    --     "lua-language-server",
+    --     "vim-language-server",
+    --     "stylua",
+    --     "luacheck",
+    --     "shellcheck",
+    --     "shfmt",
+    --     "xmlformatter",
+    --     "stylelint",
+    --     "yamllint",
+    --     "prettier",
+    --     "eslint_d",
+    --   },
+    --   run_on_start = false,
+    -- },
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
