@@ -1,5 +1,4 @@
 return {
-
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
@@ -30,20 +29,11 @@ return {
     lazy = false,
   },
   {
-    "kosayoda/nvim-lightbulb",
-    dependencies = { "antoinemadec/FixCursorHold.nvim" },
-    lazy = false,
-    config = function()
-      require"nvim-lightbulb".setup{
-        autocmd = {
-          enabled = true,
-        },
-      }
-    end,
-  },
-  {
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu",
     lazy = false
   },
+  {
+    "WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
+  }
 }

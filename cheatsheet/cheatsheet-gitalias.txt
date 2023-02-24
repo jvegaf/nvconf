@@ -1,4 +1,4 @@
-## cheatsheet @quick @reference 
+## git-alias @pwsh @reference 
 
  g                    | git                                                                                                      
  ga                   | git add                                                                                                  

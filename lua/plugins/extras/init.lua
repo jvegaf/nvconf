@@ -1,5 +1,5 @@
 return {
-{
+  {
     "numToStr/Comment.nvim",
     lazy = true,
     branch = "jsx",
@@ -77,5 +77,26 @@ return {
     config = function()
       require "plugins.config.colorizer"
     end,
+  },
+  { "AndrewRadev/switch.vim", lazy = true },
+  {
+    "bennypowers/splitjoin.nvim",
+    lazy = true,
+    keys = {
+      {
+        "gj",
+        function()
+          require("splitjoin").join()
+        end,
+        desc = "Join the object under cursor",
+      },
+      {
+        "g,",
+        function()
+          require("splitjoin").split()
+        end,
+        desc = "Split the object under cursor",
+      },
+    },
   },
 }

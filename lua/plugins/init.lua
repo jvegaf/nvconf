@@ -21,16 +21,6 @@ return {
   {
     "RRethy/vim-illuminate",
   },
-  {
-    "sudormrfbin/cheatsheet.nvim",
-    dependencies = {
-      { "nvim-telescope/telescope.nvim" },
-      { "nvim-lua/popup.nvim" },
-      { "nvim-lua/plenary.nvim" },
-    },
-    config = true,
-    cmd = { "Cheatsheet", "CheatsheetEdit" },
-  },
   { "nvim-pack/nvim-spectre" },
   {
     "gbprod/stay-in-place.nvim",
