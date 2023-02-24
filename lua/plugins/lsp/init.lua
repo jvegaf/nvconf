@@ -3,6 +3,7 @@ return {
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
+    lazy = false,
   },
   {
     "neovim/nvim-lspconfig",
@@ -13,70 +14,36 @@ return {
       "hrsh7th/cmp-nvim-lsp",
     },
     servers = nil,
+    lazy = false,
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    -- lazy = false,
+    lazy = false,
     dependencies = {
       "mason.nvim",
     },
-    -- opts = {
-    --   ensure_installed = {
-    --     "lua-language-server",
-    --     "vim-language-server",
-    --     "stylua",
-    --     "luacheck",
-    --     "shellcheck",
-    --     "shfmt",
-    --     "xmlformatter",
-    --     "stylelint",
-    --     "yamllint",
-    --     "prettier",
-    --     "eslint_d",
-    --   },
-    --   run_on_start = false,
-    -- },
   },
   {
     "jose-elias-alvarez/null-ls.nvim",
     event = "BufReadPre",
     dependencies = { "mason.nvim" },
+    lazy = false,
+  },
+  {
+    "kosayoda/nvim-lightbulb",
+    dependencies = { "antoinemadec/FixCursorHold.nvim" },
+    lazy = false,
     config = function()
-      local null_ls = require "null-ls"
-
-      null_ls.setup {
-        sources = {
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.xmlformat,
-          null_ls.builtins.formatting.prettier,
-
-          null_ls.builtins.diagnostics.eslint_d.with {
-            diagnostics_format = "[eslint] #{m}\n(#{c})",
-          },
-          -- b.diagnostics.php,
-          null_ls.builtins.diagnostics.shellcheck,
-          null_ls.builtins.diagnostics.stylelint,
-          null_ls.builtins.diagnostics.yamllint,
-          null_ls.builtins.diagnostics.luacheck,
+      require"nvim-lightbulb".setup{
+        autocmd = {
+          enabled = true,
         },
       }
     end,
   },
   {
-    "kosayoda/nvim-lightbulb",
-    dependencies = { "antoinemadec/FixCursorHold.nvim" },
-    opts = {
-      autocmd = {
-        enabled = true,
-      },
-    },
-    config = function()
-      vim.api.nvim_command "highlight LightBulbFloatWin ctermfg= ctermbg= guifg= guibg="
-      vim.api.nvim_command "highlight LightBulbVirtualText ctermfg= ctermbg= guifg= guibg="
-    end,
-  },
-  {
     "weilbith/nvim-code-action-menu",
     cmd = "CodeActionMenu",
+    lazy = false
   },
 }

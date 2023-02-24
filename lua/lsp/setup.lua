@@ -17,8 +17,7 @@ mason.setup {
 
 mason_lsp.setup {
   -- A list of servers to automatically install if they're not already installed
-  ensure_installed = { "bashls", "cssls", "eslint", "graphql", "html", "jsonls", "lua_ls", "tailwindcss", "tsserver",
-    },
+  ensure_installed = { "bashls", "cssls", "graphql", "html", "jsonls", "lua_ls", "tailwindcss", "tsserver","emmet_ls" },
 
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
   -- This setting has no relation with the `ensure_installed` setting.
@@ -27,7 +26,7 @@ mason_lsp.setup {
   --   - true: All servers set up via lspconfig are automatically installed.
   --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
   --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-  automatic_installation = true,
+  -- automatic_installation = true,
 }
 
 local lspconfig = require("lspconfig")
@@ -118,3 +117,65 @@ require('ufo').setup({
   fold_virt_text_handler = ufo_config_handler,
   close_fold_kinds = { "imports" }
 })
+
+    
+local null_ls = require "null-ls"
+
+null_ls.setup {
+  sources = {
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.xmlformat,
+    null_ls.builtins.formatting.prettier,
+
+    null_ls.builtins.diagnostics.eslint_d.with {
+      diagnostics_format = "[eslint] #{m}\n(#{c})",
+    },
+    -- b.diagnostics.php,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.stylelint,
+    null_ls.builtins.diagnostics.yamllint,
+    null_ls.builtins.diagnostics.luacheck,
+  },
+}
+
+
+local tools = require('mason-tool-installer')
+
+tools.setup {
+
+    -- opts = {
+      ensure_installed = {
+        "lua-language-server",
+        "vim-language-server",
+        "stylua",
+        "luacheck",
+        "shellcheck",
+        "shfmt",
+        "xmlformatter",
+        "stylelint",
+        "yamllint",
+        "prettier",
+        "eslint_d",
+      },
+  auto_update = false,
+
+  -- automatically install / update on startup. If set to false nothing
+  -- will happen on startup. You can use :MasonToolsInstall or
+  -- :MasonToolsUpdate to install tools and check for updates.
+  -- Default: true
+  run_on_start = false,
+
+  -- set a delay (in ms) before the installation starts. This is only
+  -- effective if run_on_start is set to true.
+  -- e.g.: 5000 = 5 second delay, 10000 = 10 second delay, etc...
+  -- Default: 0
+  start_delay = 3000, -- 3 second delay
+
+  -- Only attempt to install if 'debounce_hours' number of hours has
+  -- elapsed since the last time Neovim was started. This stores a 
+  -- timestamp in a file named stdpath('data')/mason-tool-installer-debounce.
+  -- This is only relevant when you are using 'run_on_start'. It has no
+  -- effect when running manually via ':MasonToolsInstall' etc....
+  -- Default: nil
+  debounce_hours = 5, -- at least 5 hours between attempts to install/update
+}

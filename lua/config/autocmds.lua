@@ -1,5 +1,7 @@
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
+local function augroup(name)
+  return vim.api.nvim_create_augroup(name, { clear = true })
+end
+-- highlight line yanked
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
@@ -10,7 +12,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Check if we need to reload the file when it changed
-vim.api.nvim_create_autocmd("FocusGained", { command = "checktime" })
+-- Check if we need to reload the file when it changed
+vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = augroup "checktime",
+  command = "checktime",
+})
 
 -- makes sure that any opened buffer which is contained in a git repo will be tracked.
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -54,6 +60,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "toggleterm",
     "tsplayground",
     "vim",
+    "telescopeprompt",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -99,5 +106,13 @@ vim.api.nvim_create_autocmd({ "User" }, {
   callback = function()
     require "notify"("Session saved!", "info", { title = "Session Manager", bufid = 0 })
     -- require("nvim-tree").toggle(false, true)
+  end,
+})
+
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+  group = augroup "resize_splits",
+  callback = function()
+    vim.cmd "tabdo wincmd ="
   end,
 })

@@ -3,8 +3,14 @@ local M = {}
 M.settings = {
   Lua = {
     diagnostics = {
-      globals = { 'vim', 'bit', 'packer_plugins' }
-    }
+      globals = { 'vim' },
+    },
+    workspace = {
+      checkThirdParty = false,
+    },
+    completion = {
+      callSnippet = "Replace",
+    },
   }
 }
 

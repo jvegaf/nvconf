@@ -21,9 +21,13 @@ require("lazy").setup {
     { import = "plugins.dap" },
     { import = "plugins.extras" },
   },
-  defaults = { lazy = true, version = "*" },
+  defaults = { lazy = true },
   install = { missing = true, colorscheme = { "tokyonight" } },
-  checker = { enabled = false },
+  checker = { enabled = true },
+  change_detection = {
+    enabled = true,
+    notify = true,
+  },
   performance = {
     cache = {
       enabled = false,
@@ -46,4 +50,3 @@ require("lazy").setup {
     border = "rounded",
   },
 }
-
