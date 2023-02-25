@@ -7,7 +7,6 @@ return {
   config = true,
   lazy = false,
   keys = {
-     { "<leader>gh", "<cmd>VGit buffer_history_preview<CR>", desc = "Buffer History" },
      { "<leader>gj", "<cmd>lua require 'gitsigns'.next_hunk()<cr>", desc = "Next Hunk" },
      { "<leader>gk", "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", desc = "Prev Hunk" },
      { "<leader>gp", "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", desc = "Preview Hunk" },

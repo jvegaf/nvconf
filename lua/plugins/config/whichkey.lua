@@ -118,19 +118,18 @@ local mappings = {
   ["gy"] = "Link",
   c = {
     name = "Cheatsheet",
-    l = { "<cmd>Cheatsheet<cr>", "Cheatsheets" },
   },
   B = {
     name = "Browse",
   },
-  -- L = {
-  --   name = "Lazy",
-  --   c = { "<cmd>Lazy compile<cr>", "Compile" },
-  --   i = { "<cmd>Lazy install<cr>", "Install" },
-  --   l = { "<cmd>Lazy<cr>", "Lazy" },
-  --   p = { "<cmd>Lazy profile<cr>", "Profile" },
-  --   d = { "<cmd>Lazy debug<cr>", "Debug" },
-  -- },
+  L = {
+    name = "Lazy",
+    c = { "<cmd>Lazy compile<cr>", "Compile" },
+    i = { "<cmd>Lazy install<cr>", "Install" },
+    l = { "<cmd>Lazy<cr>", "Lazy" },
+    p = { "<cmd>Lazy profile<cr>", "Profile" },
+    d = { "<cmd>Lazy debug<cr>", "Debug" },
+  },
   o = {
     name = "Options",
     c = { "<cmd>lua vim.g.cmp_active=false<cr>", "Completion off" },
