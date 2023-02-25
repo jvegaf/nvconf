@@ -118,7 +118,7 @@ local tools = require "mason-tool-installer"
 tools.setup {
   ensure_installed = {
     "stylua",
-    "luacheck",
+    -- "luacheck",
     "shellcheck",
     "shfmt",
     "xmlformatter",
@@ -145,6 +145,6 @@ null_ls.setup {
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.diagnostics.stylelint,
     null_ls.builtins.diagnostics.yamllint,
-    null_ls.builtins.diagnostics.luacheck,
+    -- null_ls.builtins.diagnostics.luacheck,
   },
 }
