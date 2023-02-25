@@ -1,28 +1,33 @@
-
 return {
   "akinsho/toggleterm.nvim",
   keys = {
-    { [[<C-\>]] },
-    { "<leader>1", "<Cmd>1ToggleTerm<Cr>", desc = "Terminal #1" },
-    { "<leader>2", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2" },
-    { "<leader>3", "<Cmd>3ToggleTerm<Cr>", desc = "Terminal #3" },
+    { "<A-1>", "<Cmd>1ToggleTerm direction=vertical<Cr>",   desc = "Terminal #1", mode = { "t", "n" } },
+    { "<A-2>", "<Cmd>2ToggleTerm<Cr>",                      desc = "Terminal #2", mode = { "t", "n" } },
+    { "<A-3>", "<Cmd>3ToggleTerm direction=horizontal<Cr>", desc = "Terminal #3", mode = { "t", "n" } },
   },
   cmd = { "ToggleTerm", "TermExec" },
-  opts = {
-    size = 20,
-    hide_numbers = true,
-    open_mapping = [[<C-\>]],
-    shade_filetypes = {},
-    shade_terminals = false,
-    shading_factor = 0.3,
-    start_in_insert = true,
-    persist_size = true,
-    direction = "float",
-    winbar = {
-      enabled = false,
-      name_formatter = function(term)
-        return term.name
-      end,
-    },
-  },
+  config = function()
+    require("toggleterm").setup {
+      size = 20,
+      open_mapping = [[<A-0>]],
+      hide_numbers = true,
+      shade_filetypes = {},
+      shade_terminals = true,
+      shading_factor = 2,
+      start_in_insert = true,
+      insert_mappings = true,
+      persist_size = true,
+      direction = "float",
+      close_on_exit = true,
+      shell = vim.o.shell,
+      float_opts = {
+        border = "curved",
+        winblend = 0,
+        highlights = {
+          border = "Normal",
+          background = "Normal",
+        },
+      },
+    }
+  end,
 }
