@@ -74,11 +74,23 @@ return {
   { "normen/vim-pio" },
   {
     "NvChad/nvim-colorizer.lua",
-    config = function()
-      require "plugins.config.colorizer"
-    end,
+    opts = {
+      filetypes = {
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact",
+        "lua",
+      },
+      user_default_options = {
+        mode = "background",
+        tailwind = false, -- Enable tailwind colors
+      },
+    },
   },
-  { "AndrewRadev/switch.vim", lazy = true },
+  --splitjoin
   {
     "bennypowers/splitjoin.nvim",
     lazy = true,
