@@ -3,5 +3,7 @@ return {
   dependencies = {
     "RishabhRD/popfix",
   },
-  -- TODO: add keys
+  keys = {
+    {"<leader>cs", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet"},
+  }
 }

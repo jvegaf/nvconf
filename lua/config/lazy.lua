@@ -17,7 +17,6 @@ require("lazy").setup {
     { import = "plugins.lsp" },
     { import = "plugins.dashboard" },
     { import = "plugins.git" },
-    { import = "plugins.testing" },
     { import = "plugins.dap" },
     { import = "plugins.extras" },
   },
