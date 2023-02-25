@@ -126,3 +126,13 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     vim.cmd "tabdo wincmd ="
   end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*.lua" },
+  callback = function()
+    require("toggle_lsp_diagnostics").init {
+      underline = false,
+      virtual_text = false,
+    }
+  end,
+})

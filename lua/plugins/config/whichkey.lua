@@ -127,15 +127,15 @@ local mappings = {
   B = {
     name = "Browse",
   },
-  L = {
-    name = "Lazy",
-    c = { "<cmd>Lazy compile<cr>", "Compile" },
-    i = { "<cmd>Lazy install<cr>", "Install" },
-    l = { "<cmd>Lazy<cr>", "Lazy" },
-    s = { "<cmd>Lazy sync<cr>", "Sync" },
-    p = { "<cmd>Lazy profile<cr>", "Profile" },
-    d = { "<cmd>Lazy debug<cr>", "Debug" },
-  },
+  -- L = {
+  --   name = "Lazy",
+  --   c = { "<cmd>Lazy compile<cr>", "Compile" },
+  --   i = { "<cmd>Lazy install<cr>", "Install" },
+  --   l = { "<cmd>Lazy<cr>", "Lazy" },
+  --   s = { "<cmd>Lazy sync<cr>", "Sync" },
+  --   p = { "<cmd>Lazy profile<cr>", "Profile" },
+  --   d = { "<cmd>Lazy debug<cr>", "Debug" },
+  -- },
   o = {
     name = "Options",
     c = { "<cmd>lua vim.g.cmp_active=false<cr>", "Completion off" },
@@ -151,6 +151,7 @@ local mappings = {
   f = {
     name = "Find",
     b = { "<cmd>lua require('telescope').extensions.file_browser.file_browser()<cr>", "File Browser" },
+    c = { "<cmd>lua require('telescope').extensions.changes.changes()<cr>", "Changes" },
     C = { "<cmd>Telescope commands<cr>", "Commands" },
     e = { "<cmd>Telescope emoji<cr>", "Find Emoji Symbol" },
     f = { "<cmd>Telescope find_files<cr>", "Find files" },
@@ -166,6 +167,7 @@ local mappings = {
     s = { "<cmd>lua require('telescope').extensions.aerial.aerial()<cr>", "Find Symbol" },
     S = { '<cmd>lua require("luasnip.loaders").edit_snippet_files()<cr>', "Find Snippets" },
     t = { "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", "Color Theme" },
+    u = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo Changes" },
     w = { "<cmd>Telescope live_grep<cr>", "Find Text" },
   },
   g = {
@@ -209,7 +211,7 @@ local mappings = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
-    t = { '<cmd>lua require("user.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics" },
+    t = { name = "Toggle" },
     u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
   },
   s = {
@@ -228,11 +230,8 @@ local mappings = {
   },
   t = {
     name = "Telescope",
-    n = { "<cmd>Telescope node_modules list<cr>", "Node Modules" },
-    c = { "<cmd>lua require('telescope').extensions.changes.changes()<cr>", "Changes" },
-    l = { "<cmd>lua require('telescope').extensions.lazygit.lazygit()<cr>", "Lazygit" },
-    t = { "<cmd>lua require('telescope').extensions.tailiscope.tailiscope()<cr>", "Tailwincss" },
-    u = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo Changes" },
+    -- n = { "<cmd>Telescope node_modules list<cr>", "Node Modules" },
+    -- t = { "<cmd>lua require('telescope').extensions.tailiscope.tailiscope()<cr>", "Tailwincss" },
   },
   T = {
     name = "Treesitter",
