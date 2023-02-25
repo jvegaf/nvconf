@@ -15,6 +15,8 @@ if not snip_status_ok then
   return
 end
 
+local icons = require"utils.icons"
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -36,18 +38,18 @@ end
 -- │ Setup                                                    │
 -- ╰──────────────────────────────────────────────────────────╯
 local source_mapping = {
-  npm         = EcoVim.icons.terminal .. 'NPM',
-  cmp_tabnine = EcoVim.icons.light,
-  -- Copilot     = EcoVim.icons.copilot,
-  nvim_lsp    = EcoVim.icons.paragraph .. 'LSP',
-  buffer      = EcoVim.icons.buffer .. 'BUF',
-  nvim_lua    = EcoVim.icons.bomb,
-  emoji       = EcoVim.icons.smiley,
-  luasnip     = EcoVim.icons.snippet .. 'SNP',
-  calc        = EcoVim.icons.calculator,
-  path        = EcoVim.icons.folderOpen2,
-  treesitter  = EcoVim.icons.tree,
-  zsh         = EcoVim.icons.terminal .. 'ZSH',
+  npm         = icons.terminal .. 'NPM',
+  cmp_tabnine = icons.light,
+  -- Copilot     = icons.copilot,
+  nvim_lsp    = icons.paragraph .. 'LSP',
+  buffer      = icons.buffer .. 'BUF',
+  nvim_lua    = icons.bomb,
+  emoji       = icons.smiley,
+  luasnip     = icons.snippet .. 'SNP',
+  calc        = icons.calculator,
+  path        = icons.folderOpen2,
+  treesitter  = icons.tree,
+  zsh         = icons.terminal .. 'ZSH',
 }
 
 local buffer_option = {
@@ -160,15 +162,15 @@ cmp.setup {
   -- You should specify your *installed* sources.
   sources = {
     { name = 'nvim_lsp', priority = 9 },
-    { name = 'npm', priority = 9 },
-    { name = 'luasnip', priority = 9, max_item_count = 8 },
-    -- { name = 'copilot', priority = 8 },
     { name = 'cmp_tabnine', priority = 8, max_num_results = 3 },
+    { name = 'luasnip', priority = 9, max_item_count = 8 },
+    { name = 'npm', priority = 8 },
     { name = 'buffer', priority = 7, keyword_length = 5, option = buffer_option, max_item_count = 8 },
     { name = 'nvim_lua', priority = 5 },
     { name = 'emoji', priority = 4 },
     { name = 'path', priority = 4 },
     { name = 'calc', priority = 3 },
+    -- { name = 'copilot', priority = 8 },
   },
 
   sorting = {

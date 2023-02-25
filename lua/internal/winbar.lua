@@ -1,4 +1,5 @@
 local M = {}
+local icons = utils.icons
 
 local status_gps_ok, gps = pcall(require, "nvim-gps")
 if not status_gps_ok then
@@ -58,7 +59,7 @@ M.gps = function()
   else
     if not isempty(gps_location) then
       local hl_group = "LineNr"
-      return retval .. " " .. "%#" .. hl_group .. "#" .. EcoVim.icons.caretRight .. "%*" .. gps_location
+      return retval .. " " .. "%#" .. hl_group .. "#" .. icons.caretRight .. "%*" .. gps_location
     else
       return retval
     end

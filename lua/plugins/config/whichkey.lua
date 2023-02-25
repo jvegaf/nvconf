@@ -108,10 +108,6 @@ local mappings = {
   e = { "<cmd>lua require'nvim-tree'.toggle()<cr>", "Explorer" },
   -- h = { "<cmd>split<cr>", "split" },
   H = { "<cmd>checkhealth<cr>", "Check health" },
-  j = {
-    "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
-    "Next Diagnostic",
-  },
   k = {
     "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
     "Prev Diagnostic",
@@ -132,7 +128,6 @@ local mappings = {
   --   c = { "<cmd>Lazy compile<cr>", "Compile" },
   --   i = { "<cmd>Lazy install<cr>", "Install" },
   --   l = { "<cmd>Lazy<cr>", "Lazy" },
-  --   s = { "<cmd>Lazy sync<cr>", "Sync" },
   --   p = { "<cmd>Lazy profile<cr>", "Profile" },
   --   d = { "<cmd>Lazy debug<cr>", "Debug" },
   -- },
@@ -227,6 +222,7 @@ local mappings = {
     name = "System",
     d = { "<cmd>Alpha<cr>", "Dashboard" },
     n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
+    l = { "<cmd>Lazy<cr>", "Lazy" },
   },
   t = {
     name = "Telescope",
