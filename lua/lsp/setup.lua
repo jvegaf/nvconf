@@ -134,7 +134,7 @@ tools.setup {
     "prettier",
     "eslint_d",
   },
-  auto_update = false,
+  auto_update = true,
 
   run_on_start = false,
 }
