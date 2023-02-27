@@ -71,7 +71,10 @@ return {
       require "plugins.config.indent-blankline"
     end,
   },
-  { "normen/vim-pio" },
+  {
+    "normen/vim-pio",
+    ft = { "dosini" },
+  },
   {
     "NvChad/nvim-colorizer.lua",
     opts = {

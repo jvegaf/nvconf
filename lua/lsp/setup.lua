@@ -40,13 +40,13 @@ tools.setup {
     "shellcheck",
     "shfmt",
     "xmlformatter",
-    "stylelint",
+    -- "stylelint",
     "yamllint",
     "prettier",
     "eslint_d",
     "clangd",
     "clang-format",
-    "cmake"
+    -- "cmake"
   },
   auto_update = true,
   auto_install = true,
