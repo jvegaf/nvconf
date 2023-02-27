@@ -3,6 +3,7 @@ local mason_ok, mason = pcall(require, "mason")
 local mason_lsp_ok, mason_lsp = pcall(require, "mason-lspconfig")
 local ufo_config_handler = require("plugins.nvim-ufo").handler
 
+local tools = require "mason-tool-installer"
 local null_ls = require "null-ls"
 
 if not mason_ok or not mason_lsp_ok then
@@ -29,6 +30,27 @@ mason_lsp.setup {
   },
 
   automatic_installation = true,
+}
+
+
+tools.setup {
+  ensure_installed = {
+    "stylua",
+    -- "luacheck",
+    "shellcheck",
+    "shfmt",
+    "xmlformatter",
+    "stylelint",
+    "yamllint",
+    "prettier",
+    "eslint_d",
+    "clangd",
+    "clang-format",
+    "cmake"
+  },
+  auto_update = true,
+  auto_install = true,
+  run_on_start = false,
 }
 
 local lspconfig = require "lspconfig"
@@ -111,25 +133,6 @@ end
 require("ufo").setup {
   fold_virt_text_handler = ufo_config_handler,
   close_fold_kinds = { "imports" },
-}
-
-local tools = require "mason-tool-installer"
-
-tools.setup {
-  ensure_installed = {
-    "stylua",
-    -- "luacheck",
-    "shellcheck",
-    "shfmt",
-    "xmlformatter",
-    "stylelint",
-    "yamllint",
-    "prettier",
-    "eslint_d",
-  },
-  auto_update = true,
-
-  run_on_start = false,
 }
 
 null_ls.setup {
