@@ -12,7 +12,7 @@ local options = {
   foldenable = true,
   foldlevel = 99,
   foldlevelstart = 99,
-  guifont = 'ComicCodeLigatures NF:h17', -- the font used in graphical neovim applications
+  guifont = 'ComicCodeLigatures NF:h12', -- the font used in graphical neovim applications
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   incsearch = false,
@@ -39,7 +39,7 @@ local options = {
   timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
   title = true,
   undofile = true, -- enable persistent undo
-  updatetime = 100, -- faster completion (4000ms default)
+  updatetime = 300, -- faster completion (4000ms default)
   wrap = false, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }

@@ -40,13 +40,14 @@ return {
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
-    dependencies = "MunifTanjim/nui.nvim",
+    dependencies = { "MunifTanjim/nui.nvim" },
     config = function()
       require "plugins.config.dressing"
     end,
   },
   {
     "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
       require "plugins.config.trouble"
@@ -66,5 +67,13 @@ return {
     event = "InsertEnter",
     ft = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
     config = true, -- run require("template-string").setup()
+  },
+  {
+    "p00f/clangd_extensions.nvim",
+    lazy = true,
+    ft = { "cpp" },
+    config = function()
+      require("clangd_extensions").setup()
+    end,
   },
 }
