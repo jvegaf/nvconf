@@ -52,6 +52,7 @@ return {
   },
   {
     "ecosse3/galaxyline.nvim",
+    dependencies = { "vuki656/package-info.nvim" },
     config = function()
       require "plugins.config.galaxyline"
     end,
