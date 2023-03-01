@@ -64,7 +64,13 @@ return {
       require "plugins.config.cinnamon"
     end,
   },
-  { "kylechui/nvim-surround", lazy = false, config = true },
+  {
+    "kylechui/nvim-surround",
+    lazy = false,
+    config = function ()
+      require"nvim-surround".setup()
+    end
+  },
   {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
