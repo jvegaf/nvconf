@@ -14,9 +14,9 @@ local setup = {
     -- the presets plugin, adds help for a bunch of default keybindings in Neovim
     -- No actual key bindings are created
     presets = {
-      operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-      motions = false, -- adds help for motions
-      text_objects = false, -- help for text objects triggered after entering an operator
+      operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+      motions = true, -- adds help for motions
+      text_objects = true, -- help for text objects triggered after entering an operator
       windows = true, -- default bindings on <c-w>
       nav = true, -- misc bindings to work with windows
       z = true, -- bindings for folds, spelling and others prefixed with z
@@ -112,24 +112,11 @@ local mappings = {
     "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
     "Prev Diagnostic",
   },
-  n = { "<cmd>Telescope notify<cr>", "Notifications" },
   y = { "<cmd>lua require('telescope').extensions.yank_history.yank_history()<cr>", "Yank History" },
   ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
   ["gy"] = "Link",
-  c = {
-    name = "Cheatsheet",
-  },
-  B = {
-    name = "Browse",
-  },
-  L = {
-    name = "Lazy",
-    c = { "<cmd>Lazy compile<cr>", "Compile" },
-    i = { "<cmd>Lazy install<cr>", "Install" },
-    l = { "<cmd>Lazy<cr>", "Lazy" },
-    p = { "<cmd>Lazy profile<cr>", "Profile" },
-    d = { "<cmd>Lazy debug<cr>", "Debug" },
-  },
+  c = { name = "Cheatsheet" },
+  B = { name = "Browse" },
   o = {
     name = "Options",
     c = { "<cmd>lua vim.g.cmp_active=false<cr>", "Completion off" },
@@ -176,24 +163,15 @@ local mappings = {
     a = { "<cmd>CodeActionMenu<cr>", "Code Action" },
     c = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", "Get Capabilities" },
     d = { "<cmd>TroubleToggle<cr>", "Diagnostics" },
-    w = {
-      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-      "Workspace Diagnostics",
-    },
+    w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
     f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
     F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints" },
     H = { "<cmd>IlluminateToggle<cr>", "Toggle Doc HL" },
     I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-    j = {
-      "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>",
-      "Next Diagnostic",
-    },
-    k = {
-      "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
-      "Prev Diagnostic",
-    },
+    j = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", "Next Diagnostic" },
+    k = { "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", "Prev Diagnostic" },
     v = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Virtual Text" },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
     o = { "<cmd>SymbolsOutline<cr>", "Outline" },
@@ -201,10 +179,7 @@ local mappings = {
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     R = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
-      "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
-      "Workspace Symbols",
-    },
+    S = { "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", "Workspace Symbols" },
     t = { name = "Toggle" },
     u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
   },
@@ -221,6 +196,7 @@ local mappings = {
     name = "System",
     d = { "<cmd>Alpha<cr>", "Dashboard" },
     n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
+    s = { "<cmd>e $MYVIMRC<cr>", "Settings" },
     l = { "<cmd>Lazy<cr>", "Lazy" },
   },
   t = {

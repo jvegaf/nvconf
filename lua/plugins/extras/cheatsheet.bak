@@ -6,7 +6,6 @@ return {
     { "nvim-lua/plenary.nvim" },
   },
   config = true,
-  cmd = { "Cheatsheet", "CheatsheetEdit" },
   keys = {
     {"<leader>cc", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet"},
   }

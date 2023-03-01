@@ -53,10 +53,12 @@ keymap("n", "<A-Up>", ":m .-2<CR>==", opts)
 keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", opts)
 keymap("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", opts)
 
+keymap("n","vv", "V", opts)
+
 -- dont yank on visual paste
 keymap("v", "p", '"_dP', opts)
 
-keymap("n", "<F1>", "<cmd>vertical  help<cr>", opts)
+keymap("n", "<F1>", "<cmd>vertical help<cr>", opts)
 keymap("n", "<F4>", "<cmd>Telescope resume<cr>", opts)
 keymap("n", "<F5>", "<cmd>Telescope commands<CR>", opts)
 keymap(

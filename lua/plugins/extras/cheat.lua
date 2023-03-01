@@ -4,6 +4,6 @@ return {
     "RishabhRD/popfix",
   },
   keys = {
-    {"<leader>cs", "<cmd>Cheatsheet<cr>", desc = "Cheatsheet"},
+    {"<leader>cs", "<cmd>Cheat<cr>", desc = "Cheat.sh"},
   }
 }

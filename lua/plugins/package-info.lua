@@ -16,10 +16,4 @@ return {
       package_manager = "npm",
     }
   end,
-  keys = {
-    { "nd", "<cmd>PackageInfoDelete<cr>", desc = "Delete Package" },
-    { "np", "<cmd>PackageInfoChangeVersion<cr>", desc = "Change Package Version" },
-    { "ni", "<cmPackageInfoInstall<cr>", desc = "Install Package" },
-    { "nu", "<cmPackageInfoUpdate<cr>", desc = "Update Package" },
-  },
 }

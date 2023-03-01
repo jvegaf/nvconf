@@ -4,16 +4,16 @@ return {
   config = function()
     local NS = { noremap = true, silent = true }
 
-    vim.keymap.set("x", "gaa", function()
+    vim.keymap.set("x", "aa", function()
       require("align").align_to_char(1, true)
     end, NS) -- Aligns to 1 character, looking left
-    vim.keymap.set("x", "gas", function()
+    vim.keymap.set("x", "as", function()
       require("align").align_to_char(2, true, true)
     end, NS) -- Aligns to 2 characters, looking left and with previews
-    vim.keymap.set("x", "gaw", function()
+    vim.keymap.set("x", "aw", function()
       require("align").align_to_string(false, true, true)
     end, NS) -- Aligns to a string, looking left and with previews
-    vim.keymap.set("x", "gar", function()
+    vim.keymap.set("x", "ar", function()
       require("align").align_to_string(true, true, true)
     end, NS) -- Aligns to a Lua pattern, looking left and with previews
 
@@ -29,4 +29,30 @@ return {
       a.operator(a.align_to_char, { length = 1, reverse = true })
     end, NS)
   end,
+  -- keys = {
+  --   {
+  --     "aa",
+  --     '<cmd>lua require("align").align_to_char(1, true)<cr>',
+  --     mode = { "x", "n" },
+  --     desc = "Aligns to 1 character, looking left",
+  --   },
+  --   {
+  --     "as",
+  --     '<cmd>lua require("align").align_to_char(2, true, true)<cr>',
+  --     mode = { "x", "n" },
+  --     desc = "Aligns to 2 characters, looking left and with previews",
+  --   },
+  --   {
+  --     "aw",
+  --     '<cmd>lua require("align").align_to_string(false, true, true)<cr>',
+  --     mode = { "x", "n" },
+  --     desc = "Aligns to a string, looking left and with previews",
+  --   },
+  --   {
+  --     "ar",
+  --     '<cmd>lua require("align").align_to_string(true, true, true)<cr>',
+  --     mode = { "x" },
+  --     desc = "Aligns to a Lua pattern, looking left and with previews",
+  --   },
+  -- },
 }
