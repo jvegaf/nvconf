@@ -1,11 +1,4 @@
-return {
-  "Shatur/neovim-session-manager",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-  },
-  cmd = "SessionManager",
-  lazy = false,
-  config = function()
+
     local Path = require "plenary.path"
     require("session_manager").setup {
       sessions_dir = Path:new(vim.fn.stdpath "data", "sessions"), -- The directory where the session files will be saved.o
@@ -20,5 +13,3 @@ return {
       autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
       max_path_length = 80, -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
     }
-  end,
-}

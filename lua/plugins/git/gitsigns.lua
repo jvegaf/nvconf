@@ -1,15 +1,19 @@
-return {
-    "lewis6991/gitsigns.nvim",
-    event = "BufReadPre",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require "gitsigns".setup {
+local present, signs = pcall(require, "gitsigns")
+if not present then
+  return
+end
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Setup                                                    │
+-- ╰──────────────────────────────────────────────────────────╯
+signs.setup {
   signs                        = {
-    add          = { hl = 'GitGutterAdd', text = '▎', numhl = 'GitSignsAddNr' },
-    change       = { hl = 'GitGutterChange', text = '▎', numhl = 'GitSignsChangeNr' },
-    delete       = { hl = 'GitGutterDelete', text = '_', numhl = 'GitSignsDeleteNr' },
-    topdelete    = { hl = 'GitGutterDelete', text = '‾', numhl = 'GitSignsDeleteNr' },
-    changedelete = { hl = 'GitGutterChange', text = '~', numhl = 'GitSignsChangeNr' },
+    add          = { hl = 'GitSignsAdd', text = '▎', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
+    change       = { hl = 'GitSignsChange', text = '▎', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+    delete       = { hl = 'GitSignsDelete', text = '_', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+    topdelete    = { hl = 'GitSignsDelete', text = '‾', numhl = 'GitSignsDeleteNr', linehl = 'GitSignsDeleteLn' },
+    changedelete = { hl = 'GitSignsChange', text = '~', numhl = 'GitSignsChangeNr', linehl = 'GitSignsChangeLn' },
+    untracked    = { hl = 'GitSignsAdd', text = '┆', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
   },
   signcolumn                   = true, -- Toggle with `:Gitsigns toggle_signs`
   numhl                        = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -34,7 +38,7 @@ return {
   max_file_length              = 40000,
   preview_config               = {
     -- Options passed to nvim_open_win
-    border = 'rounded',
+    border = EcoVim.ui.float.border,
     style = 'minimal',
     relative = 'cursor',
     row = 0,
@@ -84,8 +88,3 @@ return {
     map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
   end
 }
-
-    end,
-  }
-
-

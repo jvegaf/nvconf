@@ -1,8 +1,4 @@
-return {
-    "lvimuser/lsp-inlayhints.nvim",
-    branch = "main", -- or "anticonceal"
-    config = function()
-      require"lsp-inlayhints".setup{
+local default_config = {
   inlay_hints = {
     parameter_hints = {
       show = true,
@@ -33,6 +29,5 @@ return {
   enabled_at_startup = true,
   debug_mode = false,
 }
-    end,
-  }
 
+require("lsp-inlayhints").setup(default_config)

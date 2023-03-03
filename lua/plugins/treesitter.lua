@@ -1,22 +1,4 @@
-return {
-  {
-    "nvim-treesitter/nvim-treesitter",
-    event = "BufReadPre",
-    dependencies = {
-      "HiPhish/nvim-ts-rainbow2",
-      "JoosepAlviste/nvim-ts-context-commentstring",
-      "windwp/nvim-ts-autotag",
-      "nvim-treesitter/nvim-treesitter-refactor",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "RRethy/nvim-treesitter-textsubjects",
-      {
-        "m-demare/hlargs.nvim",
-        config = function()
-          require("hlargs").setup { color = "#F7768E" }
-        end,
-      },
-    },
-    config = function()
+
       require("nvim-treesitter.configs").setup {
         ensure_installed = { "lua", "vim", "regex", "typescript", "cpp" },
         auto_install = true,
@@ -153,12 +135,3 @@ return {
 
       parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
       parser_config.json.filetype_to_parsername = { "json", "vil" }
-    end,
-  },
-  {
-    "Badhi/nvim-treesitter-cpp-tools",
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-  },
-}

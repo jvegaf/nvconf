@@ -1,9 +1,6 @@
-return {
-  "goolord/alpha-nvim",
-  event = "VimEnter",
-  config = function()
+
     local dashboard = require "alpha.themes.dashboard"
-    dashboard.section.header.val = require("plugins.config.logo")["random"]
+    dashboard.section.header.val = require("plugins.dashboard.logo")["random"]
     dashboard.section.buttons.val = {
       dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
       dashboard.button("b", " " .. " Browse files", ":Telescope file_browser <CR>"),
@@ -53,5 +50,4 @@ return {
         pcall(vim.cmd.AlphaRedraw)
       end,
     })
-  end,
-}
+

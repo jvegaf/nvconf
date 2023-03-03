@@ -1,12 +1,4 @@
-return {
-  "akinsho/toggleterm.nvim",
-  keys = {
-    { "<A-1>", "<Cmd>1ToggleTerm direction=vertical<Cr>",   desc = "Terminal #1", mode = { "t", "n" } },
-    { "<A-2>", "<Cmd>2ToggleTerm<Cr>",                      desc = "Terminal #2", mode = { "t", "n" } },
-    { "<A-3>", "<Cmd>3ToggleTerm direction=horizontal<Cr>", desc = "Terminal #3", mode = { "t", "n" } },
-  },
-  cmd = { "ToggleTerm", "TermExec" },
-  config = function()
+
     require("toggleterm").setup {
       size = 20,
       open_mapping = [[<A-0>]],
@@ -29,5 +21,3 @@ return {
         },
       },
     }
-  end,
-}

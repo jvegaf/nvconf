@@ -1,10 +1,5 @@
-return {
-"akinsho/bufferline.nvim",
-dependencies = {
-  "nvim-tree/nvim-web-devicons",
-},
-lazy = false,
-opts = {
+
+require("bufferline").setup {
   options = {
     mode = "buffers", -- set to "tabs" to only show tabpages instead
     numbers = "none",
@@ -90,5 +85,4 @@ opts = {
     },
     sort_by = "insert_after_current",
   },
-},
 }

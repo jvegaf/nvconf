@@ -11,15 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-require("lazy").setup {
-  spec = {
-    { import = "plugins" },
-    { import = "plugins.lsp" },
-    { import = "plugins.dashboard" },
-    { import = "plugins.git" },
-    { import = "plugins.dap" },
-    { import = "plugins.extras" },
-  },
+require("lazy").setup( "config.plugins", {
   defaults = { lazy = true },
   install = { missing = true, colorscheme = { "tokyonight" } },
   checker = { enabled = true },
@@ -48,4 +40,4 @@ require("lazy").setup {
   ui = {
     border = "rounded",
   },
-}
+})

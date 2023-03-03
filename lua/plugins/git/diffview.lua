@@ -1,12 +1,38 @@
-return {
-  "sindrets/diffview.nvim",
-  dependencies = {
-    { "nvim-lua/plenary.nvim" },
-    { "nvim-tree/nvim-web-devicons" },
-  },
-  cmd = { "DiffviewFileHistory", "DiffviewOpen" },
-  keys = {
-    { "<leader>gh", "<cmd>DiffviewFileHistory<cr>", desc = "File history" },
-  },
-  config = true,
-}
+local lib = require("diffview.lib")
+local diffview = require("diffview")
+
+local M = {}
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Custom Ecovim toggle file history function via <leader>gd│
+-- ╰──────────────────────────────────────────────────────────╯
+M.toggle_file_history = function ()
+  local view = lib.get_current_view()
+  if view == nil then
+    diffview.file_history();
+    return
+  end
+
+  if view then
+    view:close()
+    lib.dispose_view(view)
+  end
+end
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Custom Ecovim toggle status function via <leader>gs      │
+-- ╰──────────────────────────────────────────────────────────╯
+M.toggle_status = function ()
+  local view = lib.get_current_view()
+  if view == nil then
+    diffview.open();
+    return
+  end
+
+  if view then
+    view:close()
+    lib.dispose_view(view)
+  end
+end
+
+return M
