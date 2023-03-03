@@ -17,7 +17,7 @@ end
 
 local icons = require"utils.icons"
 
-require("luasnip/loaders/from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Utils                                                    │
