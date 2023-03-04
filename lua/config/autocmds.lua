@@ -12,7 +12,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Check if we need to reload the file when it changed
--- Check if we need to reload the file when it changed
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup "checktime",
   command = "checktime",
@@ -67,16 +66,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {
-    "TelescopePrompt",
-    "code-action-menu-menu",
-  },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
-    vim.keymap.set({ "n", "i" }, "<Esc>", "<cmd>close<cr>", { buffer = event.buf, silesnt = true })
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = {
+--     "TelescopePrompt",
+--     "code-action-menu-menu",
+--   },
+--   callback = function(event)
+--     vim.bo[event.buf].buflisted = false
+--     vim.keymap.set({ "n", "i" }, "<Esc>", "<cmd>close<cr>", { buffer = event.buf, silesnt = true })
+--   end,
+-- })
 
 -- show cursor line only in active window
 vim.api.nvim_create_autocmd({ "InsertLeave", "WinEnter" }, {

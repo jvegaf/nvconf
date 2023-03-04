@@ -156,7 +156,7 @@ local mappings = {
     e = { "<cmd>lua require'telescope.builtin'.symbols{ sources = { 'gitmoji'} }<cr>", "GitMojis 🤪" },
     b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
     c = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-    g = { "<cmd>LazyGit<CR>", "Lazygit" },
+    g = { "<cmd>LazyGit<cr>", "Lazygit" },
   },
   l = {
     name = "LSP",

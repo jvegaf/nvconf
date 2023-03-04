@@ -3,9 +3,6 @@ local mason_ok, mason = pcall(require, "mason")
 local mason_lsp_ok, mason_lsp = pcall(require, "mason-lspconfig")
 local ufo_config_handler = require("plugins.nvim-ufo").handler
 
-local tools = require "mason-tool-installer"
-local null_ls = require "null-ls"
-
 if not mason_ok or not mason_lsp_ok then
   return
 end
@@ -32,31 +29,15 @@ mason_lsp.setup {
   automatic_installation = true,
 }
 
-
-tools.setup {
-  ensure_installed = {
-    "stylua",
-    -- "luacheck",
-    "shellcheck",
-    "shfmt",
-    "xmlformatter",
-    -- "stylelint",
-    "yamllint",
-    "prettier",
-    "eslint_d",
-    "clangd",
-    "clang-format",
-    -- "cmake"
-  },
-  auto_update = true,
-  auto_install = true,
-  run_on_start = false,
-}
-
 local lspconfig = require "lspconfig"
 
-local handlers = require "lsp.handlers"
 
+local handlers = {
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded'}),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
+  ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+    { virtual_text = true }),
+}
 local function on_attach(client, bufnr)
   -- set up buffer keymaps, etc.
 end
@@ -73,8 +54,7 @@ capabilities.textDocument.foldingRange = {
 -- It enables tsserver automatically so no need to call lspconfig.tsserver.setup
 if typescript_ok then
   typescript.setup {
-    disable_commands = false, -- prevent the plugin from creating Vim commands
-    debug = false, -- enable debug logging for commands
+    disable_commands = false, -- prevent the plugin from creating Vim commands debug = false, -- enable debug logging for commands
     -- LSP Config options
     server = {
       capabilities = require("lsp.servers.tsserver").capabilities,
@@ -135,19 +115,3 @@ require("ufo").setup {
   close_fold_kinds = { "imports" },
 }
 
-null_ls.setup {
-  sources = {
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.xmlformat,
-    null_ls.builtins.formatting.prettier,
-
-    null_ls.builtins.diagnostics.eslint_d.with {
-      diagnostics_format = "[eslint] #{m}\n(#{c})",
-    },
-    -- b.diagnostics.php,
-    null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.diagnostics.stylelint,
-    null_ls.builtins.diagnostics.yamllint,
-    -- null_ls.builtins.diagnostics.luacheck,
-  },
-}

@@ -27,7 +27,6 @@ return {
   },
 
   -- Treesitter
-  { "Badhi/nvim-treesitter-cpp-tools", dependencies = { "nvim-treesitter/nvim-treesitter" } },
   {
     "nvim-treesitter/nvim-treesitter",
     event = "BufReadPre",
@@ -48,7 +47,7 @@ return {
       },
     },
   },
-
+  { "Badhi/nvim-treesitter-cpp-tools", dependencies = { "nvim-treesitter/nvim-treesitter" } },
   -- Navigating (Telescope/Tree/Refactor)
   {
     "nvim-telescope/telescope.nvim",
@@ -98,12 +97,14 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "hrsh7th/cmp-nvim-lsp",
     },
+    lazy = false,
     servers = nil,
   },
   {
     "williamboman/mason.nvim",
+    lazy = false,
     cmd = "Mason",
-    keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+    keys = { { "<leader>lm", "<cmd>Mason<cr>", desc = "Mason" } },
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -111,6 +112,9 @@ return {
     dependencies = {
       "mason.nvim",
     },
+    config = function()
+      require"plugins.mason-installer"
+    end
   },
 
   -- Formatters
@@ -119,12 +123,21 @@ return {
     event = "BufReadPre",
     dependencies = { "mason.nvim" },
     config = function()
-      local nls = require "null-ls"
-      nls.setup {
+      local null_ls = require "null-ls"
+      null_ls.setup {
         sources = {
-          -- nls.builtins.formatting.prettierd,
-          nls.builtins.formatting.stylua,
-          nls.builtins.diagnostics.flake8,
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.xmlformat,
+    null_ls.builtins.formatting.prettier,
+
+    null_ls.builtins.diagnostics.eslint_d.with {
+      diagnostics_format = "[eslint] #{m}\n(#{c})",
+    },
+    -- b.diagnostics.php,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.stylelint,
+    null_ls.builtins.diagnostics.yamllint,
+    -- null_ls.builtins.diagnostics.luacheck,
         },
       }
     end,
@@ -238,6 +251,7 @@ return {
   -- browse
   {
     "voldikss/vim-browser-search",
+    lazy = false,
     keys = { { "<A-s>", ":'<,'>BrowserSearch<cr>", mode = "v", desc = "Search on web" } },
   },
   {
@@ -360,7 +374,7 @@ return {
       require "plugins.bufferline"
     end,
   },
-  { "antoinemadec/FixCursorHold.nvim" }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+  -- { "antoinemadec/FixCursorHold.nvim" }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   {
     "rcarriga/nvim-notify",
     config = function()
@@ -521,6 +535,7 @@ return {
   },
   {
     "kdheepak/lazygit.nvim",
+    lazy = false,
     cmd = { "LazyGit", "LazyGitCurrentFile", "LazyGitFilterCurrentFile", "LazyGitFilter" },
     config = function()
       vim.g.lazygit_floating_window_scaling_factor = 1
