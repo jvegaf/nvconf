@@ -144,41 +144,37 @@ return {
   },
 
   -- LSP Cmp
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
-      "hrsh7th/cmp-calc",
-      "saadparwaiz1/cmp_luasnip",
-      { "tzachar/cmp-tabnine", build = "./install.sh" },
-      {
-        "David-Kunz/cmp-npm",
-        config = function()
-          require("cmp-npm").setup {
-            ignore = {},
-            only_semantic_versions = true,
-          }
-        end,
-      },
-      { "L3MON4D3/LuaSnip",    dependencies = "rafamadriz/friendly-snippets" },
-      {
-        "zbirenbaum/copilot-cmp",
-        disable = not EcoVim.plugins.copilot.enabled,
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
-    },
-    config = function()
-      require "plugins.cmp"
-    end,
-  },
-
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-calc",
+			"saadparwaiz1/cmp_luasnip",
+			{ "tzachar/cmp-tabnine", build = "./install.sh" },
+			{
+				"David-Kunz/cmp-npm",
+				config = function()
+					require("plugins.cmp-npm")
+				end,
+			},
+			{ "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
+			{
+				"zbirenbaum/copilot-cmp",
+				disable = not EcoVim.plugins.copilot.enabled,
+				config = function()
+					require("copilot_cmp").setup()
+				end,
+			},
+		},
+		config = function()
+			require("plugins.cmp")
+		end,
+	},
   -- LSP Addons
   {
     "stevearc/dressing.nvim",
