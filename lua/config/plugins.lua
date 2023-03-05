@@ -10,7 +10,7 @@ return {
       require "config.colorscheme"
     end,
   },
-  { "RRethy/nvim-base16",   lazy = false },
+  { "RRethy/nvim-base16", lazy = false },
   { "nvim-lua/plenary.nvim" },
   {
     "nvim-tree/nvim-web-devicons",
@@ -58,8 +58,8 @@ return {
     dependencies = {
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
-      { "stevearc/aerial.nvim",                      config = true },
-      { "nvim-telescope/telescope-fzf-native.nvim",  build = "make" },
+      { "stevearc/aerial.nvim", config = true },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "cljoly/telescope-repo.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
       { "nvim-telescope/telescope-file-browser.nvim" },
@@ -71,7 +71,7 @@ return {
       { "FeiyouG/command_center.nvim" },
       { "debugloop/telescope-undo.nvim" },
       { "danielvolchek/tailiscope.nvim" },
-      { "gbprod/yanky.nvim",                         config = true },
+      { "gbprod/yanky.nvim", config = true },
     },
   },
   { "nvim-pack/nvim-spectre" },
@@ -114,7 +114,7 @@ return {
     },
     config = function()
       require "plugins.mason-installer"
-    end
+    end,
   },
 
   -- Formatters
@@ -159,10 +159,10 @@ return {
       {
         "David-Kunz/cmp-npm",
         config = function()
-          require("plugins.cmp-npm")
+          require "plugins.cmp-npm"
         end,
       },
-      { "L3MON4D3/LuaSnip",    dependencies = "rafamadriz/friendly-snippets" },
+      { "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
       {
         "zbirenbaum/copilot-cmp",
         disable = not EcoVim.plugins.copilot.enabled,
@@ -172,7 +172,7 @@ return {
       },
     },
     config = function()
-      require("plugins.cmp")
+      require "plugins.cmp"
     end,
   },
   -- LSP Addons
@@ -226,7 +226,7 @@ return {
 
   -- General
 
-  { "AndrewRadev/switch.vim",            lazy = false },
+  { "AndrewRadev/switch.vim", lazy = false },
   --splitjoin
   {
     "bennypowers/splitjoin.nvim",
@@ -296,13 +296,13 @@ return {
       require "plugins.toggleterm"
     end,
     keys = {
-      { "<A-1>", "<Cmd>1ToggleTerm direction=vertical<Cr>",   desc = "Terminal #1", mode = { "t", "n" } },
-      { "<A-2>", "<Cmd>2ToggleTerm<Cr>",                      desc = "Terminal #2", mode = { "t", "n" } },
+      { "<A-1>", "<Cmd>1ToggleTerm direction=vertical<Cr>", desc = "Terminal #1", mode = { "t", "n" } },
+      { "<A-2>", "<Cmd>2ToggleTerm<Cr>", desc = "Terminal #2", mode = { "t", "n" } },
       { "<A-3>", "<Cmd>3ToggleTerm direction=horizontal<Cr>", desc = "Terminal #3", mode = { "t", "n" } },
     },
   },
-  { "tpope/vim-repeat",            lazy = false },
-  { "dhruvasagar/vim-table-mode",  ft = { "markdown" } },
+  { "tpope/vim-repeat", lazy = false },
+  { "dhruvasagar/vim-table-mode", ft = { "markdown" } },
   {
     "mg979/vim-visual-multi",
     keys = {
@@ -384,14 +384,14 @@ return {
     end,
     init = function()
       local banned_messages =
-      { "No information available", "LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+." }
+        { "No information available", "LSP[tsserver] Inlay Hints request failed. Requires TypeScript 4.4+." }
       vim.notify = function(msg, ...)
         for _, banned in ipairs(banned_messages) do
           if msg == banned then
             return
           end
         end
-        require "notify" (msg, ...)
+        require "notify"(msg, ...)
       end
     end,
   },
