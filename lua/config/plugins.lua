@@ -113,7 +113,7 @@ return {
       "mason.nvim",
     },
     config = function()
-      require"plugins.mason-installer"
+      require "plugins.mason-installer"
     end
   },
 
@@ -126,55 +126,55 @@ return {
       local null_ls = require "null-ls"
       null_ls.setup {
         sources = {
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.xmlformat,
-    null_ls.builtins.formatting.prettier,
+          null_ls.builtins.formatting.stylua,
+          null_ls.builtins.formatting.xmlformat,
+          null_ls.builtins.formatting.prettier,
 
-    null_ls.builtins.diagnostics.eslint_d.with {
-      diagnostics_format = "[eslint] #{m}\n(#{c})",
-    },
-    -- b.diagnostics.php,
-    null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.diagnostics.stylelint,
-    null_ls.builtins.diagnostics.yamllint,
-    -- null_ls.builtins.diagnostics.luacheck,
+          null_ls.builtins.diagnostics.eslint_d.with {
+            diagnostics_format = "[eslint] #{m}\n(#{c})",
+          },
+          -- b.diagnostics.php,
+          null_ls.builtins.diagnostics.shellcheck,
+          null_ls.builtins.diagnostics.stylelint,
+          null_ls.builtins.diagnostics.yamllint,
+          -- null_ls.builtins.diagnostics.luacheck,
         },
       }
     end,
   },
 
   -- LSP Cmp
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-calc",
-			"saadparwaiz1/cmp_luasnip",
-			{ "tzachar/cmp-tabnine", build = "./install.sh" },
-			{
-				"David-Kunz/cmp-npm",
-				config = function()
-					require("plugins.cmp-npm")
-				end,
-			},
-			{ "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
-			{
-				"zbirenbaum/copilot-cmp",
-				disable = not EcoVim.plugins.copilot.enabled,
-				config = function()
-					require("copilot_cmp").setup()
-				end,
-			},
-		},
-		config = function()
-			require("plugins.cmp")
-		end,
-	},
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "hrsh7th/cmp-calc",
+      "saadparwaiz1/cmp_luasnip",
+      { "tzachar/cmp-tabnine", build = "./install.sh" },
+      {
+        "David-Kunz/cmp-npm",
+        config = function()
+          require("plugins.cmp-npm")
+        end,
+      },
+      { "L3MON4D3/LuaSnip",    dependencies = "rafamadriz/friendly-snippets" },
+      {
+        "zbirenbaum/copilot-cmp",
+        disable = not EcoVim.plugins.copilot.enabled,
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      },
+    },
+    config = function()
+      require("plugins.cmp")
+    end,
+  },
   -- LSP Addons
   {
     "stevearc/dressing.nvim",
@@ -214,6 +214,7 @@ return {
   },
   {
     "MattesGroeger/vim-bookmarks",
+    cmd = { "BookmarkShowAll", "BookmarkAnnotate", "BookmarkToggle", "BookmarkNext", "BookmarkPrev" },
   },
   {
     "lvimuser/lsp-inlayhints.nvim",
@@ -439,7 +440,7 @@ return {
       require "plugins.session-manager"
     end,
   },
-  { "kylechui/nvim-surround",         lazy = false, config = true },
+  { "kylechui/nvim-surround", lazy = false, config = true },
   {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
