@@ -213,6 +213,9 @@ return {
     config = true, -- run require("template-string").setup()
   },
   {
+    "MattesGroeger/vim-bookmarks",
+  },
+  {
     "lvimuser/lsp-inlayhints.nvim",
     branch = "main", -- or "anticonceal"
     config = function()
