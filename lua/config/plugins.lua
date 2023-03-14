@@ -161,7 +161,8 @@ return require('packer').startup {
     use {
       'tzachar/cmp-tabnine',
       after = 'nvim-cmp',
-      run = 'powershell ./install.ps1',
+      -- run = 'powershell ./install.ps1',
+      run = './install.sh',
       requires = 'hrsh7th/nvim-cmp',
     }
 
