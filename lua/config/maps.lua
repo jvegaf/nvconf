@@ -33,6 +33,8 @@ keymap('n', '<m-tab>', '<c-6>', opts)
 -- Cancel search highlighting with ESC
 keymap('n', '<ESC>', ':nohlsearch<Bar>:echo<CR>', opts)
 
+keymap('n', '<leader>o', 'o<Esc>', opts)
+keymap('n', '<leader>O', 'O<Esc>', opts)
 -- Visual --
 -- Stay in indent mode
 keymap('v', '<', '<gv', opts)

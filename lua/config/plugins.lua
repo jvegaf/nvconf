@@ -36,7 +36,16 @@ return require('packer').startup {
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
-    use 'WhoIsSethDaniel/mason-tool-installer.nvim'
+    use {
+      'jay-babu/mason-null-ls.nvim',
+      requirements = {
+        'williamboman/mason.nvim',
+      },
+      cmd = { 'NullLsInstall', 'NullLsUninstall' },
+      config = function()
+        require 'plugins.mason_null-ls'
+      end,
+    }
     -- LSP UIs
     use {
       'glepnir/lspsaga.nvim',
@@ -75,9 +84,10 @@ return require('packer').startup {
       'nvim-treesitter/nvim-treesitter',
       requires = {
         'nvim-treesitter/nvim-treesitter-textobjects',
+        'windwp/nvim-ts-autotag',
         'RRethy/nvim-treesitter-textsubjects',
-        'p00f/nvim-ts-rainbow',
         'JoosepAlviste/nvim-ts-context-commentstring',
+        'HiPhish/nvim-ts-rainbow2',
       },
       run = function()
         require('nvim-treesitter.install').update { with_sync = true }
@@ -116,7 +126,6 @@ return require('packer').startup {
 
     use 'windwp/nvim-autopairs'
 
-    use 'windwp/nvim-ts-autotag'
 
     use { 'numToStr/Comment.nvim', requires = {
       'JoosepAlviste/nvim-ts-context-commentstring',

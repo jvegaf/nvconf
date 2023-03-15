@@ -1,12 +1,12 @@
 --vim.lsp.set_log_level("debug")
-local ufo_config_handler = require('plugins.nvim-ufo').handler
-
-local typescript_ok, typescript = pcall(require, 'typescript')
-
 local status, nvim_lsp = pcall(require, 'lspconfig')
 if not status then
   return
 end
+
+local ufo_config_handler = require('plugins.nvim-ufo').handler
+
+local typescript_ok, typescript = pcall(require, 'typescript')
 
 local protocol = require 'vim.lsp.protocol'
 

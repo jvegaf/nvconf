@@ -13,7 +13,6 @@ lspconfig.setup {
   ensure_installed = {
     'tsserver',
     'lua_ls',
-    'eslint',
     'angularls',
     'cssls',
     'cssmodules_ls',
