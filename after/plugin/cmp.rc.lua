@@ -13,10 +13,21 @@ if not snip_status_ok then
   return
 end
 
-local tabnine_status_ok, _ = pcall(require, 'cmp_tabnine')
-if not tabnine_status_ok then
+local cmp_tabnine_status_ok, tabnine = pcall(require, "cmp_tabnine.config")
+if not cmp_tabnine_status_ok then
   return
 end
+
+local buffer_option = {
+  -- Complete from all visible buffers (splits)
+  get_bufnrs = function()
+    local bufs = {}
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+      bufs[vim.api.nvim_win_get_buf(win)] = true
+    end
+    return vim.tbl_keys(bufs)
+  end
+}
 
 -- require('luasnip.loaders.from_vscode').load { paths = './snippets' }
 require('luasnip.loaders.from_vscode').lazy_load()
@@ -74,13 +85,14 @@ cmp.setup {
     }),
   },
   sources = cmp.config.sources {
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
-    { name = 'luasnip' },
-    { name = 'nvim_lua' },
-    { name = 'cmp_tabnine' },
-    { name = 'emoji' },
-    { name = 'path' },
+    { name = 'nvim_lsp', priority = 900 },
+    { name = 'luasnip', priority = 850, max_item_count = 8 },
+    { name = 'cmp_tabnine', priority = 800, max_num_results = 3 },
+    -- { name = 'npm', priority = 7 },
+    { name = 'buffer', priority = 700, keyword_length = 5, option = buffer_option, max_item_count = 8 },
+    { name = 'nvim_lua', priority = 600 },
+    { name = 'path', priority = 500 },
+    { name = 'emoji', priority = 400 },
   },
   formatting = {
     format = lspkind.cmp_format { with_text = false, maxwidth = 50 },
@@ -101,6 +113,40 @@ cmp.setup {
     },
   },
 }
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Cmdline Setup                                            │
+-- ╰──────────────────────────────────────────────────────────╯
+
+-- `/` cmdline setup.
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
+-- `:` cmdline setup.
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
+
+-- ╭──────────────────────────────────────────────────────────╮
+-- │ Tabnine Setup                                            │
+-- ╰──────────────────────────────────────────────────────────╯
+tabnine:setup({
+  max_lines                = 1000;
+  max_num_results          = 3;
+  sort                     = true;
+  show_prediction_strength = true;
+  run_on_every_keystroke   = true;
+  snipper_placeholder      = '..';
+  ignored_file_types       = {};
+})
 
 vim.cmd [[
   set completeopt=menuone,noinsert,noselect

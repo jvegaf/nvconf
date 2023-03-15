@@ -26,13 +26,13 @@ return require('packer').startup {
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'L3MON4D3/LuaSnip'
     use 'rafamadriz/friendly-snippets'
-    use 'onsails/lspkind-nvim' -- vscode-like pictograms
-    use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
-    use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
-    use 'hrsh7th/cmp-emoji' -- nvim-cmp source for neovim's built-in LSP
+    use 'onsails/lspkind-nvim'            -- vscode-like pictograms
+    use 'hrsh7th/cmp-buffer'              -- nvim-cmp source for buffer words
+    use 'hrsh7th/cmp-nvim-lsp'            -- nvim-cmp source for neovim's built-in LSP
+    use 'hrsh7th/cmp-emoji'               -- nvim-cmp source for neovim's built-in LSP
     use 'saadparwaiz1/cmp_luasnip'
-    use 'hrsh7th/nvim-cmp' -- Completion
-    use 'neovim/nvim-lspconfig' -- LSP
+    use 'hrsh7th/nvim-cmp'                -- Completion
+    use 'neovim/nvim-lspconfig'           -- LSP
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
@@ -90,7 +90,8 @@ return require('packer').startup {
         'HiPhish/nvim-ts-rainbow2',
       },
       run = function()
-        require('nvim-treesitter.install').update { with_sync = true }
+        local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+        ts_update()
       end,
     }
 
