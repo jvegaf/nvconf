@@ -25,6 +25,7 @@ return require('packer').startup {
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'L3MON4D3/LuaSnip'
+    use 'folke/neodev.nvim'
     use 'rafamadriz/friendly-snippets'
     use 'onsails/lspkind-nvim'            -- vscode-like pictograms
     use 'hrsh7th/cmp-buffer'              -- nvim-cmp source for buffer words
@@ -188,7 +189,7 @@ return require('packer').startup {
     -- Keybinding
     use 'folke/which-key.nvim'
 
-    use 'antoinemadec/FixCursorHold.nvim'
+    -- use 'antoinemadec/FixCursorHold.nvim'
 
     use {
       'lalitmee/browse.nvim',
@@ -218,7 +219,8 @@ return require('packer').startup {
 
     use {
       'folke/trouble.nvim',
-      requires = 'kyazdani42/nvim-web-devicons',
+      requires = 'nvim-tree/nvim-web-devicons',
+      -- requires = 'kyazdani42/nvim-web-devicons',
     }
 
     use {
@@ -233,12 +235,6 @@ return require('packer').startup {
     -- Themes
 
     use 'RRethy/nvim-base16'
-
-    use 'navarasu/onedark.nvim'
-
-    use 'tanvirtin/monokai.nvim'
-
-    use 'folke/tokyonight.nvim'
 
     ----------------------
 

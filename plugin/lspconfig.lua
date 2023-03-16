@@ -1,4 +1,10 @@
 --vim.lsp.set_log_level("debug")
+
+local neodev_status, neodev = pcall(require, 'neodev')
+if neodev_status then
+  neodev.setup()
+end
+
 local status, nvim_lsp = pcall(require, 'lspconfig')
 if not status then
   return

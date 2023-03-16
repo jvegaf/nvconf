@@ -13,14 +13,24 @@ local fn = vim.fn
 -- ╰──────────────────────────────────────────────────────────╯
 
 local header = {
-  '                                                     ',
-  '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
-  '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
-  '  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
-  '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
-  '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
-  '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
-  '                                                     ',
+[[                                                                              ]],
+[[                                    ██████                                    ]],
+[[                                ████▒▒▒▒▒▒████                                ]],
+[[                              ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                              ]],
+[[                            ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                            ]],
+[[                          ██▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒                              ]],
+[[                          ██▒▒▒▒▒▒  ▒▒▓▓▒▒▒▒▒▒  ▓▓▓▓                          ]],
+[[                          ██▒▒▒▒▒▒  ▒▒▓▓▒▒▒▒▒▒  ▒▒▓▓                          ]],
+[[                        ██▒▒▒▒▒▒▒▒▒▒    ▒▒▒▒▒▒▒▒    ██                        ]],
+[[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
+[[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
+[[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
+[[                        ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒██                        ]],
+[[                        ██▒▒██▒▒▒▒▒▒██▒▒▒▒▒▒▒▒██▒▒▒▒██                        ]],
+[[                        ████  ██▒▒██  ██▒▒▒▒██  ██▒▒██                        ]],
+[[                        ██      ██      ████      ████                        ]],
+[[                                                                              ]],
+[[                                                                              ]],
 }
 
 dashboard.section.header.type = 'text'
@@ -85,8 +95,8 @@ end
 dashboard.section.buttons.val = {
   button('r', icons.fileRecent .. ' ' .. 'Recents', '<cmd>Telescope oldfiles hidden=true<CR>', {}),
   button('f', icons.fileNoBg .. ' ' .. 'Find File', '<cmd>Telescope find_files<CR>', {}),
-  button('s', icons.timer .. ' ' .. 'Load Current Dir Session', '<cmd>SessionManager load_current_dir_session<CR>', {}),
-  button('u', icons.container .. ' ' .. 'Update Plugins', '<cmd>PackerSync<CR>', {}),
+  button('d', icons.timer .. ' ' .. 'Load Current Dir Session', '<cmd>SessionManager load_current_dir_session<CR>', {}),
+  button('s', icons.container .. ' ' .. 'Sync Plugins', '<cmd>PackerSync<CR>', {}),
   button('c', icons.cog .. ' ' .. 'Settings', '<cmd>e $MYVIMRC<CR>', {}),
   button('q', icons.exit .. ' ' .. 'Exit', '<cmd>exit<CR>', {}),
 }
