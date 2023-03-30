@@ -47,7 +47,6 @@ return {
       },
     },
   },
-  { "Badhi/nvim-treesitter-cpp-tools", dependencies = { "nvim-treesitter/nvim-treesitter" } },
   -- Navigating (Telescope/Tree/Refactor)
   {
     "nvim-telescope/telescope.nvim",
@@ -123,7 +122,7 @@ return {
     event = "BufReadPre",
     dependencies = { "mason.nvim" },
     config = function()
-      require("plugins.null_ls")
+      require "plugins.null_ls"
     end,
   },
 
