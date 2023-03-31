@@ -50,7 +50,7 @@ keymap('n', '<C-Left>', ':vertical resize -2<CR>', opts)
 keymap('n', '<C-Right>', ':vertical resize +2<CR>', opts)
 
 -- File Browser
-keymap('n', '<m-1>', ':NvimTreeToggle<CR>', opts)
+keymap('n', '<A-1>', ':NvimTreeToggle<CR>', opts)
 keymap('n', '<leader>e', ':NvimTreeFocus<CR>', opts)
 
 -- Move text up and down
@@ -64,6 +64,7 @@ keymap('v', '<A-Down>', ':MoveBlock(1)<CR>', opts)
 keymap('v', '<A-Left>', ':MoveHBlock(-1)<CR>', opts)
 keymap('v', '<A-Right>', ':MoveHBlock(1)<CR>', opts)
 
+keymap('n','vv','V', opts)
 -- dont yank on visual paste
 keymap('v', 'p', '"_dP', opts)
 

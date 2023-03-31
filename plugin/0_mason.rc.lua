@@ -13,18 +13,7 @@ lspconfig.setup {
   ensure_installed = {
     'tsserver',
     'lua_ls',
-    'angularls',
-    'cssls',
-    'cssmodules_ls',
-    'dockerls',
-    'emmet_ls',
-    'sqlls',
-    'taplo',
     'vimls',
-    'jsonls',
-    'arduino_language_server',
-    'yamlls',
-    'lemminx', -- xml
   },
   automatic_installation = true,
 }
