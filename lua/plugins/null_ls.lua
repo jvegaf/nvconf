@@ -21,6 +21,7 @@ null_ls.setup {
     b.formatting.stylua,
     b.formatting.xmlformat,
     b.formatting.prettier,
+    b.formatting.black,
 
     b.diagnostics.eslint_d.with {
       diagnostics_format = "[eslint] #{m}\n(#{c})",
@@ -29,10 +30,11 @@ null_ls.setup {
     b.diagnostics.shellcheck,
     b.diagnostics.stylelint,
     b.diagnostics.yamllint,
+    b.diagnostics.djlint,
   },
   on_attach = function(client, bufnr)
-    if client.supports_method("textDocument/formatting") then
-      vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+    if client.supports_method "textDocument/formatting" then
+      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
       vim.api.nvim_create_autocmd("BufWritePre", {
         group = augroup,
         buffer = bufnr,
@@ -41,7 +43,7 @@ null_ls.setup {
         end,
       })
     end
-  end
+  end,
 }
 
 vim.api.nvim_create_user_command("DisableLspFormatting", function()
