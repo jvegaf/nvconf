@@ -27,7 +27,6 @@ keymap("n", "<C-k>", "<C-w>k", NS)
 keymap("n", "<C-l>", "<C-w>l", NS)
 -- keymap('n', '<m-tab>', '<c-6>', NS)
 
-
 -- Cancel search highlighting with ESC
 keymap("n", "<ESC><ESC>", ":nohlsearch<Bar>:echo<CR>", NS)
 
@@ -53,9 +52,12 @@ keymap("n", "<A-Up>", ":m .-2<CR>==", NS)
 keymap("v", "<A-Up>", ":m '<-2<CR>gv=gv", NS)
 keymap("i", "<A-Up>", "<Esc>:m .-2<CR>==gi", NS)
 
-keymap("n","vv", "V", NS)
-keymap("n","<leader>o", "o<Esc>", NS)
-keymap("n","<leader>O", "O<Esc>", NS)
+keymap("n", "vv", "V", NS)
+keymap("n", "<leader>o", "o<Esc>", NS)
+keymap("n", "<leader>O", "O<Esc>", NS)
+-- keymap("n", "<leader>p", "o<Esc>p", NS)
+keymap("n", "<leader>p", "<cmd>pu<cr>", NS)
+keymap("n", "<leader>P", "<cmd>pu!<cr>", NS)
 
 -- dont yank on visual paste
 keymap("v", "p", '"_dP', NS)
@@ -80,7 +82,6 @@ keymap("n", "<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", NS)
 keymap("n", "y", "<Plug>(YankyYank)", NS)
 keymap("x", "y", "<Plug>(YankyYank)", NS)
 
-
 -- Comment
 keymap("n", "<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", NS)
 keymap("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', NS)
@@ -90,6 +91,6 @@ keymap("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", NS)
 keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", NS)
 keymap("n", "<S-q>", "<cmd>Bdelete<CR>", NS)
 
-keymap("n", "<leader>x", "<cmd>qall<CR>", {desc = "Exit" ,  noremap = true, silent = true })   
-keymap("n", "<leader>w", "<cmd>w<CR>", {desc = "Write" ,  noremap = true, silent = true })
-keymap("n", "<leader>q", "<cmd>q<CR>", {desc = "Close Window" ,  noremap = true, silent = true} )   
+keymap("n", "<leader>x", "<cmd>qall<CR>", { desc = "Exit", noremap = true, silent = true })
+keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Write", noremap = true, silent = true })
+keymap("n", "<leader>q", "<cmd>q<CR>", { desc = "Close Window", noremap = true, silent = true })
