@@ -157,10 +157,16 @@ return require('packer').startup {
     use 'ThePrimeagen/git-worktree.nvim'
 
     use {
-      'nvim-tree/nvim-tree.lua',
+      "nvim-neo-tree/neo-tree.nvim",
+      branch = "v2.x",
       requires = {
-        'nvim-tree/nvim-web-devicons',
+        "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+        "MunifTanjim/nui.nvim",
       },
+      config = function()
+        require("plugins.neotree")
+      end
     }
 
     use {
