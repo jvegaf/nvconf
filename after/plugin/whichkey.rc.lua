@@ -23,9 +23,6 @@ local setup = {
       g = true, -- bindings for prefixed with g
     },
   },
-  -- add operators that will trigger motion and text object completion
-  -- to enable all native operators, set the preset / operators plugin above
-  -- operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
     -- For example:
@@ -62,9 +59,6 @@ local setup = {
   -- triggers = "auto", -- automatically setup triggers
   -- triggers = {"<leader>"} -- or specify a list manually
   triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
-    -- this is mostly relevant for key maps that start with a native binding
-    -- most people should not need to change this
     i = { 'j', 'k' },
     v = { 'j', 'k' },
   },
@@ -110,7 +104,6 @@ local m_mappings = {
 
 local mappings = {
   -- ["1"] = "which_key_ignore",
-  a = { '<cmd>CodeActionMenu<cr>', 'Action' },
   b = { '<cmd>Telescope buffers<cr>', 'Buffers' },
   c = { '<cmd>Telescope colorscheme<cr>', 'Colorscheme' },
   e = { '<cmd>NvimTreeToggle<cr>', 'Explorer' },

@@ -35,6 +35,8 @@ keymap('n', '<ESC>', ':nohlsearch<Bar>:echo<CR>', opts)
 
 keymap('n', '<leader>o', 'o<Esc>', opts)
 keymap('n', '<leader>O', 'O<Esc>', opts)
+keymap("n", "<leader>p", "<cmd>pu<cr>", opts)
+keymap("n", "<leader>P", "<cmd>pu!<cr>", opts)
 -- Visual --
 -- Stay in indent mode
 keymap('v', '<', '<gv', opts)
