@@ -20,7 +20,7 @@ return {
   },
   {
     "goolord/alpha-nvim",
-    lazy = false,
+    event = "VimEnter",
     config = function()
       require "plugins.dashboard"
     end,
@@ -57,7 +57,6 @@ return {
     dependencies = {
       { "nvim-lua/popup.nvim" },
       { "nvim-lua/plenary.nvim" },
-      { "stevearc/aerial.nvim", config = true },
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "cljoly/telescope-repo.nvim" },
       { "nvim-telescope/telescope-symbols.nvim" },
@@ -70,23 +69,19 @@ return {
       { "FeiyouG/command_center.nvim" },
       { "debugloop/telescope-undo.nvim" },
       { "danielvolchek/tailiscope.nvim" },
-      { "gbprod/yanky.nvim", config = true },
     },
   },
   { "nvim-pack/nvim-spectre" },
   {
     "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    version = "*",
+    cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     keys = { { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "NvimTreeToggle" } },
     config = function()
       require "plugins.tree"
     end,
   },
-  {
-    "gbprod/stay-in-place.nvim",
-    lazy = false,
-    config = true, -- run require("stay-in-place").setup()
-  },
-
   -- LSP Base
   {
     "neovim/nvim-lspconfig",
@@ -98,6 +93,12 @@ return {
     },
     lazy = false,
     servers = nil,
+  },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+    event = "BufReadPre",
+    opts = {},
   },
   {
     "williamboman/mason.nvim",
@@ -148,7 +149,7 @@ return {
       { "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
       {
         "zbirenbaum/copilot-cmp",
-        disable = not EcoVim.plugins.copilot.enabled,
+        disable = true,
         config = function()
           require("copilot_cmp").setup()
         end,
@@ -331,11 +332,8 @@ return {
     end,
   },
   {
-    "ecosse3/galaxyline.nvim",
-    config = function()
-      require "plugins.galaxyline"
-    end,
-    event = "VeryLazy",
+    "nvim-lualine/lualine.nvim",
+    requires = { "nvim-tree/nvim-web-devicons", opt = true },
   },
   {
     "tiagovla/scope.nvim",
@@ -410,7 +408,7 @@ return {
   {
     "airblade/vim-rooter",
     setup = function()
-      vim.g.rooter_patterns = EcoVim.plugins.rooter.patterns
+      vim.g.rooter_patterns = { ".git", "package.json", "_darcs", ".bzr", ".svn", "Makefile" }
     end,
   },
   {
@@ -434,19 +432,9 @@ return {
     end,
   },
   {
-    "echasnovski/mini.align",
-    lazy = false,
-    version = false,
-    config = function()
-      require("mini.align").setup()
-    end,
-  },
-  {
-    "rareitems/printer.nvim",
-    lazy = false,
-    config = function()
-      require "plugins.printer"
-    end,
+    "junegunn/vim-easy-align",
+    event = "User BufReadPre",
+    keys = { { "ga", "<Plug>(EasyAlign)", mode = { "n", "x" }, desc = "EasyAlign" } },
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -471,8 +459,14 @@ return {
     end,
   },
   {
+    "Wansmer/treesj",
+    keys = { { "<leader>m", "<CMD>TSJToggle<CR>", desc = "Toggle Split Join" } },
+    cmd = { "TSJToggle", "TSJSplit", "TSJJoin" },
+    opts = { use_default_keymaps = false },
+  },
+  {
     "zbirenbaum/copilot.lua",
-    disable = not EcoVim.plugins.copilot.enabled,
+    disable = true,
     event = "InsertEnter",
     config = true,
   },

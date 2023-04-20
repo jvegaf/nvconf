@@ -1,12 +1,9 @@
 local actions = require "telescope.actions"
 local previewers = require "telescope.previewers"
 local builtin = require "telescope.builtin"
-local icons = EcoVim.icons
 
 require("telescope").load_extension "fzf"
 require("telescope").load_extension "repo"
--- require("telescope").load_extension "git_worktree"
-require("telescope").load_extension "aerial"
 require("telescope").load_extension "file_browser"
 require("telescope").load_extension "media_files"
 require("telescope").load_extension "node_modules"
@@ -15,16 +12,15 @@ require("telescope").load_extension "emoji"
 require("telescope").load_extension "changes"
 require("telescope").load_extension "undo"
 require("telescope").load_extension "tailiscope"
-require("telescope").load_extension "yank_history"
 
 local git_icons = {
-  added = icons.gitAdd,
-  changed = icons.gitChange,
-  copied = icons.fileCopy,
-  deleted = icons.gitRemove,
-  renamed = icons.circle,
-  unmerged = icons.questionCircle,
-  untracked = icons.rectangleIntersect,
+  added     = "  ",
+  changed   = " 柳",
+  copied    = "  ",
+  deleted   = "  ",
+  renamed   = "  ",
+  unmerged  = "  ",
+  untracked = " 練",
 }
 
 require("telescope").setup {
@@ -80,15 +76,7 @@ require("telescope").setup {
       override_file_sorter = true,
       case_mode = "smart_case",
     },
-    aerial = {
-      -- Display symbols as <root>.<parent>.<symbol>
-      show_nesting = {
-        ["_"] = false, -- This key will be the default
-        json = true, -- You can set the option for specific filetypes
-        yaml = true,
-      },
-    },
-    file_browser = {
+   file_browser = {
       hijack_netrw = true,
     },
     lsp_handlers = {
@@ -154,7 +142,7 @@ M.edit_neovim = function()
     color_devicons = true,
     cwd = "~/.config/nvim",
     previewer = false,
-    prompt_title = "Ecovim Dotfiles",
+    prompt_title = "Dotfiles",
     sorting_strategy = "ascending",
     winblend = 4,
     layout_config = {

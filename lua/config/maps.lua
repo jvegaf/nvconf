@@ -79,9 +79,6 @@ keymap("v", "//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], NS) -- search for visua
 keymap("n", "<C-p>", "<cmd>Telescope command_center<cr>", NS)
 keymap("n", "<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", NS)
 
-keymap("n", "y", "<Plug>(YankyYank)", NS)
-keymap("x", "y", "<Plug>(YankyYank)", NS)
-
 -- Comment
 keymap("n", "<m-/>", "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", NS)
 keymap("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', NS)
@@ -89,7 +86,7 @@ keymap("x", "<m-/>", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vi
 -- Tabs
 keymap("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", NS)
 keymap("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", NS)
-keymap("n", "<S-q>", "<cmd>Bdelete<CR>", NS)
+keymap("n", "<A-q>", "<cmd>Bdelete<CR>", NS)
 
 keymap("n", "<leader>x", "<cmd>qall<CR>", { desc = "Exit", noremap = true, silent = true })
 keymap("n", "<leader>w", "<cmd>w<CR>", { desc = "Write", noremap = true, silent = true })
