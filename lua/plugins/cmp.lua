@@ -12,12 +12,13 @@ end
 
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
+  print("luasnip not status")
   return
 end
 
--- require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load()
 
-require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+require("luasnip.loaders.from_vscode").load({ paths = { "./my_snippets" } })
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Utils                                                    │

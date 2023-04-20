@@ -25,7 +25,7 @@
       {
         "language": ["html"],
         "path": "./html.json"
-      },
+      }
     ]
   }
 }

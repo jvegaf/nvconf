@@ -68,7 +68,9 @@
   "Angular Default Route Path": {
     "prefix": "a-route-path-default",
     "description": "Angular default route path",
-    "body": ["{ path: '', pathMatch: 'full', redirectTo: '${1:path}' },$0"]
+    "body": [
+      "{ path: '', pathMatch: 'full', redirectTo: '${1:path}' },$0"
+    ]
   },
   "Angular Route Path with Children": {
     "prefix": "a-route-path-with-children",
@@ -86,12 +88,16 @@
   "Angular 404 Route Path": {
     "prefix": "a-route-path-404",
     "description": "Angular 404 route path",
-    "body": ["{ path: '**', component: ${1:PathNotFoundComponent} },$0"]
+    "body": [
+      "{ path: '**', component: ${1:PathNotFoundComponent} },$0"
+    ]
   },
   "Angular Eager Route Path": {
     "prefix": "a-route-path-eager",
     "description": "Angular eager route path",
-    "body": ["{ path: '${1:path}', component: ${2:Name}Component },$0"]
+    "body": [
+      "{ path: '${1:path}', component: ${2:Name}Component },$0"
+    ]
   },
   "Angular Lazy Route Path": {
     "prefix": "a-route-path-lazy",
@@ -116,7 +122,9 @@
   "HttpClient.get": {
     "prefix": "a-httpclient-get",
     "description": "Angular HttpClient.get",
-    "body": ["return this.httpClient.get('${1:url}');$0"]
+    "body": [
+      "return this.httpClient.get('${1:url}');$0"
+    ]
   },
   "Angular HttpClient Service": {
     "prefix": "a-service-httpclient",
@@ -197,13 +205,19 @@
   },
   "Output Event": {
     "prefix": "a-output-event",
-    "body": ["@Output() ${1:eventName} = new EventEmitter<${2:eventType}>();"],
+    "body": [
+      "@Output() ${1:eventName} = new EventEmitter<${2:eventType}>();"
+    ],
     "description": "Angular @Output event and emitter"
   },
   "Subscribe": {
     "prefix": "a-subscribe",
     "description": "Angular observable subscribe",
-    "body": ["this.${1:service}.${2:function}", "\t.subscribe(${3:arg} => this.${4:property} = ${3:arg});", "$0"]
+    "body": [
+      "this.${1:service}.${2:function}",
+      "\t.subscribe(${3:arg} => this.${4:property} = ${3:arg});",
+      "$0"
+    ]
   },
   "Angular Root Component": {
     "prefix": "a-component-root",
@@ -380,7 +394,7 @@
     ]
   },
   "Angular Network-Aware Preload Strategy": {
-  "prefix": "a-preload-network-strategy",
+    "prefix": "a-preload-network-strategy",
     "description": "Angular network aware preload strategy",
     "body": [
       "import { Injectable } from '@angular/core';",
@@ -447,12 +461,18 @@
   "RxJs Import": {
     "prefix": "a-rxjs-import",
     "description": "RxJs import",
-    "body": ["import { ${1:Observable} } from 'rxjs';", "$0"]
+    "body": [
+      "import { ${1:Observable} } from 'rxjs';",
+      "$0"
+    ]
   },
   "RxJs Operator Import": {
     "prefix": "a-rxjs-operator-import",
     "description": "RxJs import",
-    "body": ["import { ${1:map} } from 'rxjs/operators';", "$0"]
+    "body": [
+      "import { ${1:map} } from 'rxjs/operators';",
+      "$0"
+    ]
   },
   "Angular Resolver": {
     "prefix": "a-resolver",
@@ -493,12 +513,16 @@
   "NgRx Create Action": {
     "prefix": "a-ngrx-create-action",
     "description": "Creates an NgRx Action",
-    "body": ["export const ${1:action} = createAction('[${2:Source}] ${3:Event}');"]
+    "body": [
+      "export const ${1:action} = createAction('[${2:Source}] ${3:Event}');"
+    ]
   },
   "NgRx Create Action w/ Props": {
     "prefix": "a-ngrx-create-action-props",
     "description": "Creates an NgRx Action with Props",
-    "body": ["export const ${1:action} = createAction('[${2:Source}] ${3:Event}', props<{${4:key}: ${5:type}}>());"]
+    "body": [
+      "export const ${1:action} = createAction('[${2:Source}] ${3:Event}', props<{${4:key}: ${5:type}}>());"
+    ]
   },
   "NgRx Create Reducer": {
     "prefix": "a-ngrx-create-reducer",
@@ -565,7 +589,9 @@
   "NgRx Data Import Entity Data Module": {
     "prefix": "a-ngrx-data-entity-data-module-import",
     "description": "Import NgRx Entity Data Module",
-    "body": ["EntityDataModule.forRoot(${1:entityConfig}),"]
+    "body": [
+      "EntityDataModule.forRoot(${1:entityConfig}),"
+    ]
   },
   "NgRx Data Entity Metadata": {
     "prefix": "a-ngrx-data-entity-metadata",
@@ -604,6 +630,10 @@
   "TrackBy Function": {
     "prefix": "a-trackby",
     "description": "TrackBy Function",
-    "body": ["${1:trackBy}(index: number, ${2:name}: ${3:model}): ${4:number} {", "  return ${2:name}${5:.id};$0", "}"]
+    "body": [
+      "${1:trackBy}(index: number, ${2:name}: ${3:model}): ${4:number} {",
+      "  return ${2:name}${5:.id};$0",
+      "}"
+    ]
   }
 }

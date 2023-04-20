@@ -1,0 +1,19 @@
+{
+  "styles-scaffold": {
+    "prefix": "csc",
+    "body": [
+      "import { createStyles } from '@mantine/core';\n",
+      "const useStyles = createStyles((theme) => ({",
+      "  header: {",
+      "    backgroundColor: '#222222',",
+      "  },",
+      "}));"
+    ],
+    "description": "mantine useStyles scaffold"
+  },
+  "reactFunctionComponent": {
+    "prefix": "rafc",
+    "body": "import React from 'react'\n\nexport const ${TM_FILENAME_BASE} = (props : {}) => {\n\treturn (\n\t\t<div>\n\t\t\t$0\n\t\t</div>\n\t)\n}",
+    "description": "Creates a React functional component without PropTypes"
+  }
+}

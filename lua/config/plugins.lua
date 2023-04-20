@@ -146,7 +146,11 @@ return {
           require "plugins.cmp-npm"
         end,
       },
-      { "L3MON4D3/LuaSnip", dependencies = "rafamadriz/friendly-snippets" },
+      {
+        "L3MON4D3/LuaSnip",
+        event = "InsertEnter",
+        dependencies = "rafamadriz/friendly-snippets",
+      },
       {
         "zbirenbaum/copilot-cmp",
         disable = true,
