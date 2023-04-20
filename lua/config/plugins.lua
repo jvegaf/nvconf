@@ -332,8 +332,11 @@ return {
     end,
   },
   {
-    "nvim-lualine/lualine.nvim",
-    requires = { "nvim-tree/nvim-web-devicons", opt = true },
+    "ecosse3/galaxyline.nvim",
+    config = function()
+      require "plugins.galaxyline"
+    end,
+    event = "VeryLazy",
   },
   {
     "tiagovla/scope.nvim",
