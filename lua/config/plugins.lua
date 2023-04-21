@@ -158,6 +158,12 @@ return {
           require("copilot_cmp").setup()
         end,
       },
+      {
+        "jcdickinson/codeium.nvim",
+        config = function()
+          require("codeium").setup {}
+        end,
+      },
     },
     config = function()
       require "plugins.cmp"

@@ -45,6 +45,7 @@ end
 local source_mapping = {
   npm         = "  " .. "NPM",
   cmp_tabnine = "  ",
+  Codeium     = "  ",
   Copilot     = "  ",
   nvim_lsp    = "  " .. "LSP",
   buffer      = " ﬘ " .. "BUF",
@@ -165,6 +166,7 @@ cmp.setup {
 
   -- You should specify your *installed* sources.
   sources = {
+    { name = "codeium", priority = 900 },
     { name = "nvim_lsp", priority = 900 },
     { name = "luasnip", priority = 850, max_item_count = 8 },
     { name = "copilot", priority = 800 },
