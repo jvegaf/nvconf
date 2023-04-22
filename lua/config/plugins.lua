@@ -160,6 +160,8 @@ return {
       },
       {
         "jcdickinson/codeium.nvim",
+        event = "InsertEnter",
+        cmd = "Codeium",
         config = function()
           require("codeium").setup {}
         end,
