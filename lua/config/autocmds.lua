@@ -3,6 +3,9 @@ local function augroup(name)
 end
 -- highlight line yanked
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+
+local config_group = vim.api.nvim_create_augroup("ConfigGroup", { clear = true })
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()

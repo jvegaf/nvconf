@@ -1,4 +1,4 @@
-require('Comment').setup({
+require("Comment").setup {
   ---Add a space b/w comment and the line
   ---@type boolean
   padding = true,
@@ -27,18 +27,18 @@ require('Comment').setup({
   ---@type table
   toggler = {
     ---line-comment keymap
-    line = 'gcc',
+    line = "gcc",
     ---block-comment keymap
-    block = 'gbc',
+    block = "gbc",
   },
 
   ---LHS of operator-pending mapping in NORMAL + VISUAL mode
   ---@type table
   opleader = {
     ---line-comment keymap
-    line = 'gc',
+    line = "gc",
     ---block-comment keymap
-    block = 'gb',
+    block = "gb",
   },
 
   ---Pre-hook, called before commenting the line
@@ -48,10 +48,14 @@ require('Comment').setup({
   --   return require('ts_context_commentstring.internal').calculate_commentstring()
   -- end,
   pre_hook = function(ctx)
-    return require('Comment.jsx').calculate(ctx)
+    -- return require('Comment.jsx').calculate(ctx)
+    local line_start = (ctx.srow or ctx.range.srow) - 1
+    local line_end = ctx.erow or ctx.range.erow
+    require("lsp-inlayhints.core").clear(0, line_start, line_end)
+    -- or vim.api.nvim_buf_clear_namespace(0, -1, line_start, line_end)
   end,
 
   ---Post-hook, called after commenting is done
   ---@type function|nil
   post_hook = nil,
-})
+}

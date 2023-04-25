@@ -277,7 +277,8 @@ return {
   -- comment
   {
     "numToStr/Comment.nvim",
-    lazy = false,
+    event = "BufEnter",
+    dependencies = {"lvimuser/lsp-inlayhints.nvim"},
     branch = "jsx",
     config = function()
       require "plugins.comment"
