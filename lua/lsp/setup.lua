@@ -1,7 +1,7 @@
 local typescript_ok, typescript = pcall(require, "typescript")
 local mason_ok, mason = pcall(require, "mason")
 local mason_lsp_ok, mason_lsp = pcall(require, "mason-lspconfig")
-local ufo_config_handler = require("plugins.nvim-ufo").handler
+local ufo_config_handler = require("plugins.configs.nvim-ufo").handler
 
 if not mason_ok or not mason_lsp_ok then
   return
