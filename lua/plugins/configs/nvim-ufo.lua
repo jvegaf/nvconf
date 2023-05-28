@@ -1,3 +1,9 @@
+local status = pcall(require, "nvim-ufo")
+
+if not status then
+  return
+end
+
 local M = {}
 
 -- ╭──────────────────────────────────────────────────────────╮

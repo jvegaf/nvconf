@@ -1,6 +1,6 @@
 
     local dashboard = require "alpha.themes.dashboard"
-    dashboard.section.header.val = require("plugins.dashboard.logo")["random"]
+    dashboard.section.header.val = require("plugins.configs.dashboard.logo")["random"]
     dashboard.section.buttons.val = {
       dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
       dashboard.button("b", " " .. " Browse files", ":Telescope file_browser <CR>"),

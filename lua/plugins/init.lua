@@ -22,7 +22,7 @@ return {
     "goolord/alpha-nvim",
     event = "VimEnter",
     config = function()
-      require "plugins.dashboard"
+      require "plugins.configs.dashboard"
     end,
   },
 
@@ -31,7 +31,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     event = "BufReadPre",
     config = function()
-      require "plugins.treesitter"
+      require "plugins.configs.treesitter"
     end,
     dependencies = {
       "HiPhish/nvim-ts-rainbow2",
@@ -52,7 +52,7 @@ return {
     "nvim-telescope/telescope.nvim",
     lazy = false,
     config = function()
-      require "plugins.telescope"
+      require "plugins.configs.telescope"
     end,
     dependencies = {
       { "nvim-lua/popup.nvim" },
@@ -79,7 +79,7 @@ return {
     cmd = { "NvimTreeToggle", "NvimTreeFocus" },
     keys = { { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "NvimTreeToggle" } },
     config = function()
-      require "plugins.tree"
+      require "plugins.configs.tree"
     end,
   },
   -- LSP Base
@@ -113,7 +113,7 @@ return {
       "mason.nvim",
     },
     config = function()
-      require "plugins.mason-installer"
+      require "plugins.configs.mason-installer"
     end,
   },
 
@@ -123,7 +123,7 @@ return {
     event = "BufReadPre",
     dependencies = { "mason.nvim" },
     config = function()
-      require "plugins.null_ls"
+      require "plugins.configs.null_ls"
     end,
   },
 
@@ -143,7 +143,7 @@ return {
       {
         "David-Kunz/cmp-npm",
         config = function()
-          require "plugins.cmp-npm"
+          require "plugins.configs.cmp-npm"
         end,
       },
       {
@@ -168,7 +168,7 @@ return {
       },
     },
     config = function()
-      require "plugins.cmp"
+      require "plugins.configs.cmp"
     end,
   },
   -- LSP Addons
@@ -177,7 +177,7 @@ return {
     event = "VeryLazy",
     dependencies = "MunifTanjim/nui.nvim",
     config = function()
-      require "plugins.dressing"
+      require "plugins.configs.dressing"
     end,
   },
   { "onsails/lspkind-nvim" },
@@ -185,7 +185,7 @@ return {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     config = function()
-      require "plugins.trouble"
+      require "plugins.configs.trouble"
     end,
   },
   { "nvim-lua/popup.nvim" },
@@ -198,7 +198,7 @@ return {
     "ChristianChiarulli/nvim-gps",
     branch = "text_hl",
     config = function()
-      require "plugins.gps"
+      require "plugins.configs.gps"
     end,
   },
   { "jose-elias-alvarez/typescript.nvim" },
@@ -216,7 +216,7 @@ return {
     "lvimuser/lsp-inlayhints.nvim",
     branch = "main", -- or "anticonceal"
     config = function()
-      require "plugins.inlay-hints"
+      require "plugins.configs.inlay-hints"
     end,
   },
 
@@ -281,7 +281,7 @@ return {
     dependencies = {"lvimuser/lsp-inlayhints.nvim"},
     branch = "jsx",
     config = function()
-      require "plugins.comment"
+      require "plugins.configs.comment"
     end,
   },
   { "LudoPinelli/comment-box.nvim" },
@@ -290,7 +290,7 @@ return {
     lazy = false,
     branch = "main",
     config = function()
-      require "plugins.toggleterm"
+      require "plugins.configs.toggleterm"
     end,
     keys = {
       { "<A-1>", "<Cmd>1ToggleTerm direction=vertical<Cr>", desc = "Terminal #1", mode = { "t", "n" } },
@@ -327,13 +327,13 @@ return {
     lazy = false,
     event = "BufEnter",
     config = function()
-      require "plugins.todo-comments"
+      require "plugins.configs.todo-comments"
     end,
   },
   {
     "ggandor/lightspeed.nvim",
     config = function()
-      require "plugins.lightspeed"
+      require "plugins.configs.lightspeed"
     end,
   },
   {
@@ -341,13 +341,13 @@ return {
     event = "VeryLazy",
     lazy = true,
     config = function()
-      require "plugins.whichkey"
+      require "plugins.configs.whichkey"
     end,
   },
   {
     "ecosse3/galaxyline.nvim",
     config = function()
-      require "plugins.galaxyline"
+      require "plugins.configs.galaxyline"
     end,
     event = "VeryLazy",
   },
@@ -368,7 +368,7 @@ return {
     },
     lazy = false,
     config = function()
-      require "plugins.bufferline"
+      require "plugins.configs.bufferline"
     end,
   },
   -- { "antoinemadec/FixCursorHold.nvim" }, -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
@@ -396,7 +396,7 @@ return {
     "vuki656/package-info.nvim",
     event = "BufEnter package.json",
     config = function()
-      require "plugins.package-info"
+      require "plugins.configs.package-info"
     end,
   },
   {
@@ -418,7 +418,7 @@ return {
   {
     "declancm/cinnamon.nvim",
     config = function()
-      require "plugins.cinnamon"
+      require "plugins.configs.cinnamon"
     end,
   },
   {
@@ -434,7 +434,7 @@ return {
     },
     lazy = false,
     config = function()
-      require "plugins.session-manager"
+      require "plugins.configs.session-manager"
     end,
   },
   { "kylechui/nvim-surround", lazy = false, config = true },
@@ -456,7 +456,7 @@ return {
     "lukas-reineke/indent-blankline.nvim",
     event = "BufReadPre",
     config = function()
-      require "plugins.indent"
+      require "plugins.configs.indent"
     end,
   },
 
@@ -465,13 +465,13 @@ return {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
-      require "plugins.autopairs"
+      require "plugins.configs.autopairs"
     end,
   },
   {
     "NvChad/nvim-colorizer.lua",
     config = function()
-      require "plugins.colorizer"
+      require "plugins.configs.colorizer"
     end,
   },
   {
@@ -500,20 +500,20 @@ return {
     event = "BufReadPre",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-      require "plugins.git.gitsigns"
+      require "plugins.configs.git.gitsigns"
     end,
   },
   {
     "sindrets/diffview.nvim",
     event = "BufRead",
     config = function()
-      require "plugins.git.diffview"
+      require "plugins.configs.git.diffview"
     end,
   },
   {
     "akinsho/git-conflict.nvim",
     config = function()
-      require "plugins.git.conflict"
+      require "plugins.configs.git.conflict"
     end,
   },
   {
@@ -523,7 +523,7 @@ return {
       "<Leader>gww",
     },
     config = function()
-      require "plugins.git.worktree"
+      require "plugins.configs.git.worktree"
     end,
   },
   {
@@ -545,7 +545,7 @@ return {
       "haydenmeade/neotest-jest",
     },
     config = function()
-      require "plugins.neotest"
+      require "plugins.configs.neotest"
     end,
   },
 
@@ -553,7 +553,7 @@ return {
   {
     "mfussenegger/nvim-dap",
     config = function()
-      require "plugins.dap"
+      require "plugins.configs.dap"
     end,
     keys = {
       "<Leader>da",
