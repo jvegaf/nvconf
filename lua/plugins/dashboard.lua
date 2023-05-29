@@ -17,7 +17,7 @@ return {
       ),
       dashboard.button(
         "c",
-        "" .. " Select color theme",
+        " " .. " Select color theme",
         [[:lua require('telescope.builtin').colorscheme({enable_preview = true}) <cr>]]
       ),
       dashboard.button("l", "鈴" .. " Lazy", ":Lazy<CR>"),

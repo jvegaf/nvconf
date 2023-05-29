@@ -8,7 +8,7 @@ return {
     { "<leader>o", "<cmd>NvimTreeFocus<cr>", desc = "NvimTreeFocus" },
   },
   opts = {
-  respect_buf_cwd = true,
+  -- respect_buf_cwd = true,
   diagnostics = {
     enable = true,
     icons = {
@@ -39,7 +39,7 @@ return {
   -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
   update_focused_file = {
     enable = true,
-    update_cwd = true,
+    -- update_cwd = true,
   },
   git = {
     timeout = 500,

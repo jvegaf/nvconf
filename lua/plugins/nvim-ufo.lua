@@ -1,6 +1,7 @@
 return {
   "kevinhwang91/nvim-ufo",
   dependencies = "kevinhwang91/promise-async",
+  lazy = false,
   opts = function()
     local handler = function(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}
