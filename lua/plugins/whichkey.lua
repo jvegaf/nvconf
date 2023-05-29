@@ -183,7 +183,10 @@ return {
         },
         u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
       },
-      p = { name = "Plugins" },
+      p = {
+        name = "Plugins",
+        l = { "<cmd>Lazy<cr>", "Lazy" },
+      },
       s = {
         name = "Surround",
         ["."] = { "<cmd>lua require('surround').repeat_last()<cr>", "Repeat" },
@@ -198,7 +201,6 @@ return {
         d = { "<cmd>Alpha<cr>", "Dashboard" },
         n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
         s = { "<cmd>e $MYVIMRC<cr>", "Settings" },
-        l = { "<cmd>Lazy<cr>", "Lazy" },
       },
       t = {
         name = "Telescope",
