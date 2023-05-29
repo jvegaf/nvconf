@@ -1,7 +1,6 @@
 local typescript_ok, typescript = pcall(require, "typescript")
 local mason_ok, mason = pcall(require, "mason")
 local mason_lsp_ok, mason_lsp = pcall(require, "mason-lspconfig")
-local ufo_config_handler = require("plugins.configs.nvim-ufo").handler
 
 if not mason_ok or not mason_lsp_ok then
   return
@@ -24,6 +23,7 @@ mason_lsp.setup {
     "tailwindcss",
     "tsserver",
     "emmet_ls",
+    "yamlls",
   },
 
   automatic_installation = true,
@@ -46,10 +46,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local handlers = {
-  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded'}),
-  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
-  ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-    { virtual_text = true }),
+  ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
+  ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" }),
+  ["textDocument/publishDiagnostics"] = vim.lsp.with(
+    vim.lsp.diagnostic.on_publish_diagnostics,
+    { virtual_text = true }
+  ),
 }
 local function on_attach(client, bufnr)
   -- set up buffer keymaps, etc.
@@ -105,7 +107,32 @@ lspconfig.jsonls.setup {
   capabilities = capabilities,
   handlers = handlers,
   on_attach = on_attach,
-  settings = require("lsp.servers.jsonls").settings,
+  settings = {
+    json = {
+      schemas = require("schemastore").json.schemas(),
+      validate = { enable = true },
+    },
+  },
+}
+
+lspconfig.yamlls.setup {
+  capabilities = capabilities,
+  handlers = handlers,
+  on_attach = on_attach,
+  settings = {
+    yaml = {
+      schemaStore = {
+        -- You must disable built-in schemaStore support if you want to use
+        -- this plugin and its advanced options like `ignore`.
+        enable = false,
+      },
+      schemas = require("schemastore").yaml.schemas(),
+      format = {
+        enable = true,
+      },
+      validate = { enable = true },
+    },
+  },
 }
 
 lspconfig.lua_ls.setup {
@@ -122,9 +149,3 @@ for _, server in ipairs { "bashls", "emmet_ls", "graphql", "html", "volar", "pri
     handlers = handlers,
   }
 end
-
-require("ufo").setup {
-  fold_virt_text_handler = ufo_config_handler,
-  close_fold_kinds = { "imports" },
-}
-
