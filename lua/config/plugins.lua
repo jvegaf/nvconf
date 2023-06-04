@@ -222,28 +222,6 @@ return {
 
   -- General
 
-  { "AndrewRadev/switch.vim", lazy = false },
-  --splitjoin
-  {
-    "bennypowers/splitjoin.nvim",
-    lazy = true,
-    keys = {
-      {
-        "gj",
-        function()
-          require("splitjoin").join()
-        end,
-        desc = "Join the object under cursor",
-      },
-      {
-        "g,",
-        function()
-          require("splitjoin").split()
-        end,
-        desc = "Split the object under cursor",
-      },
-    },
-  },
   -- browse
   {
     "voldikss/vim-browser-search",
@@ -266,7 +244,7 @@ return {
       "RishabhRD/popfix",
     },
     keys = {
-      { "<leader>cs", "<cmd>Cheat<cr>", desc = "Cheat.sh" },
+      { "<leader>ps", "<cmd>Cheat<cr>", desc = "Cheat.sh" },
     },
   },
   -- platformio
@@ -313,13 +291,6 @@ return {
     },
     config = function()
       vim.g.VM_leader = ";"
-    end,
-  },
-  {
-    "nacro90/numb.nvim",
-    lazy = false,
-    config = function()
-      require("numb").setup()
     end,
   },
   {
@@ -482,7 +453,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    disable = true,
+    disable = false,
     event = "InsertEnter",
     config = true,
   },

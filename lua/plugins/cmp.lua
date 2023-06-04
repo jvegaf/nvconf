@@ -166,10 +166,10 @@ cmp.setup {
 
   -- You should specify your *installed* sources.
   sources = {
+    { name = "copilot", priority = 900 },
     { name = "codeium", priority = 900 },
     { name = "nvim_lsp", priority = 900 },
     { name = "luasnip", priority = 850, max_item_count = 8 },
-    { name = "copilot", priority = 800 },
     { name = "cmp_tabnine", priority = 800, max_num_results = 3 },
     { name = "npm", priority = 700 },
     { name = "buffer", priority = 750, keyword_length = 5, option = buffer_option, max_item_count = 8 },
