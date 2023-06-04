@@ -52,6 +52,7 @@ keymap("n", "<A-k>", ":m .-2<CR>==", NS)
 keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", NS)
 keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi", NS)
 
+keymap("n", "zz", "<cmd>wq<cr>", NS)
 keymap("n", "vv", "V", NS)
 keymap("n", "<leader>o", "o<Esc>", NS)
 keymap("n", "<leader>O", "O<Esc>", NS)

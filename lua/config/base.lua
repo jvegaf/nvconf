@@ -27,6 +27,7 @@ local options = {
   showcmd = true,
   showmode = true, -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2, -- always show tabs
+  shell = "zsh",
   sidescrolloff = 8,
   signcolumn = 'yes', -- always show the sign column, otherwise it would shift the text each time
   smartcase = true, -- smart case

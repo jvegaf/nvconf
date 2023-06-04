@@ -3,5 +3,6 @@ return {
   event = "InsertEnter",
   opts = {
     timeout = 300,
+    mapping = { "kk", "jj" },
   },
 }
