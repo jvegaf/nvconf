@@ -24,4 +24,4 @@ neotree.setup({
   }
 })
 
-vim.keymap.set('n', '<leader>e', '<cmd>NeoTree toggle<cr>', { noremap = true, silent = true, desc = 'NeoTree Toggle'})
+vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>', { noremap = true, silent = true, desc = 'NeoTree Toggle'})
