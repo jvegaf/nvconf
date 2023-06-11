@@ -133,8 +133,8 @@ function _FLOAT_TERM()
   float_term:toggle()
 end
 
-vim.api.nvim_set_keymap("n", "<m-2>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<m-2>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<m-2>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set("i", "<m-2>", "<cmd>lua _FLOAT_TERM()<CR>", { noremap = true, silent = true })
 
 local vertical_term = Terminal:new {
   direction = "vertical",
@@ -170,8 +170,8 @@ function _VERTICAL_TERM()
   vertical_term:toggle(60)
 end
 
-vim.api.nvim_set_keymap("n", "<m-3>", "<cmd>lua _VERTICAL_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<m-3>", "<cmd>lua _VERTICAL_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<m-3>", "<cmd>lua _VERTICAL_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set("i", "<m-3>", "<cmd>lua _VERTICAL_TERM()<CR>", { noremap = true, silent = true })
 
 local horizontal_term = Terminal:new {
   direction = "horizontal",
@@ -207,5 +207,5 @@ function _HORIZONTAL_TERM()
   horizontal_term:toggle(10)
 end
 
-vim.api.nvim_set_keymap("n", "<m-4>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<m-4>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<m-4>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })
+vim.keymap.set("i", "<m-4>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { noremap = true, silent = true })

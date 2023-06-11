@@ -27,7 +27,7 @@ return require('packer').startup {
     use 'L3MON4D3/LuaSnip'
     use 'folke/neodev.nvim'
     use 'rafamadriz/friendly-snippets'
-    use 'onsails/lspkind-nvim'            -- vscode-like pictograms
+    use { 'onsails/lspkind-nvim', config = function() require('plugins.lspkind') end, }            -- vscode-like pictograms
     use 'hrsh7th/cmp-buffer'              -- nvim-cmp source for buffer words
     use 'hrsh7th/cmp-nvim-lsp'            -- nvim-cmp source for neovim's built-in LSP
     use 'hrsh7th/cmp-emoji'               -- nvim-cmp source for neovim's built-in LSP
@@ -52,15 +52,30 @@ return require('packer').startup {
       'glepnir/lspsaga.nvim',
       branch = 'main',
       config = function()
-        require('lspsaga').setup {}
+        require('plugins.lspsaga')
       end,
     }
 
-    use 'nvim-lualine/lualine.nvim' -- Statusline
+    use {
+      'nvim-lualine/lualine.nvim',
+      config = function()
+        require('plugins.lualine')
+      end,
+    }
 
-    use 'lukas-reineke/indent-blankline.nvim'
+    use {
+      'lukas-reineke/indent-blankline.nvim',
+      config = function()
+        require('plugins.indent-blankline')
+      end,
+    }
 
-    use 'romgrk/barbar.nvim'
+    use {
+      'romgrk/barbar.nvim',
+      config = function ()
+        require('plugins.barbar')
+      end,
+    }
 
     use 'jose-elias-alvarez/typescript.nvim'
 
@@ -85,7 +100,7 @@ return require('packer').startup {
       'nvim-treesitter/nvim-treesitter',
       requires = {
         'nvim-treesitter/nvim-treesitter-textobjects',
-        'windwp/nvim-ts-autotag',
+        {'windwp/nvim-ts-autotag', config = function() require('plugins.ts-autotag') end,},
         'RRethy/nvim-treesitter-textsubjects',
         'JoosepAlviste/nvim-ts-context-commentstring',
         'HiPhish/nvim-ts-rainbow2',
@@ -94,6 +109,9 @@ return require('packer').startup {
         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
         ts_update()
       end,
+      config = function ()
+        require('plugins.treesitter')
+      end
     }
 
     use 'nvim-tree/nvim-web-devicons' -- File icons
@@ -102,11 +120,19 @@ return require('packer').startup {
 
     use 'nvim-telescope/telescope-file-browser.nvim'
 
-    use 'rcarriga/nvim-notify'
+    use {
+      'rcarriga/nvim-notify',
+      config = function ()
+        require('plugins.nvim-notify')
+      end
+    }
 
     use {
       'folke/lsp-colors.nvim',
       event = 'BufRead',
+      config = function ()
+        require('plugins.lsp-colors')
+      end,
     }
 
     use {
@@ -122,23 +148,55 @@ return require('packer').startup {
     use {
       'Shatur/neovim-session-manager',
       requires = 'nvim-lua/plenary.nvim',
+      config = function ()
+        require('plugins.session-manager')
+      end
     }
 
     use 'moll/vim-bbye'
 
-    use 'windwp/nvim-autopairs'
+    use {
+      'windwp/nvim-autopairs',
+      config = function()
+        require('plugins.autopairs')
+      end,
+    }
 
 
-    use { 'numToStr/Comment.nvim', requires = {
-      'JoosepAlviste/nvim-ts-context-commentstring',
-    } }
-    use 'norcalli/nvim-colorizer.lua'
+    use {
+      'numToStr/Comment.nvim',
+      requires = {
+        'JoosepAlviste/nvim-ts-context-commentstring',
+      },
+      config = function()
+        require('plugins.comment')
+      end,
+    }
 
-    use 'dinhhuy258/git.nvim' -- For git blame & browse
+    use {
+      'norcalli/nvim-colorizer.lua',
+      config = function ()
+        require('plugins.colorizer')
+      end
+    }
+
+    use {
+      'dinhhuy258/git.nvim',
+      config = function ()
+        require('plugins.git')
+      end,
+    }
 
     -- Git
 
-    use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' }, event = 'BufRead' }
+    use {
+      'lewis6991/gitsigns.nvim',
+      requires = { 'nvim-lua/plenary.nvim' },
+      event = 'BufRead',
+      config = function()
+        require('plugins.gitsigns')
+      end,
+    }
 
     use {
       'sindrets/diffview.nvim',
@@ -152,9 +210,12 @@ return require('packer').startup {
 
     use 'mhinz/vim-signify'
 
-    use 'adoy/vim-php-refactoring-toolbox'
-
-    use 'ThePrimeagen/git-worktree.nvim'
+    use {
+      'ThePrimeagen/git-worktree.nvim',
+      config = function()
+        require('plugins.gitworktree')
+      end
+    }
 
     use {
       "nvim-neo-tree/neo-tree.nvim",
@@ -175,13 +236,13 @@ return require('packer').startup {
       after = 'nvim-lspconfig',
     }
 
-    use {
-      'tzachar/cmp-tabnine',
-      after = 'nvim-cmp',
-      -- run = 'powershell ./install.ps1',
-      run = './install.sh',
-      requires = 'hrsh7th/nvim-cmp',
-    }
+    -- use {
+    --   'tzachar/cmp-tabnine',
+    --   after = 'nvim-cmp',
+    --   -- run = 'powershell ./install.ps1',
+    --   run = './install.sh',
+    --   requires = 'hrsh7th/nvim-cmp',
+    -- }
 
     use {
       'junegunn/vim-easy-align',
@@ -189,11 +250,21 @@ return require('packer').startup {
     }
 
     -- Motion
-    use 'phaazon/hop.nvim'
+    use {
+      'phaazon/hop.nvim',
+      config = function ()
+        require('plugins.hop')
+      end
+    }
     -- use "jinh0/eyeliner.nvim"
 
     -- Keybinding
-    use 'folke/which-key.nvim'
+    use {
+      'folke/which-key.nvim',
+      config = function()
+        require('plugins.which-key')
+      end
+    }
 
     -- use 'antoinemadec/FixCursorHold.nvim'
 
@@ -219,7 +290,7 @@ return require('packer').startup {
       'akinsho/toggleterm.nvim',
       tag = '*',
       config = function()
-        require('toggleterm').setup()
+        require('plugins.toggleterm')
       end,
     }
 
@@ -234,9 +305,10 @@ return require('packer').startup {
       requires = {
         'nvim-tree/nvim-web-devicons',
       },
+      config = function ()
+        require('plugins.alpha')
+      end
     }
-
-    use 'jvegaf/move.nvim'
 
     -- Themes
 
