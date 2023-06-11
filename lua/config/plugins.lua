@@ -27,6 +27,7 @@ return require('packer').startup {
     use 'folke/neodev.nvim'
     use { 'onsails/lspkind-nvim', config = function() require('plugins.lspkind') end, }            -- vscode-like pictograms
 
+    -- CMP
     use {
       'hrsh7th/nvim-cmp',
       requires = {
@@ -44,8 +45,18 @@ return require('packer').startup {
 
     use 'neovim/nvim-lspconfig'           -- LSP
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-    use 'williamboman/mason.nvim'
-    use 'williamboman/mason-lspconfig.nvim'
+
+    -- Mason
+    use {
+      'williamboman/mason-lspconfig.nvim',
+      requirements = {
+        'williamboman/mason.nvim'
+      },
+      config = function()
+        require('plugins.mason')
+      end
+    }
+
     use {
       'jay-babu/mason-null-ls.nvim',
       requirements = {

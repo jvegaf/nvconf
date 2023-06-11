@@ -180,49 +180,49 @@ if typescript_ok then
     debug = false, -- enable debug logging for commands
     -- LSP Config options
     server = {
-      capabilities = require('lsp.servers.tsserver').capabilities,
-      handlers = require('lsp.servers.tsserver').handlers,
-      on_attach = require('lsp.servers.tsserver').on_attach,
-      settings = require('lsp.servers.tsserver').settings,
+      capabilities = require('config.lsp.servers.tsserver').capabilities,
+      handlers = require('config.lsp.servers.tsserver').handlers,
+      on_attach = require('config.lsp.servers.tsserver').on_attach,
+      settings = require('config.lsp.servers.tsserver').settings,
     },
   }
 end
 
 nvim_lsp.tailwindcss.setup {
-  capabilities = require('lsp.servers.tailwindcss').capabilities,
-  filetypes = require('lsp.servers.tailwindcss').filetypes,
+  capabilities = require('config.lsp.servers.tailwindcss').capabilities,
+  filetypes = require('config.lsp.servers.tailwindcss').filetypes,
   handlers = handlers,
-  init_options = require('lsp.servers.tailwindcss').init_options,
-  on_attach = require('lsp.servers.tailwindcss').on_attach,
-  settings = require('lsp.servers.tailwindcss').settings,
+  init_options = require('config.lsp.servers.tailwindcss').init_options,
+  on_attach = require('config.lsp.servers.tailwindcss').on_attach,
+  settings = require('config.lsp.servers.tailwindcss').settings,
 }
 
 nvim_lsp.cssls.setup {
   capabilities = capabilities,
   handlers = handlers,
-  on_attach = require('lsp.servers.cssls').on_attach,
-  settings = require('lsp.servers.cssls').settings,
+  on_attach = require('config.lsp.servers.cssls').on_attach,
+  settings = require('config.lsp.servers.cssls').settings,
 }
 
 nvim_lsp.eslint.setup {
   capabilities = capabilities,
   handlers = handlers,
-  on_attach = require('lsp.servers.eslint').on_attach,
-  settings = require('lsp.servers.eslint').settings,
+  on_attach = require('config.lsp.servers.eslint').on_attach,
+  settings = require('config.lsp.servers.eslint').settings,
 }
 
 nvim_lsp.jsonls.setup {
   capabilities = capabilities,
   handlers = handlers,
   on_attach = on_attach,
-  settings = require('lsp.servers.jsonls').settings,
+  settings = require('config.lsp.servers.jsonls').settings,
 }
 
 nvim_lsp.lua_ls.setup {
   capabilities = capabilities,
   handlers = handlers,
   on_attach = on_attach,
-  settings = require('lsp.servers.lua_ls').settings,
+  settings = require('config.lsp.servers.lua_ls').settings,
 }
 
 nvim_lsp.sourcekit.setup {
