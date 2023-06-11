@@ -106,26 +106,11 @@ local mappings = {
   -- ["1"] = "which_key_ignore",
   b = { '<cmd>Telescope buffers<cr>', 'Buffers' },
   c = { '<cmd>Telescope colorscheme<cr>', 'Colorscheme' },
-  e = { '<cmd>NvimTreeToggle<cr>', 'Explorer' },
   v = { '<cmd>vsplit<cr>', 'vsplit' },
   h = { '<cmd>split<cr>', 'split' },
-  n = { '<cmd>Telescope notify<cr>', 'Notifications' },
   w = { '<cmd>w<CR>', 'Write' },
   -- h = { "<cmd>nohlsearch<CR>", "No HL" },
-  q = { '<cmd>lua require("user.functions").smart_quit()<CR>', 'Quit' },
-  ['/'] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', 'Comment' },
-  -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-  -- c = { "<cmd>Bdelete!<CR>", "Close Buffer" },
-
-  -- :lua require'lir.float'.toggle()
-  -- ["f"] = {
-  --   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-  --   "Find files",
-  -- },
-  -- ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
-  -- P = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-  -- ["R"] = { '<cmd>lua require("renamer").rename()<cr>', "Rename" },
-  -- ["z"] = { "<cmd>ZenMode<cr>", "Zen" },
+  q = { '<cmd>quit<cr>', 'Quit' },
   ['gy'] = 'Link',
   B = {
     name = 'Browse',
@@ -153,23 +138,9 @@ local mappings = {
     s = { '<cmd>lua require("user.functions").toggle_option("spell")<cr>', 'Spell' },
     t = { '<cmd>lua require("user.functions").toggle_tabline()<cr>', 'Tabline' },
   },
-  -- s = {
-  --   name = "Split",
-  --   s = { "<cmd>split<cr>", "HSplit" },
-  --   v = { "<cmd>vsplit<cr>", "VSplit" },
-  -- },
-
   s = {
-    name = 'Session',
-    s = { '<cmd>SaveSession<cr>', 'Save' },
-    r = { '<cmd>RestoreSession<cr>', 'Restore' },
-    x = { '<cmd>DeleteSession<cr>', 'Delete' },
-    f = { '<cmd>Autosession search<cr>', 'Find' },
-    d = { '<cmd>Autosession delete<cr>', 'Find Delete' },
-    -- a = { ":SaveSession<cr>", "test" },
-    -- a = { ":RestoreSession<cr>", "test" },
-    -- a = { ":RestoreSessionFromFile<cr>", "test" },
-    -- a = { ":DeleteSession<cr>", "test" },
+    name = 'System',
+    n = { '<cmd>Telescope notify<cr>', 'Notifications' },
   },
   r = {
     name = 'Replace',
@@ -189,12 +160,6 @@ local mappings = {
     u = { "<cmd>lua require'dapui'.toggle()<cr>", 'UI' },
     x = { "<cmd>lua require'dap'.terminate()<cr>", 'Exit' },
   },
-  -- nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
-  -- nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
-  -- require("dapui").open()
-  -- require("dapui").close()
-  -- require("dapui").toggle()
-
   f = {
     name = 'Find',
     b = { '<cmd>Telescope git_branches<cr>', 'Checkout branch' },
@@ -246,8 +211,8 @@ local mappings = {
   },
   l = {
     name = 'LSP',
-    -- a = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
-    a = { '<cmd>CodeActionMenu<cr>', 'Code Action' },
+    a = { '<cmd>lua vim.lsp.buf.code_action()<cr>', 'Code Action' },
+    A = { '<cmd>CodeActionMenu<cr>', 'Code Action' },
     c = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", 'Get Capabilities' },
     d = { '<cmd>TroubleToggle<cr>', 'Diagnostics' },
     w = {
@@ -282,44 +247,12 @@ local mappings = {
     t = { '<cmd>lua require("user.functions").toggle_diagnostics()<cr>', 'Toggle Diagnostics' },
     u = { '<cmd>LuaSnipUnlinkCurrent<cr>', 'Unlink Snippet' },
   },
-  -- s = {
-  --   name = "Surround",
-  --   ["."] = { "<cmd>lua require('surround').repeat_last()<cr>", "Repeat" },
-  --   a = { "<cmd>lua require('surround').surround_add(true)<cr>", "Add" },
-  --   d = { "<cmd>lua require('surround').surround_delete()<cr>", "Delete" },
-  --   r = { "<cmd>lua require('surround').surround_replace()<cr>", "Replace" },
-  --   q = { "<cmd>lua require('surround').toggle_quotes()<cr>", "Quotes" },
-  --   b = { "<cmd>lua require('surround').toggle_brackets()<cr>", "Brackets" },
-  -- },
-
-  S = {
-    -- name = "Session",
-    -- s = { "<cmd>SaveSession<cr>", "Save" },
-    -- l = { "<cmd>LoadLastSession!<cr>", "Load Last" },
-    -- d = { "<cmd>LoadCurrentDirSession!<cr>", "Load Last Dir" },
-    -- f = { "<cmd>Telescope sessions save_current=false<cr>", "Find Session" },
-    name = 'SnipRun',
-    c = { '<cmd>SnipClose<cr>', 'Close' },
-    f = { '<cmd>%SnipRun<cr>', 'Run File' },
-    i = { '<cmd>SnipInfo<cr>', 'Info' },
-    m = { '<cmd>SnipReplMemoryClean<cr>', 'Mem Clean' },
-    r = { '<cmd>SnipReset<cr>', 'Reset' },
-    t = { '<cmd>SnipRunToggle<cr>', 'Toggle' },
-    x = { '<cmd>SnipTerminate<cr>', 'Terminate' },
-  },
   t = {
     name = 'Terminal',
-    ['1'] = { ':1ToggleTerm<cr>', '1' },
-    ['2'] = { ':2ToggleTerm<cr>', '2' },
-    ['3'] = { ':3ToggleTerm<cr>', '3' },
-    ['4'] = { ':4ToggleTerm<cr>', '4' },
     n = { '<cmd>lua _NODE_TOGGLE()<cr>', 'Node' },
     u = { '<cmd>lua _NCDU_TOGGLE()<cr>', 'NCDU' },
     t = { '<cmd>lua _HTOP_TOGGLE()<cr>', 'Htop' },
     p = { '<cmd>lua _PYTHON_TOGGLE()<cr>', 'Python' },
-    f = { '<cmd>ToggleTerm direction=float<cr>', 'Float' },
-    h = { '<cmd>ToggleTerm size=10 direction=horizontal<cr>', 'Horizontal' },
-    v = { '<cmd>ToggleTerm size=80 direction=vertical<cr>', 'Vertical' },
   },
   T = {
     name = 'Treesitter',
@@ -327,13 +260,6 @@ local mappings = {
     p = { '<cmd>TSPlaygroundToggle<cr>', 'Playground' },
     r = { '<cmd>TSToggle rainbow<cr>', 'Rainbow' },
   },
-  -- z = {
-  --   name = "Zen",
-  --   z = { "<cmd>TZAtaraxis<cr>", "Zen" },
-  --   m = { "<cmd>TZMinimalist<cr>", "Minimal" },
-  --   n = { "<cmd>TZNarrow<cr>", "Narrow" },
-  --   f = { "<cmd>TZFocus<cr>", "Focus" },
-  -- },
 }
 
 local vopts = {

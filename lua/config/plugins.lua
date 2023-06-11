@@ -24,15 +24,24 @@ return require('packer').startup {
   function()
     use 'wbthomason/packer.nvim'
     use 'nvim-lua/plenary.nvim' -- Common utilities
-    use 'L3MON4D3/LuaSnip'
     use 'folke/neodev.nvim'
-    use 'rafamadriz/friendly-snippets'
     use { 'onsails/lspkind-nvim', config = function() require('plugins.lspkind') end, }            -- vscode-like pictograms
-    use 'hrsh7th/cmp-buffer'              -- nvim-cmp source for buffer words
-    use 'hrsh7th/cmp-nvim-lsp'            -- nvim-cmp source for neovim's built-in LSP
-    use 'hrsh7th/cmp-emoji'               -- nvim-cmp source for neovim's built-in LSP
-    use 'saadparwaiz1/cmp_luasnip'
-    use 'hrsh7th/nvim-cmp'                -- Completion
+
+    use {
+      'hrsh7th/nvim-cmp',
+      requires = {
+        'L3MON4D3/LuaSnip',
+        'rafamadriz/friendly-snippets',
+        'hrsh7th/cmp-buffer',
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-emoji',
+        'saadparwaiz1/cmp_luasnip',
+      },
+      config = function()
+        require('plugins.cmp')
+      end,
+    }
+
     use 'neovim/nvim-lspconfig'           -- LSP
     use 'jose-elias-alvarez/null-ls.nvim' -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
     use 'williamboman/mason.nvim'
@@ -116,9 +125,15 @@ return require('packer').startup {
 
     use 'nvim-tree/nvim-web-devicons' -- File icons
 
-    use 'nvim-telescope/telescope.nvim'
-
-    use 'nvim-telescope/telescope-file-browser.nvim'
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = {
+          'nvim-telescope/telescope-file-browser.nvim'
+      },
+      config = function()
+        require('plugins.telescope')
+      end,
+    }
 
     use {
       'rcarriga/nvim-notify',
@@ -180,14 +195,14 @@ return require('packer').startup {
       end
     }
 
+    -- Git
+
     use {
       'dinhhuy258/git.nvim',
       config = function ()
         require('plugins.git')
       end,
     }
-
-    -- Git
 
     use {
       'lewis6991/gitsigns.nvim',
@@ -201,11 +216,17 @@ return require('packer').startup {
     use {
       'sindrets/diffview.nvim',
       requires = 'nvim-lua/plenary.nvim',
+      config = function()
+        require('plugins.diffview')
+      end,
     }
 
     use {
       'akinsho/git-conflict.nvim',
       tag = '*',
+      config = function()
+        require('plugins.conflict')
+      end,
     }
 
     use 'mhinz/vim-signify'
@@ -256,7 +277,6 @@ return require('packer').startup {
         require('plugins.hop')
       end
     }
-    -- use "jinh0/eyeliner.nvim"
 
     -- Keybinding
     use {
@@ -265,8 +285,6 @@ return require('packer').startup {
         require('plugins.which-key')
       end
     }
-
-    -- use 'antoinemadec/FixCursorHold.nvim'
 
     use {
       'lalitmee/browse.nvim',
@@ -297,7 +315,6 @@ return require('packer').startup {
     use {
       'folke/trouble.nvim',
       requires = 'nvim-tree/nvim-web-devicons',
-      -- requires = 'kyazdani42/nvim-web-devicons',
     }
 
     use {
