@@ -50,8 +50,12 @@ return require('packer').startup {
     use {
       'williamboman/mason-lspconfig.nvim',
       requirements = {
-        'williamboman/mason.nvim'
+        {
+          'williamboman/mason.nvim',
+          cmd = { 'Mason' },
+        }
       },
+      cmd = { 'LspInstall', 'LspUninstall' },
       config = function()
         require('plugins.mason')
       end
