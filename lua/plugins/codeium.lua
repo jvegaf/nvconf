@@ -5,7 +5,7 @@ return {
       "nvim-lua/plenary.nvim",
       "hrsh7th/nvim-cmp",
     },
-    event = "InsertEnter",
+    -- event = "InsertEnter",
     cmd = { "Codeium" },
     config = function()
       require("codeium").setup {}
@@ -13,7 +13,10 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
+    dependencies = {
+      "jcdickinson/codeium.nvim",
+    },
+    config = function(_, opts)
       local cmp = require "cmp"
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "codeium" } }))
     end,

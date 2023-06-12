@@ -5,6 +5,8 @@ return {
       "windwp/nvim-ts-autotag",
       "JoosepAlviste/nvim-ts-context-commentstring",
       "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-refactor",
+      "nvim-treesitter/nvim-treesitter-context",
       "RRethy/nvim-treesitter-textsubjects",
       {
         "m-demare/hlargs.nvim",
@@ -22,7 +24,6 @@ return {
       },
       highlight = {
         enable = true,
-        -- disable = { "c", "rust" },  -- list of language that will be disabled
         -- additional_vim_regex_highlighting = false,
       },
 

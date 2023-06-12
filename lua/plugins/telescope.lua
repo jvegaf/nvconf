@@ -4,7 +4,6 @@ return {
   dependencies = {
     { "nvim-lua/popup.nvim" },
     { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     { "cljoly/telescope-repo.nvim" },
     { "nvim-telescope/telescope-symbols.nvim" },
     { "nvim-telescope/telescope-file-browser.nvim" },
@@ -18,10 +17,7 @@ return {
   },
   opts = function()
     local actions = require "telescope.actions"
-    local previewers = require "telescope.previewers"
-    local builtin = require "telescope.builtin"
 
-    require("telescope").load_extension "fzf"
     require("telescope").load_extension "repo"
     require("telescope").load_extension "file_browser"
     require("telescope").load_extension "media_files"
@@ -58,7 +54,6 @@ return {
           },
           prompt_position = "top",
         },
-        file_sorter = require("telescope.sorters").get_fzy_sorter,
         prompt_prefix = "  ",
         color_devicons = true,
 
@@ -89,11 +84,6 @@ return {
         },
       },
       extensions = {
-        fzf = {
-          override_generic_sorter = false,
-          override_file_sorter = true,
-          case_mode = "smart_case",
-        },
         file_browser = {
           hijack_netrw = true,
         },

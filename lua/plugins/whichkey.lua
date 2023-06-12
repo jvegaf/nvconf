@@ -6,22 +6,22 @@ return {
     local which_key = require "which-key"
     local setup = {
       plugins = {
-        marks = true, -- shows a list of your marks on ' and `
-        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+        marks = true,       -- shows a list of your marks on ' and `
+        registers = true,   -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         spelling = {
-          enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+          enabled = true,   -- enabling this will show WhichKey when pressing z= to select spelling suggestions
           suggestions = 20, -- how many suggestions should be shown in the list?
         },
         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
         -- No actual key bindings are created
         presets = {
-          operators = true, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-          motions = true, -- adds help for motions
+          operators = true,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
+          motions = true,      -- adds help for motions
           text_objects = true, -- help for text objects triggered after entering an operator
-          windows = true, -- default bindings on <c-w>
-          nav = true, -- misc bindings to work with windows
-          z = true, -- bindings for folds, spelling and others prefixed with z
-          g = true, -- bindings for prefixed with g
+          windows = true,      -- default bindings on <c-w>
+          nav = true,          -- misc bindings to work with windows
+          z = true,            -- bindings for folds, spelling and others prefixed with z
+          g = true,            -- bindings for prefixed with g
         },
       },
       -- add operators that will trigger motion and text object completion
@@ -33,33 +33,33 @@ return {
         -- ["<space>"] = "SPC",
         ["<leader>"] = "SPC",
         -- ["<cr>"] = "RET",
-        -- ["<tab>"] = "TAB",
+        ["<tab>"] = "TAB",
       },
       icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "➜", -- symbol used between a key and it's label
-        group = "+", -- symbol prepended to a group
+        group = "+",      -- symbol prepended to a group
       },
       popup_mappings = {
         scroll_down = "<c-d>", -- binding to scroll down inside the popup
-        scroll_up = "<c-u>", -- binding to scroll up inside the popup
+        scroll_up = "<c-u>",   -- binding to scroll up inside the popup
       },
       window = {
-        border = "rounded", -- none, single, double, shadow
-        position = "bottom", -- bottom, top
-        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+        border = "rounded",       -- none, single, double, shadow
+        position = "bottom",      -- bottom, top
+        margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]
         padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
         winblend = 0,
       },
       layout = {
-        height = { min = 4, max = 25 }, -- min and max height of the columns
-        width = { min = 20, max = 50 }, -- min and max width of the columns
-        spacing = 3, -- spacing between columns
-        align = "center", -- align columns left, center or right
+        height = { min = 4, max = 25 },                                             -- min and max height of the columns
+        width = { min = 20, max = 50 },                                             -- min and max width of the columns
+        spacing = 3,                                                                -- spacing between columns
+        align = "center",                                                           -- align columns left, center or right
       },
-      ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+      ignore_missing = true,                                                        -- enable this to hide mappings for which you didn't specify a label
       hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-      show_help = false, -- show help message on the command line when the popup is visible
+      show_help = false,                                                            -- show help message on the command line when the popup is visible
       -- triggers = "auto", -- automatically setup triggers
       -- triggers = {"<leader>"} -- or specify a list manually
       triggers_blacklist = {
@@ -72,21 +72,21 @@ return {
     }
 
     local opts = {
-      mode = "n", -- NORMAL mode
+      mode = "n",     -- NORMAL mode
       prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
+      buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+      silent = true,  -- use `silent` when creating keymaps
       noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
+      nowait = true,  -- use `nowait` when creating keymaps
     }
 
     local m_opts = {
-      mode = "n", -- NORMAL mode
+      mode = "n",     -- NORMAL mode
       prefix = "m",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
+      buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+      silent = true,  -- use `silent` when creating keymaps
       noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
+      nowait = true,  -- use `nowait` when creating keymaps
     }
 
     local m_mappings = {
@@ -105,16 +105,8 @@ return {
 
     local mappings = {
       -- ["1"] = "which_key_ignore",
-      b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-      e = { name = "Toggle Explorer" },
+      ["<tab>"] = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>", "Buffers" },
       -- h = { "<cmd>split<cr>", "split" },
-      H = { "<cmd>checkhealth<cr>", "Check health" },
-      k = {
-        "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
-        "Prev Diagnostic",
-      },
-      y = { "<cmd>lua require('telescope').extensions.yank_history.yank_history()<cr>", "Yank History" },
-      ["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" },
       ["gy"] = "Link",
       c = { name = "Change" },
       B = { name = "Browse" },
@@ -123,12 +115,7 @@ return {
         c = { "<cmd>lua vim.g.cmp_active=false<cr>", "Completion off" },
         C = { "<cmd>lua vim.g.cmp_active=true<cr>", "Completion on" },
       },
-      r = {
-        name = "Replace",
-        r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
-        w = { "<cmd>lua require('spectre').open_visual({select_word=true})<cr>", "Replace Word" },
-        f = { "<cmd>lua require('spectre').open_file_search()<cr>", "Replace Buffer" },
-      },
+      r = { name = "Replace" },
       d = { name = "Debug" },
       f = {
         name = "Find",
@@ -151,6 +138,7 @@ return {
         t = { "<cmd>lua require('telescope.builtin').colorscheme({enable_preview = true})<cr>", "Color Theme" },
         u = { "<cmd>lua require('telescope').extensions.undo.undo()<cr>", "Undo Changes" },
         w = { "<cmd>Telescope live_grep<cr>", "Find Text" },
+        y = { "<cmd>lua require('telescope').extensions.yank_history.yank_history()<cr>", "Yank History" },
       },
       g = {
         name = "Git",
@@ -183,31 +171,32 @@ return {
         },
         u = { "<cmd>LuaSnipUnlinkCurrent<cr>", "Unlink Snippet" },
       },
-      p = {
-        name = "Plugins",
-        l = { "<cmd>Lazy<cr>", "Lazy" },
-      },
+      -- p = {
+      --   name = "Plugins",
+      -- },
+      -- s = {
+      --   name = "Surround",
+      --   ["."] = { "<cmd>lua require('surround').repeat_last()<cr>", "Repeat" },
+      --   a = { "<cmd>lua require('surround').surround_add(true)<cr>", "Add" },
+      --   d = { "<cmd>lua require('surround').surround_delete()<cr>", "Delete" },
+      --   r = { "<cmd>lua require('surround').surround_replace()<cr>", "Replace" },
+      --   q = { "<cmd>lua require('surround').toggle_quotes()<cr>", "Quotes" },
+      --   b = { "<cmd>lua require('surround').toggle_brackets()<cr>", "Brackets" },
+      -- },
       s = {
-        name = "Surround",
-        ["."] = { "<cmd>lua require('surround').repeat_last()<cr>", "Repeat" },
-        a = { "<cmd>lua require('surround').surround_add(true)<cr>", "Add" },
-        d = { "<cmd>lua require('surround').surround_delete()<cr>", "Delete" },
-        r = { "<cmd>lua require('surround').surround_replace()<cr>", "Replace" },
-        q = { "<cmd>lua require('surround').toggle_quotes()<cr>", "Quotes" },
-        b = { "<cmd>lua require('surround').toggle_brackets()<cr>", "Brackets" },
-      },
-      S = {
         name = "System",
         d = { "<cmd>Alpha<cr>", "Dashboard" },
+        h = { "<cmd>checkhealth<cr>", "Check health" },
+        l = { "<cmd>Lazy<cr>", "Lazy" },
         n = { "<cmd>lua require('telescope').extensions.notify.notify()<cr>", "Notifications" },
         s = { "<cmd>e $MYVIMRC<cr>", "Settings" },
       },
+      -- t = {
+      --   name = "Telescope",
+      --   n = { "<cmd>Telescope node_modules list<cr>", "Node Modules" },
+      --   t = { "<cmd>lua require('telescope').extensions.tailiscope.tailiscope()<cr>", "Tailwincss" },
+      -- },
       t = {
-        name = "Telescope",
-        -- n = { "<cmd>Telescope node_modules list<cr>", "Node Modules" },
-        -- t = { "<cmd>lua require('telescope').extensions.tailiscope.tailiscope()<cr>", "Tailwincss" },
-      },
-      T = {
         name = "Treesitter",
         h = { "<cmd>TSHighlightCapturesUnderCursor<cr>", "Highlight" },
         p = { "<cmd>TSPlaygroundToggle<cr>", "Playground" },
@@ -217,18 +206,23 @@ return {
         name = "Diagnostics",
         a = { "<cmd>CodeActionMenu<cr>", "Code Action Menu" },
         c = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Actions" },
+        j = { "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", "Next Diagnostic" },
+        k = {
+          "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
+          "Prev Diagnostic",
+        },
         x = { "<cmd>TroubleToggle<cr>", "Toggle Diagnostics" },
         w = { "<cmd>Telescope lsp_workspace_diagnostics<cr>", "Workspace Diagnostics" },
       },
     }
 
     local vopts = {
-      mode = "v", -- VISUAL mode
+      mode = "v",     -- VISUAL mode
       prefix = "<leader>",
-      buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
+      buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
+      silent = true,  -- use `silent` when creating keymaps
       noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
+      nowait = true,  -- use `nowait` when creating keymaps
     }
     local vmappings = {
       ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>', "Comment" },

@@ -1,15 +1,18 @@
 return {
   "windwp/nvim-autopairs",
-  event = "InsertEnter",
-  opts = function()
-    require("nvim-autopairs").setup {
+  dependencies = {
+    "hrsh7th/nvim-cmp",
+  },
+  opts = {
       check_ts = true,
       ts_config = {
         lua = { "string" },
         javascript = { "template_string" },
         java = false,
       },
-    }
+  },
+  config = function(_, opts)
+    require("nvim-autopairs").setup(opts)
 
     local cmp_autopairs = require "nvim-autopairs.completion.cmp"
     local cmp = require "cmp"

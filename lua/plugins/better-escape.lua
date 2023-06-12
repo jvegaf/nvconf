@@ -1,8 +1,0 @@
-return {
-  "max397574/better-escape.nvim",
-  event = "InsertEnter",
-  opts = {
-    timeout = 300,
-    mapping = { "kk", "jj" },
-  },
-}
