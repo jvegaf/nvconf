@@ -26,7 +26,21 @@ return require('packer').startup {
     use 'nvim-lua/plenary.nvim' -- Common utilities
     use 'folke/neodev.nvim'
     use { 'onsails/lspkind-nvim', config = function() require('plugins.lspkind') end, }            -- vscode-like pictograms
-
+    
+    use {
+        "m-demare/hlargs.nvim",
+        config = function()
+          require("hlargs").setup { color = "#F7768E" }
+        end,
+      }
+    
+   use {
+    "williamboman/mason.nvim",
+    run = ":MasonUpdate",
+      config = function()
+        require("mason").setup()
+      end,
+    } 
     -- CMP
     use {
       'hrsh7th/nvim-cmp',
@@ -50,10 +64,7 @@ return require('packer').startup {
     use {
       'williamboman/mason-lspconfig.nvim',
       requires = {
-        {
-          'williamboman/mason.nvim',
-          cmd = { 'Mason' },
-        }
+        'williamboman/mason.nvim',
       },
       cmd = { 'LspInstall', 'LspUninstall' },
       config = function()
@@ -88,13 +99,6 @@ return require('packer').startup {
     }
 
     use {
-      'lukas-reineke/indent-blankline.nvim',
-      config = function()
-        require('plugins.indent-blankline')
-      end,
-    }
-
-    use {
       'romgrk/barbar.nvim',
       config = function ()
         require('plugins.barbar')
@@ -123,11 +127,13 @@ return require('packer').startup {
     use {
       'nvim-treesitter/nvim-treesitter',
       requires = {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        {'windwp/nvim-ts-autotag', config = function() require('plugins.ts-autotag') end,},
-        'RRethy/nvim-treesitter-textsubjects',
-        'JoosepAlviste/nvim-ts-context-commentstring',
-        'HiPhish/nvim-ts-rainbow2',
+        "windwp/nvim-ts-autotag",
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/nvim-treesitter-refactor",
+        "nvim-treesitter/nvim-treesitter-context",
+        "RRethy/nvim-treesitter-textsubjects",
+        "m-demare/hlargs.nvim",
       },
       run = function()
         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
