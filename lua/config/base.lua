@@ -1,7 +1,7 @@
 local options = {
   backup = false, -- creates a backup file
   clipboard = 'unnamedplus', -- allows neovim to access the system clipboard
-  cmdheight = 2, -- more space in the neovim command line for displaying messages
+  cmdheight = 0, -- more space in the neovim command line for displaying messages
   completeopt = { 'menuone', 'noselect' }, -- mostly just for cmp
   conceallevel = 0, -- so that `` is visible in markdown files
   cursorline = true, -- highlight the current line
@@ -12,7 +12,6 @@ local options = {
   foldenable = true,
   foldlevel = 99,
   foldlevelstart = 99,
-  guifont = 'ComicCodeLigatures NF:h12', -- the font used in graphical neovim applications
   hlsearch = true, -- highlight all matches on previous search pattern
   ignorecase = true, -- ignore case in search patterns
   incsearch = false,
@@ -20,6 +19,7 @@ local options = {
   mouse = 'a', -- allow the mouse to be used in neovim
   number = true, -- set numbered lines
   numberwidth = 4, -- set number column width to 2 {default 4}
+  pumblend = 10, -- popup menu blend
   pumheight = 10, -- pop up menu height
   relativenumber = true, -- set relative numbered lines
   ruler = true,
@@ -37,12 +37,13 @@ local options = {
   swapfile = false, -- creates a swapfile
   tabstop = 2, -- insert 2 spaces for a tab
   termguicolors = true, -- set term gui colors (most terminals support this)
-  timeoutlen = 1000, -- time to wait for a mapped sequence to complete (in milliseconds)
+  timeoutlen = 600, -- time to wait for a mapped sequence to complete (in milliseconds)
   title = true,
   undofile = true, -- enable persistent undo
   updatetime = 300, -- faster completion (4000ms default)
   wrap = false, -- display lines as one long line
   writebackup = false, -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
+  wildmode = "longest:full,full", -- command-line completion mode
 }
 
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -51,7 +52,7 @@ vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 --   stl = ' ',
 -- }
 
-vim.opt.shortmess:append 'c'
+vim.opt.shortmess:append { C = true } -- Don't pass messages to |ins-completion-menu|.
 
 vim.opt.diffopt = { 'internal', 'filler', 'closeoff', 'hiddenoff', 'algorithm:minimal' }
 
@@ -85,7 +86,7 @@ vim.api.nvim_create_autocmd('InsertLeave', {
 --     + "j" -- Auto-remove comments if possible.
 
 -- Add asterisks in block comments
-vim.opt.formatoptions:append { 'r' }
+-- vim.opt.formatoptions:append { 'r' }
 
 vim.wo.signcolumn = "yes"
 

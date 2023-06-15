@@ -124,4 +124,9 @@ M.add_whitespaces = function(number)
   return string.rep(" ", number)
 end
 
+---@param plugin string
+M.has = function(plugin)
+  return require("lazy.core.config").plugins[plugin] ~= nil
+end
+
 return M
