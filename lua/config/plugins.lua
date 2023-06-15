@@ -49,7 +49,7 @@ return require('packer').startup {
     -- Mason
     use {
       'williamboman/mason-lspconfig.nvim',
-      requirements = {
+      requires = {
         {
           'williamboman/mason.nvim',
           cmd = { 'Mason' },
@@ -63,7 +63,7 @@ return require('packer').startup {
 
     use {
       'jay-babu/mason-null-ls.nvim',
-      requirements = {
+      requires = {
         'williamboman/mason.nvim',
       },
       cmd = { 'NullLsInstall', 'NullLsUninstall' },

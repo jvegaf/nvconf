@@ -7,9 +7,9 @@ local term_opts = { silent = true }
 local map = vim.keymap.set
 
 --Remap space as leader key
-map('n', '<Space>', '', opts)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+-- map('n', '<Space>', '', opts)
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
 map('n', '<C-i>', '<C-i>', opts)
 
 map('n', 'x', '"_x', opts)
