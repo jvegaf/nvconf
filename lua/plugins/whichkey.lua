@@ -105,7 +105,6 @@ return {
 
     local mappings = {
       -- ["1"] = "which_key_ignore",
-      ["<tab>"] = { "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>", "Buffers" },
       -- h = { "<cmd>split<cr>", "split" },
       ["gy"] = "Link",
       c = { name = "Change" },

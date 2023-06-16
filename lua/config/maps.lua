@@ -81,7 +81,7 @@ map("v", "//", [[y/\V<C-R>=escape(@",'/\')<CR><CR>]], NS) -- search for visualy 
 map("n", "<C-p>", "<cmd>Telescope command_center<cr>", NS)
 map("n", "<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", NS)
 
-
+map("n", "bb", "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false, initial_mode='normal'})<cr>", NS)
 map("n", "<A-q>", "<cmd>Bdelete<CR>", NS)
 
 map("n", "<leader>w", "<cmd>write<CR>", { desc = "Write", noremap = true, silent = true })
