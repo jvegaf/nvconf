@@ -82,9 +82,6 @@ map("n", "<C-p>", "<cmd>Telescope command_center<cr>", NS)
 map("n", "<C-t>", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", NS)
 
 
--- Tabs
--- map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", NS)
--- map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", NS)
 map("n", "<A-q>", "<cmd>Bdelete<CR>", NS)
 
 map("n", "<leader>w", "<cmd>write<CR>", { desc = "Write", noremap = true, silent = true })
