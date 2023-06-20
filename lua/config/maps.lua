@@ -7,9 +7,9 @@ local term_opts = { silent = true }
 local map = vim.keymap.set
 
 --Remap space as leader key
--- map('n', '<Space>', '', opts)
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
+map('n', '<Space>', '', opts)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 map('n', '<C-i>', '<C-i>', opts)
 
 map('n', 'x', '"_x', opts)
@@ -104,6 +104,9 @@ vim.keymap.set(
 -- map('n', '<Tab>', '<cmd>BufferNext<CR>', opts)
 -- map('n', '<S-Tab>', '<cmd>BufferPrevious<CR>', opts)
 map('n', '<A-q>', '<cmd>BufferClose<CR>', opts)
+map('n', '<leader>w', '<cmd>write<CR>', opts)
+map('n', '<leader>q', '<cmd>quit<CR>', opts)
+map('i', 'jj', '<Esc>', opts)
 
 -- Easyalign
 map('n', 'ga', '<Plug>(EasyAlign)', opts)
