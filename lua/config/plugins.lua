@@ -23,24 +23,23 @@ local use = require('packer').use
 return require('packer').startup {
   function()
     use 'wbthomason/packer.nvim'
-    use 'nvim-lua/plenary.nvim' -- Common utilities
+    use 'nvim-lua/plenary.nvim'                                                         -- Common utilities
     use 'folke/neodev.nvim'
-    use { 'onsails/lspkind-nvim', config = function() require('plugins.lspkind') end, }            -- vscode-like pictograms
-    
+    use { 'onsails/lspkind-nvim', config = function() require('plugins.lspkind') end, } -- vscode-like pictograms
     use {
-        "m-demare/hlargs.nvim",
-        config = function()
-          require("hlargs").setup { color = "#F7768E" }
-        end,
-      }
-    
-   use {
-    "williamboman/mason.nvim",
-    run = ":MasonUpdate",
+      "m-demare/hlargs.nvim",
+      config = function()
+        require("hlargs").setup { color = "#F7768E" }
+      end,
+    }
+
+    use {
+      "williamboman/mason.nvim",
+      run = ":MasonUpdate",
       config = function()
         require("mason").setup()
       end,
-    } 
+    }
     -- CMP
     use {
       'hrsh7th/nvim-cmp',
@@ -100,7 +99,7 @@ return require('packer').startup {
 
     use {
       'romgrk/barbar.nvim',
-      config = function ()
+      config = function()
         require('plugins.barbar')
       end,
     }
@@ -139,7 +138,7 @@ return require('packer').startup {
         local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
         ts_update()
       end,
-      config = function ()
+      config = function()
         require('plugins.treesitter')
       end
     }
@@ -149,7 +148,7 @@ return require('packer').startup {
     use {
       'nvim-telescope/telescope.nvim',
       requires = {
-          'nvim-telescope/telescope-file-browser.nvim'
+        'nvim-telescope/telescope-file-browser.nvim'
       },
       config = function()
         require('plugins.telescope')
@@ -158,7 +157,7 @@ return require('packer').startup {
 
     use {
       'rcarriga/nvim-notify',
-      config = function ()
+      config = function()
         require('plugins.nvim-notify')
       end
     }
@@ -166,7 +165,7 @@ return require('packer').startup {
     use {
       'folke/lsp-colors.nvim',
       event = 'BufRead',
-      config = function ()
+      config = function()
         require('plugins.lsp-colors')
       end,
     }
@@ -184,7 +183,7 @@ return require('packer').startup {
     use {
       'Shatur/neovim-session-manager',
       requires = 'nvim-lua/plenary.nvim',
-      config = function ()
+      config = function()
         require('plugins.session-manager')
       end
     }
@@ -211,7 +210,7 @@ return require('packer').startup {
 
     use {
       'norcalli/nvim-colorizer.lua',
-      config = function ()
+      config = function()
         require('plugins.colorizer')
       end
     }
@@ -220,7 +219,7 @@ return require('packer').startup {
 
     use {
       'dinhhuy258/git.nvim',
-      config = function ()
+      config = function()
         require('plugins.git')
       end,
     }
@@ -294,7 +293,7 @@ return require('packer').startup {
     -- Motion
     use {
       'phaazon/hop.nvim',
-      config = function ()
+      config = function()
         require('plugins.hop')
       end
     }
@@ -343,7 +342,7 @@ return require('packer').startup {
       requires = {
         'nvim-tree/nvim-web-devicons',
       },
-      config = function ()
+      config = function()
         require('plugins.alpha')
       end
     }
