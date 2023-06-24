@@ -23,6 +23,12 @@ local use = require('packer').use
 return require('packer').startup {
   function()
     use 'wbthomason/packer.nvim'
+    use {
+      'williamboman/mason.nvim',
+      config = function()
+        require("mason").setup()
+      end,
+    }
     use 'nvim-lua/plenary.nvim'                                                         -- Common utilities
     use 'folke/neodev.nvim'
     use { 'onsails/lspkind-nvim', config = function() require('plugins.lspkind') end, } -- vscode-like pictograms
@@ -33,13 +39,7 @@ return require('packer').startup {
       end,
     }
 
-    use {
-      "williamboman/mason.nvim",
-      run = ":MasonUpdate",
-      config = function()
-        require("mason").setup()
-      end,
-    }
+    
     -- CMP
     use {
       'hrsh7th/nvim-cmp',
@@ -345,6 +345,13 @@ return require('packer').startup {
       config = function()
         require('plugins.alpha')
       end
+    }
+
+    use {
+      'j-hui/fidget.nvim',
+      config = function()
+        require"fidget".setup{}
+      end,
     }
 
     -- Themes
