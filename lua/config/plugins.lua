@@ -39,7 +39,6 @@ return require('packer').startup {
       end,
     }
 
-    
     -- CMP
     use {
       'hrsh7th/nvim-cmp',
@@ -72,6 +71,20 @@ return require('packer').startup {
     }
 
     use {
+      'Exafunction/codeium.vim',
+      event = 'InsertEnter',
+      cmd = 'Codeium',
+      config = function ()
+        vim.g.codeium_disable_bindings = 1
+
+        vim.keymap.set('i', '<A-l>', function () return vim.fn['codeium#Accept']() end, { expr = true })
+        vim.keymap.set('i', '<A-j>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+        vim.keymap.set('i', '<A-k>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+        vim.keymap.set('i', '<A-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+      end
+    }
+
+    use {
       'jay-babu/mason-null-ls.nvim',
       requires = {
         'williamboman/mason.nvim',
@@ -85,6 +98,13 @@ return require('packer').startup {
     use {
       'glepnir/lspsaga.nvim',
       branch = 'main',
+      opt = true,
+      event = 'LspAttach',
+      requires = {
+        {'nvim-tree/nvim-web-devicons'},
+        --Please make sure you install markdown and markdown_inline parser
+        {'nvim-treesitter/nvim-treesitter'}
+      },
       config = function()
         require('plugins.lspsaga')
       end,
@@ -349,6 +369,7 @@ return require('packer').startup {
 
     use {
       'j-hui/fidget.nvim',
+      tag = 'legacy',
       config = function()
         require"fidget".setup{}
       end,

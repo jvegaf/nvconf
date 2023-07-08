@@ -235,7 +235,6 @@ local mappings = {
     },
     v = { "<cmd>lua require('lsp_lines').toggle()<cr>", 'Virtual Text' },
     l = { '<cmd>lua vim.lsp.codelens.run()<cr>', 'CodeLens Action' },
-    o = { '<cmd>SymbolsOutline<cr>', 'Outline' },
     q = { '<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>', 'Quickfix' },
     r = { '<cmd>lua vim.lsp.buf.rename()<cr>', 'Rename' },
     R = { '<cmd>TroubleToggle lsp_references<cr>', 'References' },
