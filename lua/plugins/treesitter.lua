@@ -16,7 +16,7 @@ return {
       },
     },
     opts = {
-      ensure_installed = { "lua", "vim", "regex", "typescript", "cpp" },
+      ensure_installed = { "lua", "vim", "javascript", "typescript", "tsx", "cpp" },
       auto_install = true,
       ignore_install = { "haskell" }, -- list of parsers to ignore installing
       autotag = {
