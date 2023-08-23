@@ -107,7 +107,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
   group = config_group,
   callback = function()
     -- require("nvim-tree").toggle(false, true)
-    require "notify"("Session loaded!", "info", { title = "Session Manager" })
+    require "notify" ("Session loaded!", "info", { title = "Session Manager" })
   end,
 })
 
@@ -116,7 +116,7 @@ vim.api.nvim_create_autocmd({ "User" }, {
   pattern = "SessionSavePost",
   group = config_group,
   callback = function()
-    require "notify"("Session saved!", "info", { title = "Session Manager", bufid = 0 })
+    require "notify" ("Session saved!", "info", { title = "Session Manager", bufid = 0 })
     -- require("nvim-tree").toggle(false, true)
   end,
 })
@@ -128,3 +128,29 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
     vim.cmd "tabdo wincmd ="
   end,
 })
+
+
+-- nvim-tree
+
+local function open_nvim_tree(data)
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  if not directory then
+    return
+  end
+
+  -- create a new, empty buffer
+  vim.cmd.enew()
+
+  -- wipe the directory buffer
+  vim.cmd.bw(data.buf)
+
+  -- change to the directory
+  vim.cmd.cd(data.file)
+
+  -- open the tree
+  require("nvim-tree.api").tree.open()
+end
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })

@@ -45,10 +45,10 @@ map("n", "<C-Left>", ":vertical resize -2<CR>", NS)
 map("n", "<C-Right>", ":vertical resize +2<CR>", NS)
 
 -- Move Lines
-map("n", "<A-j>", ":m .+1<CR>==", NS)
-map("n", "<A-k>", ":m .-2<CR>==", NS)
-map("v", "<A-j>", ":m '>+1<CR>gv=gv", NS)
-map("v", "<A-k>", ":m '<-2<CR>gv=gv", NS)
+map("n", "<A-Down>", ":m .+1<CR>==", NS)
+map("n", "<A-Up>", ":m .-2<CR>==", NS)
+map("v", "<A-Down>", ":m '>+1<CR>gv=gv", NS)
+map("v", "<A-Up>", ":m '<-2<CR>gv=gv", NS)
 -- map("i", "<A-j>", "<Esc>:m .+1<CR>==gi", NS)
 -- map("i", "<A-k>", "<Esc>:m .-2<CR>==gi", NS)
 
