@@ -15,6 +15,7 @@ return {
       "shfmt",
       "prettierd",
       "js-debug-adapter",
+      "jq",
     },
   },
   build = ":MasonUpdate",

@@ -38,7 +38,11 @@ return {
   -- typescript-tools.nvim
   {
     "pmizio/typescript-tools.nvim",
-    dependencies = { { "folke/neoconf.nvim", cmd = "Neoconf", config = true }, "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    dependencies = {
+      { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+      "nvim-lua/plenary.nvim",
+      "neovim/nvim-lspconfig",
+    },
     opts = {},
     config = function(_, opts)
       require("lsp.utils").on_attach(function(client, bufnr)
@@ -85,5 +89,12 @@ return {
     },
     lazy = false,
     servers = nil,
+  },
+  {
+    "j-hui/fidget.nvim",
+    tag = "legacy",
+    event = "LspAttach",
+    opts = {
+    },
   },
 }

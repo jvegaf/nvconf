@@ -19,7 +19,7 @@ return {
       -- or a table of adapter names, mapped to adapter configs.
       -- The adapter will then be automatically loaded with the config.
       adapters = {
-        require("neotest-vitest"),
+        ["neotest-vitest"] = {},
       },
       -- Example for loading neotest-go with a custom config
       -- adapters = {

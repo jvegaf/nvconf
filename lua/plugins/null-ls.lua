@@ -9,6 +9,7 @@ return {
       sources = {
         b.formatting.stylua,
         b.formatting.prettierd,
+        b.formatting.jq,
       }
     }
   end,
