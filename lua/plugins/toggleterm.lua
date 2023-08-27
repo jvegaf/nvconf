@@ -144,21 +144,21 @@ local vertical_term = Terminal:new {
       term.bufnr,
       "n",
       "<m-3>",
-      "<cmd>2ToggleTerm size=60 direction=vertical<cr>",
+      "<cmd>2ToggleTerm size=100 direction=vertical<cr>",
       { noremap = true, silent = true }
     )
     vim.api.nvim_buf_set_keymap(
       term.bufnr,
       "t",
       "<m-3>",
-      "<cmd>2ToggleTerm size=60 direction=vertical<cr>",
+      "<cmd>2ToggleTerm size=100 direction=vertical<cr>",
       { noremap = true, silent = true }
     )
     vim.api.nvim_buf_set_keymap(
       term.bufnr,
       "i",
       "<m-3>",
-      "<cmd>2ToggleTerm size=60 direction=vertical<cr>",
+      "<cmd>2ToggleTerm size=100 direction=vertical<cr>",
       { noremap = true, silent = true }
     )
     vim.api.nvim_buf_set_keymap(term.bufnr, "", "<m-4>", "<nop>", { noremap = true, silent = true })

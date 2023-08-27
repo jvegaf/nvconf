@@ -87,7 +87,8 @@ cmp.setup {
   sources = cmp.config.sources {
     { name = 'nvim_lsp', priority = 900 },
     { name = 'luasnip', priority = 850, max_item_count = 8 },
-    { name = 'cmp_tabnine', priority = 800, max_num_results = 3 },
+    -- { name = 'cmp_tabnine', priority = 800, max_num_results = 3 },
+    { name = 'codeium', priority = 800 },
     -- { name = 'npm', priority = 7 },
     { name = 'buffer', priority = 700, keyword_length = 5, option = buffer_option, max_item_count = 8 },
     { name = 'nvim_lua', priority = 600 },
